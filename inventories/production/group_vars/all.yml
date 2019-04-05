@@ -5,4 +5,4 @@ mtproxy_proxy_port: 1234
 mtproxy_tag: '130daf1e1a7bf034e85146159aac6b3d'
 
 mtproxy_secrets:
-  - 65c966bb3838c3588802b28d1a94f4db
+  - 6e4dc371636d55b07880f38dfeaa0383
