@@ -1,8 +1,1 @@
 ---
-mtproxy_http_port: 8888
-mtproxy_http_stats: true
-mtproxy_proxy_port: 1234
-mtproxy_tag: '130daf1e1a7bf034e85146159aac6b3d'
-
-mtproxy_secrets:
-  - 6e4dc371636d55b07880f38dfeaa0383
