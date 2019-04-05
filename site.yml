@@ -1,2 +1,2 @@
 ---
-- import_playbook: playbooks/tgproxy.yml
+- import_playbook: playbooks/main.yml
