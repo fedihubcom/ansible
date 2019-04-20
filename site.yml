@@ -1,2 +1,2 @@
 ---
-- import_playbook: playbooks/main.yml
+- import_playbook: playbooks/hubs.yml
