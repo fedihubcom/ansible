@@ -11,7 +11,7 @@ def short_key(s):
         raise AnsibleFilterError('Invalid key: %s' % s)
     return '"%s"' % s.lower()
 
-def long_key(s)
+def long_key(s):
     s = str(s)
     if not LONG_KEY_RE.match(s):
         raise AnsibleFilterError('Invalid key: %s' % s)
