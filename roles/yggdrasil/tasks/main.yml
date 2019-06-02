@@ -5,3 +5,7 @@
     owner: root
     group: root
     mode:  u=rw,g=r,o=r
+- apt:
+    update_cache: true
+    name: yggdrasil
+    state: present
