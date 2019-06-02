@@ -9,3 +9,7 @@
     update_cache: true
     name: yggdrasil
     state: present
+- service:
+    name: yggdrasil
+    enabled: true
+    state: started
