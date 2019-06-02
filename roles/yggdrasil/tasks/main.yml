@@ -9,7 +9,11 @@
     update_cache: true
     name: yggdrasil
     state: present
-- service:
-    name: yggdrasil
-    enabled: true
-    state: started
+- template:
+    src: templates/yggdrasil.conf
+    dest: /etc/yggdrasil.conf
+    owner: root
+    group: root
+    mode: u=rw,g=,o=
+  notify:
+    - Enable and reload Yggdrasil service

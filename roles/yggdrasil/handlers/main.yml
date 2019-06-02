@@ -1,0 +1,6 @@
+---
+- name: Enable and reload Yggdrasil service
+  service:
+    name: yggdrasil
+    enabled: true
+    state: reloaded
