@@ -2,8 +2,8 @@ import re
 
 from ansible.errors import AnsibleFilterError
 
-SHORT_KEY_RE = re.compile(r'^[0-9a-z]{64}$', re.IGNORECASE)
-LONG_KEY_RE  = re.compile(r'^[0-9a-z]{128}$', re.IGNORECASE)
+SHORT_KEY_RE = re.compile(r'^[0-9a-f]{64}$',  re.IGNORECASE)
+LONG_KEY_RE  = re.compile(r'^[0-9a-f]{128}$', re.IGNORECASE)
 
 def short_key(s):
     s = str(s)
