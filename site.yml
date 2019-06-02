@@ -1,4 +1,4 @@
 ---
-- hosts: hubs
+- hosts: all
   roles:
     - yggdrasil
