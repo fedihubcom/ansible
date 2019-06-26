@@ -1,0 +1,7 @@
+---
+- name: Enable and restart Litecoin service
+  become: true
+  systemd:
+    name: litecoin
+    daemon_reload: true
+    state: restarted

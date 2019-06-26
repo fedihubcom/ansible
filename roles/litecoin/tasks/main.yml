@@ -1,0 +1,58 @@
+---
+- become: true
+  user:
+    name: litecoin
+    group: litecoin
+    system: true
+    create_home: true
+- become: true
+  file:
+    state: directory
+    path: /home/litecoin/.litecoin/
+    mode: 'u=rwx,g=rxs,o='
+    owner: litecoin
+    group: litecoin
+- become: true
+  copy:
+    src: files/litecoin.conf
+    dest: /home/litecoin/.litecoin/litecoin.conf
+    mode: 'u=rw,g=r,o='
+    owner: litecoin
+    group: litecoin
+  notify:
+    - Enable and restart Litecoin service
+- become: true
+  file:
+    state: directory
+    path: /var/local/litecoin/
+    mode: 'u=rwx,g=rxs,o='
+    owner: litecoin
+    group: litecoin
+  notify:
+    - Enable and restart Litecoin service
+- become: true
+  copy:
+    src: files/litecoin.service
+    dest: /etc/systemd/system/litecoin.service
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify:
+    - Enable and restart Litecoin service
+- become: true
+  get_url:
+    url: https://download.litecoin.org/litecoin-0.17.1/linux/litecoin-0.17.1-x86_64-linux-gnu.tar.gz
+    checksum: sha256:9cab11ba75ea4fb64474d4fea5c5b6851f9a25fe9b1d4f7fc9c12b9f190fed07
+    dest: /home/litecoin/litecoin-0.17.1-x86_64-linux-gnu.tar.gz
+    mode: 'u=rw,g=r,o=r'
+    owner: litecoin
+    group: litecoin
+- become: true
+  unarchive:
+    remote_src: true
+    src: /home/litecoin/litecoin-0.17.1-x86_64-linux-gnu.tar.gz
+    dest: /usr/local/
+    extra_opts:
+      - '--strip-components=1'
+  notify:
+    - Enable and restart Litecoin service
