@@ -1,1 +1,13 @@
 ---
+litecoin__externalip:
+  - '165.227.52.149'
+  - '2604:A880:0002:00D0:0000:0000:2379:9001'
+
+litecoin__rpcauth:
+  - 'lnd:d9ff98d96268fb714417e696f95a061$b70f35d76988632783001b4aa4908e567a8a2d3ac7b30cb781d21935d9a4a7e0'
+
+litecoin__zmqpubrawblock:
+  - 'tcp://127.0.0.1:28332'
+
+litecoin__zmqpubrawtx:
+  - 'tcp://127.0.0.1:28333'
