@@ -1,4 +1,8 @@
 ---
+litecoin__txindex: true
+litecoin__server: true
+litecoin__rpcserialversion: 1
+
 litecoin__externalip:
   - '165.227.52.149'
   - '2604:A880:0002:00D0:0000:0000:2379:9001'
