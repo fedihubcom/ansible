@@ -1,0 +1,4 @@
+---
+- src: kotovalexarian.litecoin
+  version: v0.0.3
+- src: kotovalexarian.lnd
