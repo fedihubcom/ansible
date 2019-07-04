@@ -1,0 +1,18 @@
+---
+public_iface:  eth0
+private_iface: eth1
+
+public_ipv4_address:   165.227.52.149
+public_ipv4_gateway:   165.227.48.1
+public_ipv4_prefixlen: 20
+public_ipv4_netmask:   255.255.240.0
+
+public_ipv6_address:   2604:A880:0002:00D0:0000:0000:2379:9001
+public_ipv6_gateway:   2604:a880:2:d0::1
+public_ipv6_prefixlen: 124
+public_ipv6_from:      2604:a880:2:d0::2379:9000
+public_ipv6_to:        2604:a880:2:d0::2379:900f
+
+private_ipv4_address:   10.138.124.98
+private_ipv4_prefixlen: 16
+private_ipv4_netmask:   255.255.0.0
