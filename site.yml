@@ -1,5 +1,17 @@
 ---
 - hosts: all
+  tasks:
+    - name: APT update & upgrade
+      become: true
+      apt:
+        update_cache: true
+        upgrade: safe
+    - name: Install useful packages
+      become: true
+      apt:
+        state: present
+        name: ['bash-completion', 'colordiff', 'curl', 'less', 'vim']
+- hosts: all
   roles:
     - kotovalexarian.litecoin
     - kotovalexarian.lnd
