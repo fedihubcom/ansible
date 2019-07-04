@@ -45,7 +45,3 @@
         daemon_reload: true
         name: sshd
         state: restarted
-- hosts: all
-  roles:
-    - kotovalexarian.litecoin
-    - kotovalexarian.lnd
