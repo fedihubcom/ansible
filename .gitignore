@@ -1,5 +1,1 @@
-/*.retry
-/keys/*
-!/keys/.keep
-
-__pycache__/
+/playbooks/*.retry

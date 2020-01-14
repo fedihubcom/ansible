@@ -1,0 +1,5 @@
+---
+- hosts: all
+  module_defaults:
+    apt:
+      force_apt_get: true
