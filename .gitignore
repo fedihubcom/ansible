@@ -1,1 +1,3 @@
 /playbooks/*.retry
+/vendor/*
+!/vendor/.keep

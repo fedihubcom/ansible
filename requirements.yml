@@ -1,1 +1,3 @@
 ---
+- src: kotovalexarian.common
+  version: v0.0.3
