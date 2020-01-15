@@ -30,12 +30,12 @@ common__nginx__sites:
 rails__deploy_user: kotovalexarian
 rails__root_dir: '/opt/rails'
 rails__rvm: '/usr/local/rvm/bin/rvm'
-rails__ruby: ruby-2.6.2
+rails__ruby: ruby-2.7.0
 
 rvm1_rvm_version: stable
 rvm1_rvm_check_for_updates: true
 rvm1_install_path: '/usr/local/rvm'
 rvm1_install_flags: '--auto-dotfiles'
 rvm1_user: root
-rvm1_rubies: ['ruby-2.6.2']
+rvm1_rubies: ['ruby-2.7.0']
 rvm1_bundler_install: false
