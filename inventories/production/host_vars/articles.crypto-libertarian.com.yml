@@ -13,6 +13,8 @@ common__certbot__cert_domains:
   - 'articles.crypto-libertarian.com'
 
 rails__deploy_user: kotovalexarian
+rails__rvm: '/usr/local/rvm/bin/rvm'
+rails__ruby: ruby-2.6.2
 
 rvm1_rvm_version: stable
 rvm1_rvm_check_for_updates: true
