@@ -12,7 +12,23 @@ common__certbot__cert_name: 'articles.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'articles.crypto-libertarian.com'
 
+common__nginx__remove_default: true
+
+common__nginx__upstreams:
+  - name: rails
+    servers: ['unix:/opt/rails/shared/tmp/sockets/puma.sock']
+
+common__nginx__sites:
+  - type:     origin
+    domain:   'articles.crypto-libertarian.com'
+    cert:     '/etc/letsencrypt/live/articles.crypto-libertarian.com/fullchain.pem'
+    key:      '/etc/letsencrypt/live/articles.crypto-libertarian.com/privkey.pem'
+    ssl_conf: '/etc/letsencrypt/options-ssl-nginx.conf'
+    root:     '/opt/rails/shared/public'
+    upstream: rails
+
 rails__deploy_user: kotovalexarian
+rails__root_dir: '/opt/rails'
 rails__rvm: '/usr/local/rvm/bin/rvm'
 rails__ruby: ruby-2.6.2
 
