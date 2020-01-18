@@ -38,9 +38,9 @@ rails__gemset: crypto_libertarian-articles
 rails__env: production
 
 rails__env_vars:
-  POSTGRES_POOL: '5'
+  POSTGRES_POOL: 5
   POSTGRES_HOST: 'private-db-postgresql-ams3-67143-do-user-4455684-0.db.ondigitalocean.com'
-  POSTGRES_PORT: '25060'
+  POSTGRES_PORT: 25060
   POSTGRES_USER: 'crypto_libertarian_articles'
   POSTGRES_DB: 'crypto_libertarian_articles_production'
   POSTGRES_PASSWORD: !vault |
