@@ -47,6 +47,11 @@
       register: enable_apache_module_php73
       changed_when: >
         enable_apache_module_php73.stdout is search('Enabling module php7.3.')
+    - name: Enable Apache module Rewrite
+      command: /usr/sbin/a2enmod rewrite
+      register: enable_apache_module_rewrite
+      changed_when: >
+        enable_apache_module_rewrite.stdout is search('Enabling module rewrite.')
     - name: Download MediaWiki
       get_url:
         url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
