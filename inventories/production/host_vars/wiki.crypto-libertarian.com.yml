@@ -12,4 +12,4 @@ common__certbot__cert_name: 'wiki.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'wiki.crypto-libertarian.com'
 
-common__nginx__remove_default: false
+common__nginx__remove_default: true
