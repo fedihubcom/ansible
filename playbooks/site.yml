@@ -52,6 +52,11 @@
       register: enable_apache_module_rewrite
       changed_when: >
         enable_apache_module_rewrite.stdout is search('Enabling module rewrite.')
+    - name: Enable Apache module SSL
+      command: /usr/sbin/a2enmod ssl
+      register: enable_apache_module_ssl
+      changed_when: >
+        enable_apache_module_ssl.stdout is search('Enabling module ssl.')
     - name: Download MediaWiki
       get_url:
         url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
