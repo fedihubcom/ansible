@@ -30,6 +30,7 @@
         name:
           - libapache2-mod-php
           - php
+          - php-acpu
           - php-cli
           - php-common
           - php-curl
