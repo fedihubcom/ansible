@@ -59,3 +59,18 @@
           line: 'max_execution_time = 360'
         - regexp: '^;?cgi.fix_pathinfo ?='
           line: 'cgi.fix_pathinfo = 0'
+    - name: Download MediaWiki
+      get_url:
+        url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
+        checksum: sha256:de24c3deafb5d81e97652900021b68af8f0cd6ccbdf577564fb0f3aca09593d1
+        dest: /tmp/mediawiki-1.34.0.tar.gz
+    - name: Install MediaWiki
+      unarchive:
+        src: /tmp/mediawiki-1.34.0.tar.gz
+        dest: /var/www/html
+        remote_src: true
+        owner: root
+        group: root
+        extra_opts:
+          - --transform
+          - s/^mediawiki-1.34.0\//mediawiki\//
