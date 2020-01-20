@@ -28,6 +28,7 @@
     - name: Install system packages
       apt:
         name:
+          - libapache2-mod-php
           - php
           - php-cli
           - php-common
@@ -40,6 +41,11 @@
           - php-xml
           - php-xmlrpc
           - php-zip
+    - name: Enable Apache module PHP7.3
+      command: /usr/sbin/a2enmod php7.3
+      register: enable_apache_module_php73
+      changed_when: >
+        enable_apache_module_php73.stdout is search('Enabling module php7.3.')
     - name: Download MediaWiki
       get_url:
         url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
@@ -55,3 +61,7 @@
         extra_opts:
           - --transform
           - s/^mediawiki-1.34.0\//mediawiki\//
+    - name: Restart Apache
+      systemd:
+        name: apache2
+        state: restarted
