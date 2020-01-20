@@ -1,5 +1,5 @@
 ---
-- hosts: articles.crypto-libertarian.com
+- hosts: all
   module_defaults:
     apt:
       force_apt_get: true
@@ -7,5 +7,13 @@
       cache_valid_time: 86400
   roles:
     - kotovalexarian.common
+
+- hosts: articles.crypto-libertarian.com
+  module_defaults:
+    apt:
+      force_apt_get: true
+      update_cache: true
+      cache_valid_time: 86400
+  roles:
     - rvm.ruby
     - kotovalexarian.rails
