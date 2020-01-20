@@ -67,8 +67,8 @@
         src: /tmp/mediawiki-1.34.0.tar.gz
         dest: /var/www/html
         remote_src: true
-        owner: root
-        group: root
+        owner: www-data
+        group: www-data
         extra_opts:
           - --transform
           - s/^mediawiki-1.34.0\//wiki\//
