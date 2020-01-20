@@ -25,40 +25,6 @@
       update_cache: true
       cache_valid_time: 86400
   tasks:
-    - name: Install system packages
-      apt:
-        name:
-          - php-apcu
-          - php-cli
-          - php-common
-          - php-curl
-          - php-fpm
-          - php-gd
-          - php-intl
-          - php-mbstring
-          - php-pgsql
-          - php-soap
-          - php-xml
-          - php-xmlrpc
-          - php-zip
-    - name: Configure PHP-FPM
-      lineinfile:
-        path: /etc/php/7.3/fpm/php.ini
-        regexp: '{{ item.regexp }}'
-        line: '{{ item.line }}'
-      with_items:
-        - regexp: '^;?file_uploads ?='
-          line: 'file_uploads = On'
-        - regexp: '^;?allow_url_fopen ?='
-          line: 'allow_url_fopen = On'
-        - regexp: '^;?memory_limit ?='
-          line: 'memory_limit = 256M'
-        - regexp: '^;?upload_max_filesize ?='
-          line: 'upload_max_filesize = 100M'
-        - regexp: '^;?max_execution_time ?='
-          line: 'max_execution_time = 360'
-        - regexp: '^;?cgi.fix_pathinfo ?='
-          line: 'cgi.fix_pathinfo = 0'
     - name: Download MediaWiki
       get_url:
         url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
