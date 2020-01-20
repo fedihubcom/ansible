@@ -8,6 +8,8 @@ ansible_become_pass: !vault |
   61633132663463623939646165656638343732623434623265643937333837393536363563356164
   3739363831613035656436356632663137653462363263653634
 
+common__apache__remove_default: true
+
 common__certbot__cert_name: 'articles.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'articles.crypto-libertarian.com'
