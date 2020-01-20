@@ -17,3 +17,27 @@
   roles:
     - rvm.ruby
     - kotovalexarian.rails
+
+- hosts: wiki.crypto-libertarian.com
+  module_defaults:
+    apt:
+      force_apt_get: true
+      update_cache: true
+      cache_valid_time: 86400
+  tasks:
+    - name: Install system packages
+      apt:
+        name:
+          - php-apcu
+          - php-cli
+          - php-common
+          - php-curl
+          - php-fpm
+          - php-gd
+          - php-intl
+          - php-mbstring
+          - php-pgsql
+          - php-soap
+          - php-xml
+          - php-xmlrpc
+          - php-zip
