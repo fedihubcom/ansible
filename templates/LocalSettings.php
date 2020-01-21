@@ -130,6 +130,7 @@ wfLoadExtension( 'CodeEditor' );
 wfLoadExtension( 'WikiEditor' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'Cite' );
+wfLoadExtension( 'ParserFunctions' );
 
 
 # End of automatically generated settings.
