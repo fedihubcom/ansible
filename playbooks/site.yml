@@ -71,3 +71,10 @@
         owner: www-data
         group: www-data
         mode: 'u=rw,g=r,o='
+    - name: Change images directory permissions
+      file:
+        state: directory
+        path: /var/www/html/wiki/images
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
