@@ -128,6 +128,7 @@ wfLoadSkin( 'Vector' );
 # The following extensions were automatically enabled:
 wfLoadExtension( 'CodeEditor' );
 wfLoadExtension( 'WikiEditor' );
+wfLoadExtension( 'OATHAuth' );
 
 
 # End of automatically generated settings.
