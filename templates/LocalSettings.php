@@ -140,3 +140,12 @@ wfLoadExtension( 'ParserFunctions' );
 $wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
 $wgPFEnableStringFunctions = true;
+
+$wgFileExtensions = [
+  'gif',
+  'jpeg',
+  'jpg',
+  'png',
+  'svg',
+  'webp',
+];
