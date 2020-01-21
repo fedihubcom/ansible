@@ -28,7 +28,7 @@
     - name: Install system packages
       apt:
         name:
-          - libapache2-mod-php
+          - imagemagick
           - php
           - php-apcu
           - php-cli
