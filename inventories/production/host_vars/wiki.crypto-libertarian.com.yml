@@ -10,6 +10,14 @@ ansible_become_pass: !vault |
 
 common__apache__remove_default: true
 
+common__apache__sites:
+  - type:   origin
+    domain: 'wiki.crypto-libertarian.com'
+    root:   '/var/www/html/wiki'
+    cert:   '/etc/letsencrypt/live/wiki.crypto-libertarian.com/cert.pem'
+    key:    '/etc/letsencrypt/live/wiki.crypto-libertarian.com/privkey.pem'
+    chain:  '/etc/letsencrypt/live/wiki.crypto-libertarian.com/chain.pem'
+
 common__certbot__cert_name: 'wiki.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'wiki.crypto-libertarian.com'
