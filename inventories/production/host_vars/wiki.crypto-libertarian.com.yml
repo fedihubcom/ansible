@@ -19,6 +19,9 @@ common__apache__sites:
     key:    '/etc/letsencrypt/live/wiki.crypto-libertarian.com/privkey.pem'
     chain:  '/etc/letsencrypt/live/wiki.crypto-libertarian.com/chain.pem'
 
+common__basics__additional_packages:
+  - 'libapache2-mod-php'
+
 common__certbot__cert_name: 'wiki.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'wiki.crypto-libertarian.com'
