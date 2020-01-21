@@ -129,6 +129,7 @@ wfLoadSkin( 'Vector' );
 wfLoadExtension( 'CodeEditor' );
 wfLoadExtension( 'WikiEditor' );
 wfLoadExtension( 'OATHAuth' );
+wfLoadExtension( 'Cite' );
 
 
 # End of automatically generated settings.
