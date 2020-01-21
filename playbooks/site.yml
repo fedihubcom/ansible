@@ -72,6 +72,20 @@
         extra_opts:
           - --transform
           - s/^mediawiki-1.34.0\//wiki\//
+    - name: Install logo
+      copy:
+        src: ../files/wiki.jpg
+        dest: /var/www/html/wiki/resources/assets/wiki.jpg
+        owner: www-data
+        group: www-data
+        mode: 'u=rw,g=r,o=r'
+    - name: Install MediaWiki config
+      template:
+        src: ../templates/LocalSettings.php
+        dest: /var/www/html/wiki/LocalSettings.php
+        owner: www-data
+        group: www-data
+        mode: 'u=rw,g=r,o='
     - name: Restart Apache
       systemd:
         name: apache2
