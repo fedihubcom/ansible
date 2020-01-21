@@ -133,3 +133,7 @@ wfLoadExtension( 'OATHAuth' );
 
 # End of automatically generated settings.
 # Add more configuration options below.
+
+
+$wgGroupPermissions['user']['oathauth-enable'] = true;
+$wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
