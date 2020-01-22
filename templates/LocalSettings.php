@@ -154,6 +154,10 @@ $wgPFEnableStringFunctions = true;
 $wgScribuntoDefaultEngine = 'luastandalone';
 $wgScribuntoUseGeSHi = true;
 $wgScribuntoUseCodeEditor = true;
+$wgAllowUserCss = true;
+$wgAllowUserJs = true;
+$wgUseSiteCss = true;
+$wgUseSiteJs = true;
 
 $wgFileExtensions = [
   'gif',
