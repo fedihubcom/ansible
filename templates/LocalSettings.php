@@ -133,6 +133,7 @@ wfLoadExtension( 'CodeEditor' );
 wfLoadExtension( 'Interwiki' );
 wfLoadExtension( 'Nuke' );
 wfLoadExtension( 'OATHAuth' );
+wfLoadExtension( 'PageImages' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'WikiEditor' );
 
