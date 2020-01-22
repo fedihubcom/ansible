@@ -2,6 +2,6 @@
 - src: kotovalexarian.common
   version: v0.0.20
 - src: kotovalexarian.rails
-  version: v0.0.22
+  version: v0.0.23
 - src: rvm.ruby
   version: v2.1.2
