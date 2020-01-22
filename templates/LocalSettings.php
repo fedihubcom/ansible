@@ -126,12 +126,12 @@ wfLoadSkin( 'Vector' );
 # wfLoadExtensions('ExtensionName');
 # to LocalSettings.php. Check specific extension documentation for more details.
 # The following extensions were automatically enabled:
-wfLoadExtension( 'CodeEditor' );
-wfLoadExtension( 'WikiEditor' );
-wfLoadExtension( 'OATHAuth' );
-wfLoadExtension( 'Cite' );
-wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'CategoryTree' );
+wfLoadExtension( 'Cite' );
+wfLoadExtension( 'CodeEditor' );
+wfLoadExtension( 'OATHAuth' );
+wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'WikiEditor' );
 
 
 # End of automatically generated settings.
