@@ -128,6 +128,7 @@ wfLoadSkin( 'Vector' );
 # The following extensions were automatically enabled:
 wfLoadExtension( 'CategoryTree' );
 wfLoadExtension( 'Cite' );
+wfLoadExtension( 'CiteThisPage' );
 wfLoadExtension( 'CodeEditor' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'ParserFunctions' );
