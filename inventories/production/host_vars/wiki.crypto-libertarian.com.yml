@@ -18,6 +18,9 @@ common__apache__sites:
     cert:   '/etc/letsencrypt/live/wiki.crypto-libertarian.com/cert.pem'
     key:    '/etc/letsencrypt/live/wiki.crypto-libertarian.com/privkey.pem'
     chain:  '/etc/letsencrypt/live/wiki.crypto-libertarian.com/chain.pem'
+    rewrites:
+      - '^/?wiki(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]'
+      - '^/*$           %{DOCUMENT_ROOT}/index.php [L]'
 
 common__basics__additional_packages:
   - 'libapache2-mod-php'

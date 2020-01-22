@@ -143,6 +143,7 @@ wfLoadExtension( 'WikiEditor' );
 # Add more configuration options below.
 
 
+$wgArticlePath = "/wiki/$1";
 $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
