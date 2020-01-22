@@ -130,6 +130,7 @@ wfLoadExtension( 'CategoryTree' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'CiteThisPage' );
 wfLoadExtension( 'CodeEditor' );
+wfLoadExtension( 'Interwiki' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'WikiEditor' );
@@ -139,6 +140,7 @@ wfLoadExtension( 'WikiEditor' );
 # Add more configuration options below.
 
 
+$wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
 $wgPFEnableStringFunctions = true;
