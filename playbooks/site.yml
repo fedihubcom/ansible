@@ -66,6 +66,14 @@
           - --transform
           - s/^mediawiki-1.34.0\//wiki\//
 
+    - name: Install MediaWiki extension "Scribunto"
+      unarchive:
+        src: /tmp/Scribunto-REL1_34-f7bc2e3.tar.gz
+        dest: /var/www/html/wiki/extensions
+        remote_src: true
+        owner: www-data
+        group: www-data
+
     - name: Install logo
       copy:
         src: ../files/wiki.jpg
