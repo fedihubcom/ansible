@@ -131,6 +131,7 @@ wfLoadExtension( 'WikiEditor' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'CategoryTree' );
 
 
 # End of automatically generated settings.
