@@ -136,6 +136,8 @@ wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'PageImages' );
 wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'Poem' );
+wfLoadExtension( 'Scribunto' );
+wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'WikiEditor' );
 
 
@@ -148,6 +150,9 @@ $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
 $wgPFEnableStringFunctions = true;
+$wgScribuntoDefaultEngine = 'luastandalone';
+$wgScribuntoUseGeSHi = true;
+$wgScribuntoUseCodeEditor = true;
 
 $wgFileExtensions = [
   'gif',
