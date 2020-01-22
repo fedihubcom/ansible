@@ -135,6 +135,7 @@ wfLoadExtension( 'Nuke' );
 wfLoadExtension( 'OATHAuth' );
 wfLoadExtension( 'PageImages' );
 wfLoadExtension( 'ParserFunctions' );
+wfLoadExtension( 'Poem' );
 wfLoadExtension( 'WikiEditor' );
 
 
