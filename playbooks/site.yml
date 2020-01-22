@@ -59,6 +59,7 @@
       unarchive:
         src: /tmp/mediawiki-1.34.0.tar.gz
         dest: /var/www/html
+        creates: /var/www/html/wiki
         remote_src: true
         owner: www-data
         group: www-data
@@ -70,6 +71,7 @@
       unarchive:
         src: /tmp/Scribunto-REL1_34-f7bc2e3.tar.gz
         dest: /var/www/html/wiki/extensions
+        creates: /var/www/html/wiki/extensions/Scribunto
         remote_src: true
         owner: www-data
         group: www-data
