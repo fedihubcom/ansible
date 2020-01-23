@@ -158,6 +158,10 @@ $wgAllowUserCss = true;
 $wgAllowUserJs = true;
 $wgUseSiteCss = true;
 $wgUseSiteJs = true;
+$wgUseRCPatrol = true;
+$wgUseNPPatrol = true;
+$wgUseFilePatrol = true;
+$wgGroupPermissions['patrollers']['patrol'] = true;
 
 $wgFileExtensions = [
   'gif',
