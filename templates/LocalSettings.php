@@ -147,9 +147,8 @@ wfLoadExtension( 'WikiEditor' );
 
 
 $wgArticlePath = "/wiki/$1";
-$wgGroupPermissions['sysop']['interwiki'] = true;
-$wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
+
 $wgPFEnableStringFunctions = true;
 $wgScribuntoDefaultEngine = 'luastandalone';
 $wgScribuntoUseGeSHi = true;
@@ -161,6 +160,9 @@ $wgUseSiteJs = true;
 $wgUseRCPatrol = true;
 $wgUseNPPatrol = true;
 $wgUseFilePatrol = true;
+
+$wgGroupPermissions['sysop']['interwiki'] = true;
+$wgGroupPermissions['user']['oathauth-enable'] = true;
 $wgGroupPermissions['patrollers']['patrol'] = true;
 
 $wgFileExtensions = [
