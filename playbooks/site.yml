@@ -55,6 +55,12 @@
         checksum: sha256:e7aa3809106c2125cf961e0852864e9b5ebc8a0c7c63e2bb80f22e9af8275054
         dest: /tmp/Scribunto-REL1_34-f7bc2e3.tar.gz
 
+    - name: Download MediaWiki extension "TinyMCE"
+      get_url:
+        url: https://extdist.wmflabs.org/dist/extensions/TinyMCE-REL1_34-19a796f.tar.gz
+        checksum: sha256:fc9c02a31068e52f595109e16b4642b5d9775ca609f0101deea82fb9788eaa71
+        dest: /tmp/TinyMCE-REL1_34-19a796f.tar.gz
+
     - name: Install MediaWiki
       unarchive:
         src: /tmp/mediawiki-1.34.0.tar.gz
@@ -72,6 +78,15 @@
         src: /tmp/Scribunto-REL1_34-f7bc2e3.tar.gz
         dest: /var/www/html/wiki/extensions
         creates: /var/www/html/wiki/extensions/Scribunto
+        remote_src: true
+        owner: www-data
+        group: www-data
+
+    - name: Install MediaWiki extension "TinyMCE"
+      unarchive:
+        src: /tmp/TinyMCE-REL1_34-19a796f.tar.gz
+        dest: /var/www/html/wiki/extensions
+        creates: /var/www/html/wiki/extensions/TinyMCE
         remote_src: true
         owner: www-data
         group: www-data

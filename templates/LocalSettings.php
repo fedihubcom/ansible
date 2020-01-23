@@ -139,6 +139,7 @@ wfLoadExtension( 'ParserFunctions' );
 wfLoadExtension( 'Poem' );
 wfLoadExtension( 'Scribunto' );
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
+wfLoadExtension( 'TinyMCE' );
 wfLoadExtension( 'WikiEditor' );
 
 
