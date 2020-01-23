@@ -130,6 +130,7 @@ wfLoadExtension( 'CategoryTree' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'CiteThisPage' );
 wfLoadExtension( 'CodeEditor' );
+wfLoadExtension( 'Disambiguator' );
 wfLoadExtension( 'InputBox' );
 wfLoadExtension( 'Interwiki' );
 wfLoadExtension( 'LocalisationUpdate' );
@@ -161,6 +162,7 @@ $wgUseSiteJs = true;
 $wgUseRCPatrol = true;
 $wgUseNPPatrol = true;
 $wgUseFilePatrol = true;
+$wgDisambiguatorIndicateLinks = true;
 
 $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
