@@ -114,3 +114,11 @@
         owner: www-data
         group: www-data
         mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Change cache directory premissions
+      file:
+        state: directory
+        path: /var/www/html/wiki/cache
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
