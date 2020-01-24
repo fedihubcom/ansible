@@ -53,11 +53,11 @@ $wgEmailAuthentication = true;
 ## Database settings
 $wgDBtype = "postgres";
 $wgDBssl = true;
-$wgDBserver = "private-db-postgresql-ams3-67143-do-user-4455684-0.db.ondigitalocean.com";
-$wgDBport = "25060";
-$wgDBuser = "crypto_libertarian_wiki";
+$wgDBserver = "{{ crypto_libertarian_wiki_db_host }}";
+$wgDBport = "{{ crypto_libertarian_wiki_db_port }}";
+$wgDBuser = "{{ crypto_libertarian_wiki_db_user }}";
 $wgDBpassword = "{{ crypto_libertarian_wiki_db_password }}";
-$wgDBname = "crypto_libertarian_wiki";
+$wgDBname = "{{ crypto_libertarian_wiki_db_name }}";
 $wgDBmwschema = "public";
 
 ## Shared memory settings

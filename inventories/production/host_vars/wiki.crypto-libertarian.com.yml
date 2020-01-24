@@ -32,6 +32,11 @@ common__certbot__cert_domains:
 
 common__nginx__remove_default: true
 
+crypto_libertarian_wiki_db_host: private-db-postgresql-ams3-67143-do-user-4455684-0.db.ondigitalocean.com
+crypto_libertarian_wiki_db_port: 25060
+crypto_libertarian_wiki_db_user: crypto_libertarian_wiki
+crypto_libertarian_wiki_db_name: crypto_libertarian_wiki
+
 crypto_libertarian_wiki_db_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   61353633616236343037356462633562383239643235393132653939636238363930336364343262
