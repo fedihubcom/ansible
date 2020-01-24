@@ -8,16 +8,52 @@
   roles:
     - kotovalexarian.common
   tasks:
+    - name: Create system group
+      group:
+        name: git
+
+    - name: Create system user
+      user:
+        name: git
+        group: git
+        create_home: true
+
+    - name: Create directory for SSH configuration
+      file:
+        state: directory
+        path: /home/git/.ssh
+        owner: git
+        group: git
+        mode: 'u=rwx,g=,o='
+
+    - name: Create SSH configuration of authorized keys
+      copy:
+        src: ../../files/authorized_keys
+        dest: /home/git/.ssh/authorized_keys
+        owner: git
+        group: git
+        mode: 'u=rw,g=,o='
+
+    - name: Create directory for git repositories
+      file:
+        state: directory
+        path: /srv/git
+        owner: git
+        group: git
+        mode: 'u=rwx,g=rwx,o=rx'
+
     - name: Install system packages
       apt:
         name:
           - cgit
           - git
+
     - name: Disable Apache configuration
       command: '/usr/sbin/a2disconf cgit'
       register: disable_apache_configuration_result
       changed_when: >
         disable_apache_configuration_result.stdout is search('Disabling conf')
+
     - name: Add Apache site
       copy:
         src: ../../files/git.crypto-libertarian.com.conf
@@ -25,18 +61,13 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
+
     - name: Enable Apache site
       command: '/usr/sbin/a2ensite git.crypto-libertarian.com.conf'
       register: enable_apache_site_result
       changed_when: >
         enable_apache_site_result.stdout is search('Enabling site')
-    - name: Create directory for git repositories
-      file:
-        state: directory
-        path: /var/lib/git
-        owner: root
-        group: root
-        mode: 'u=rwx,g=rwx,o=rx'
+
     - name: Install cgit configuration
       copy:
         src: ../../files/cgitrc
@@ -44,6 +75,7 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
+
     - name: Restart Apache
       systemd:
         name: apache2.service

@@ -79,4 +79,4 @@ snapshots=all
 
 #project-list=none
 
-scan-path=/var/lib/git
+scan-path=/srv/git
