@@ -10,7 +10,9 @@
   tasks:
     - name: Install system packages
       apt:
-        name: cgit
+        name:
+          - cgit
+          - git
     - name: Disable Apache configuration
       command: '/usr/sbin/a2disconf cgit'
       register: disable_apache_configuration_result
