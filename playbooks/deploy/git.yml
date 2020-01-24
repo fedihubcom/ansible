@@ -11,6 +11,23 @@
     - name: Install system packages
       apt:
         name: cgit
+    - name: Disable Apache configuration
+      command: '/usr/sbin/a2disconf cgit'
+      register: disable_apache_configuration_result
+      changed_when: >
+        disable_apache_configuration_result.stdout is search('Disabling conf')
+    - name: Add Apache site
+      copy:
+        src: ../../files/git.crypto-libertarian.com.conf
+        dest: /etc/apache2/sites-available/git.crypto-libertarian.com.conf
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+    - name: Enable Apache site
+      command: '/usr/sbin/a2ensite git.crypto-libertarian.com.conf'
+      register: enable_apache_site_result
+      changed_when: >
+        enable_apache_site_result.stdout is search('Enabling site')
     - name: Create directory for git repositories
       file:
         state: directory
@@ -25,3 +42,7 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
+    - name: Restart Apache
+      systemd:
+        name: apache2.service
+        state: restarted
