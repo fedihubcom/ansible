@@ -77,7 +77,7 @@
 
     - name: Install logo
       copy:
-        src: ../files/wiki.jpg
+        src: ../../files/wiki.jpg
         dest: /var/www/html/wiki/resources/assets/wiki.jpg
         owner: www-data
         group: www-data
@@ -85,7 +85,7 @@
 
     - name: Install MediaWiki config
       template:
-        src: ../templates/LocalSettings.php
+        src: ../../templates/LocalSettings.php
         dest: /var/www/html/wiki/LocalSettings.php
         owner: www-data
         group: www-data
