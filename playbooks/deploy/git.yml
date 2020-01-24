@@ -11,3 +11,17 @@
     - name: Install system packages
       apt:
         name: cgit
+    - name: Create directory for git repositories
+      file:
+        state: directory
+        path: /var/lib/git
+        owner: root
+        group: root
+        mode: 'u=rwx,g=rwx,o=rx'
+    - name: Install cgit configuration
+      copy:
+        src: ../../files/cgitrc
+        dest: /etc/cgitrc
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
