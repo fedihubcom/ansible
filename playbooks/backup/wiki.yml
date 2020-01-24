@@ -1,0 +1,42 @@
+---
+- hosts: wiki.crypto-libertarian.com
+  tasks:
+    - name: Remove dump of PostgreSQL database
+      file:
+        dest: /tmp/wiki_pg_dump
+        state: absent
+    - name: Dump PostgreSQL database
+      shell: >
+        PGPASSWORD={{ crypto_libertarian_wiki_db_password }}
+        pg_dump
+        -Ft
+        --host
+        {{ crypto_libertarian_wiki_db_host }}
+        --port
+        {{ crypto_libertarian_wiki_db_port }}
+        --username
+        {{ crypto_libertarian_wiki_db_user }}
+        --dbname
+        {{ crypto_libertarian_wiki_db_name }}
+        > /tmp/wiki_pg_dump
+    - name: Fetch dump of PostgreSQL database
+      fetch:
+        src: /tmp/wiki_pg_dump
+        dest: ../backups
+
+    - name: Remove archive of "/var/www/html/wiki/images"
+      file:
+        dest: /tmp/wiki_images.tar.gz
+        state: absent
+    - name: Archive "/var/www/html/wiki/images"
+      archive:
+        path: /var/www/html/wiki/images
+        dest: /tmp/wiki_images.tar.gz
+        format: gz
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o='
+    - name: Fetch archive of "/var/www/html/wiki/images"
+      fetch:
+        src: /tmp/wiki_images.tar.gz
+        dest: ../backups
