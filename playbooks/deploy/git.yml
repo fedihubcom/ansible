@@ -42,6 +42,14 @@
         group: git
         mode: 'u=rwx,g=rwx,o=rx'
 
+    - name: Add git shell
+      copy:
+        src: ../../files/shells
+        dest: /etc/shells
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+
     - name: Install system packages
       apt:
         name:
