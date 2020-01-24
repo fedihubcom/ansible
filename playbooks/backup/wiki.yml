@@ -24,19 +24,19 @@
         src: /tmp/wiki_pg_dump
         dest: ../../backups
 
-    - name: Remove archive of "/var/www/html/wiki/images"
+    - name: Remove archive of "/var/www/wiki/images"
       file:
         dest: /tmp/wiki_images.tar.gz
         state: absent
-    - name: Archive "/var/www/html/wiki/images"
+    - name: Archive "/var/www/wiki/images"
       archive:
-        path: /var/www/html/wiki/images
+        path: /var/www/wiki/images
         dest: /tmp/wiki_images.tar.gz
         format: gz
         owner: root
         group: root
         mode: 'u=rw,g=r,o='
-    - name: Fetch archive of "/var/www/html/wiki/images"
+    - name: Fetch archive of "/var/www/wiki/images"
       fetch:
         src: /tmp/wiki_images.tar.gz
         dest: ../../backups
