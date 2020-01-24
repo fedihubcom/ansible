@@ -9,7 +9,7 @@ ansible_become_pass: !vault |
   6538663662663439383164333964353031303931656437656437
 
 common__apache__listen: [80, 443]
-common__apache__modules: ['php7.3', 'rewrite', 'ssl']
+common__apache__modules: ['alias', 'cgid', 'env', 'php7.3', 'rewrite', 'ssl']
 
 common__apache__sites:
   - type:   origin
