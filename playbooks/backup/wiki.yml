@@ -22,7 +22,7 @@
     - name: Fetch dump of PostgreSQL database
       fetch:
         src: /tmp/wiki_pg_dump
-        dest: ../backups
+        dest: ../../backups
 
     - name: Remove archive of "/var/www/html/wiki/images"
       file:
@@ -39,4 +39,4 @@
     - name: Fetch archive of "/var/www/html/wiki/images"
       fetch:
         src: /tmp/wiki_images.tar.gz
-        dest: ../backups
+        dest: ../../backups
