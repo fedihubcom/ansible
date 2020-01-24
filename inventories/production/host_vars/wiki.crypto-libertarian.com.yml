@@ -10,7 +10,6 @@ ansible_become_pass: !vault |
 
 common__apache__listen: [80, 443]
 common__apache__modules: ['php7.3', 'rewrite', 'ssl']
-common__apache__remove_default: true
 
 common__apache__sites:
   - type:   origin
@@ -29,8 +28,6 @@ common__basics__additional_packages:
 common__certbot__cert_name: 'wiki.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'wiki.crypto-libertarian.com'
-
-common__nginx__remove_default: true
 
 crypto_libertarian_wiki_db_host: private-db-postgresql-ams3-67143-do-user-4455684-0.db.ondigitalocean.com
 crypto_libertarian_wiki_db_port: 25060
