@@ -41,6 +41,14 @@
         group: git
         mode: 'u=rw,g=,o='
 
+    - name: Disable system info message
+      copy:
+        content: ''
+        dest: /home/git/.hushlogin
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+
     - name: Create directory for git repositories
       file:
         state: directory
