@@ -8,6 +8,13 @@
   roles:
     - kotovalexarian.common
   tasks:
+    - name: Install system packages
+      apt:
+        name:
+          - cgit
+          - finger
+          - git
+
     - name: Create system group
       group:
         name: git
@@ -50,11 +57,14 @@
         group: root
         mode: 'u=rw,g=r,o=r'
 
-    - name: Install system packages
-      apt:
-        name:
-          - cgit
-          - git
+    - name: Detect shell
+      shell: "/usr/bin/finger git | grep -oP 'Shell: \\K.*'"
+      register: detect_shell_result
+      changed_when: false
+
+    - name: Use git shell
+      command: '/usr/bin/chsh git -s /usr/bin/git-shell'
+      when: detect_shell_result.stdout != '/usr/bin/git-shell'
 
     - name: Disable Apache configuration
       command: '/usr/sbin/a2disconf cgit'
