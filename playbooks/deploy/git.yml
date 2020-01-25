@@ -28,7 +28,7 @@
     - name: Remove unnecessary files
       file:
         state: absent
-        path: '{{ item }}'
+        path: '/home/git/{{ item }}'
       with_items:
         - .bash_logout
         - .bashrc
