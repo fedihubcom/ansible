@@ -1,4 +1,4 @@
 ---
-- import_playbook: articles.yml
+# - import_playbook: articles.yml
 - import_playbook: git.yml
 - import_playbook: wiki.yml
