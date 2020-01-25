@@ -1,7 +1,7 @@
 # cgit config
 # see cgitrc(5) for details
 
-#about-filter=none
+about-filter=/usr/lib/cgit/filters/html-converters/md2html
 #agefile=info/web/last-modified
 #auth-filter=none
 #branch-sort=name
