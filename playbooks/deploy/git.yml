@@ -25,6 +25,18 @@
         group: git
         create_home: true
 
+    - name: Remove unnecessary files
+      file:
+        state: absent
+        path: '{{ item }}'
+      with_items:
+        - .bash_logout
+        - .bashrc
+        - .cache
+        - .cloud-locale-test.skip
+        - .gnupg
+        - .profile
+
     - name: Create directory for SSH configuration
       file:
         state: directory
