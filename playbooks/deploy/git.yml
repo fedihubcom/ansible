@@ -49,14 +49,6 @@
         group: root
         mode: 'u=rw,g=r,o=r'
 
-    - name: Create directory for git repositories
-      file:
-        state: directory
-        path: /srv/git
-        owner: git
-        group: git
-        mode: 'u=rwx,g=rwx,o=rx'
-
     - name: Add git shell
       copy:
         src: ../../files/shells
