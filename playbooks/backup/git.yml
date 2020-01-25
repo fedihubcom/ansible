@@ -1,0 +1,19 @@
+---
+- hosts: git.crypto-libertarian.com
+  tasks:
+    - name: Remove archive of "/home/git"
+      file:
+        dest: /tmp/git_repos.tar.gz
+        state: absent
+    - name: Archive "/home/git"
+      archive:
+        path: /home/git
+        dest: /tmp/git_repos.tar.gz
+        format: gz
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o='
+    - name: Fetch archive of "/home/git"
+      fetch:
+        src: /tmp/git_repos.tar.gz
+        dest: ../../backups
