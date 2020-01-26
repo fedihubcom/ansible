@@ -26,6 +26,7 @@
           - php-xmlrpc
           - php-zip
           - postgresql-client
+          - rsync
 
     - name: Download MediaWiki
       get_url:
@@ -44,6 +45,12 @@
         url: https://extdist.wmflabs.org/dist/extensions/Disambiguator-REL1_34-f6fffcd.tar.gz
         checksum: sha256:3166ebf61fb0703de9f187fcdb969c682b9fb5cd1045330ae54bc0ae21faaad7
         dest: /tmp/Disambiguator-REL1_34-f6fffcd.tar.gz
+
+    - name: Download MediaWiki extension "SocialProfile"
+      get_url:
+        url: https://extdist.wmflabs.org/dist/extensions/SocialProfile-REL1_34-9bc1de9.tar.gz
+        checksum: sha256:b9ef9698e2dc562715467d653c4040cd078a50eb55b0319db6f2799e5c9f8465
+        dest: /tmp/SocialProfile-REL1_34-9bc1de9.tar.gz
 
     - name: Install MediaWiki
       unarchive:
@@ -75,6 +82,15 @@
         owner: www-data
         group: www-data
 
+    - name: Install MediaWiki extension "SocialProfile"
+      unarchive:
+        src: /tmp/SocialProfile-REL1_34-9bc1de9.tar.gz
+        dest: /var/www/wiki/extensions
+        creates: /var/www/wiki/extensions/SocialProfile
+        remote_src: true
+        owner: www-data
+        group: www-data
+
     - name: Install logo
       copy:
         src: ../../files/wiki.jpg
@@ -91,7 +107,7 @@
         group: www-data
         mode: 'u=rw,g=r,o='
 
-    - name: Change images directory permissions
+    - name: Create images directory
       file:
         state: directory
         path: /var/www/wiki/images
@@ -99,10 +115,44 @@
         group: www-data
         mode: 'u=rwx,g=rx,o=rx'
 
-    - name: Change cache directory premissions
+    - name: Create cache directory
       file:
         state: directory
         path: /var/www/wiki/cache
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Create avatars directory
+      file:
+        state: directory
+        path: /var/www/wiki/extensions/SocialProfile/avatars
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Create awards directory
+      file:
+        state: directory
+        path: /var/www/wiki/extensions/SocialProfile/awards
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Create avatars link
+      file:
+        state: link
+        path: /var/www/wiki/images/avatars
+        src: /var/www/wiki/extensions/SocialProfile/avatars
+        owner: www-data
+        group: www-data
+        mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Create awards link
+      file:
+        state: link
+        path: /var/www/wiki/images/awards
+        src: /var/www/wiki/extensions/SocialProfile/awards
         owner: www-data
         group: www-data
         mode: 'u=rwx,g=rx,o=rx'

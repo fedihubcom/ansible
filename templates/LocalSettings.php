@@ -15,7 +15,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
@@ -121,11 +120,10 @@ wfLoadSkin( 'MonoBook' );
 wfLoadSkin( 'Timeless' );
 wfLoadSkin( 'Vector' );
 
-
 # Enabled extensions. Most of the extensions are enabled by adding
 # wfLoadExtensions('ExtensionName');
 # to LocalSettings.php. Check specific extension documentation for more details.
-# The following extensions were automatically enabled:
+
 wfLoadExtension( 'CategoryTree' );
 wfLoadExtension( 'Cite' );
 wfLoadExtension( 'CiteThisPage' );
@@ -143,10 +141,10 @@ wfLoadExtension( 'Scribunto' );
 wfLoadExtension( 'SyntaxHighlight_GeSHi' );
 wfLoadExtension( 'WikiEditor' );
 
+require_once "$IP/extensions/SocialProfile/SocialProfile.php";
 
 # End of automatically generated settings.
 # Add more configuration options below.
-
 
 $wgArticlePath = "/wiki/$1";
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
