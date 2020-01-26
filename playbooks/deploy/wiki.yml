@@ -26,6 +26,7 @@
           - php-xmlrpc
           - php-zip
           - postgresql-client
+          - python3-psycopg2
           - rsync
 
     - name: Download MediaWiki
@@ -156,3 +157,20 @@
         owner: www-data
         group: www-data
         mode: 'u=rwx,g=rx,o=rx'
+
+    - name: Create PostgreSQL domain "datetime"
+      postgresql_query:
+        login_host:     '{{ crypto_libertarian_wiki_db_host }}'
+        port:           '{{ crypto_libertarian_wiki_db_port }}'
+        login_user:     '{{ crypto_libertarian_wiki_db_user }}'
+        login_password: '{{ crypto_libertarian_wiki_db_password }}'
+        db:             '{{ crypto_libertarian_wiki_db_name }}'
+        query: >
+          DO $$
+          BEGIN
+            IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'datetime') THEN
+              CREATE DOMAIN datetime AS timestamp;
+            END IF;
+          END;
+          $$;
+      changed_when: false
