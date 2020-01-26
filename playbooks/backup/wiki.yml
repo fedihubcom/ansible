@@ -11,6 +11,16 @@
         dest: /tmp/wiki_images.tar.gz
         state: absent
 
+    - name: Remove archive of "/var/www/wiki/extensions/SocialProfile/avatars"
+      file:
+        dest: /tmp/wiki_avatars.tar.gz
+        state: absent
+
+    - name: Remove archive of "/var/www/wiki/extensions/SocialProfile/awards"
+      file:
+        dest: /tmp/wiki_awards.tar.gz
+        state: absent
+
     - name: Dump PostgreSQL database
       shell: >
         PGPASSWORD={{ crypto_libertarian_wiki_db_password }}
@@ -35,6 +45,24 @@
         group: root
         mode: 'u=rw,g=r,o='
 
+    - name: Archive "/var/www/wiki/extensions/SocialProfile/avatars"
+      archive:
+        path: /var/www/wiki/extensions/SocialProfile/avatars
+        dest: /tmp/wiki_avatars.tar.gz
+        format: gz
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o='
+
+    - name: Archive "/var/www/wiki/extensions/SocialProfile/awards"
+      archive:
+        path: /var/www/wiki/extensions/SocialProfile/awards
+        dest: /tmp/wiki_awards.tar.gz
+        format: gz
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o='
+
     - name: Fetch dump of PostgreSQL database
       fetch:
         src: /tmp/wiki_pg_dump
@@ -43,4 +71,14 @@
     - name: Fetch archive of "/var/www/wiki/images"
       fetch:
         src: /tmp/wiki_images.tar.gz
+        dest: ../../backups
+
+    - name: Fetch archive of "/var/www/wiki/extensions/SocialProfile/avatars"
+      fetch:
+        src: /tmp/wiki_avatars.tar.gz
+        dest: ../../backups
+
+    - name: Fetch archive of "/var/www/wiki/extensions/SocialProfile/awards"
+      fetch:
+        src: /tmp/wiki_awards.tar.gz
         dest: ../../backups
