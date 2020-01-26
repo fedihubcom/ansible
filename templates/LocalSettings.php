@@ -166,7 +166,6 @@ $wgDisambiguatorIndicateLinks = true;
 
 $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
-$wgGroupPermissions['patrollers']['patrol'] = true;
 
 $wgFileExtensions = [
   'gif',
