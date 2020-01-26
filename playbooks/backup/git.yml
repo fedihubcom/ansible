@@ -5,6 +5,7 @@
       file:
         dest: /tmp/git_repos.tar.gz
         state: absent
+
     - name: Archive "/home/git"
       archive:
         path: /home/git
@@ -13,6 +14,7 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o='
+
     - name: Fetch archive of "/home/git"
       fetch:
         src: /tmp/git_repos.tar.gz

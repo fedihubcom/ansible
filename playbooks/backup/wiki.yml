@@ -5,6 +5,7 @@
       file:
         dest: /tmp/wiki_pg_dump
         state: absent
+
     - name: Dump PostgreSQL database
       shell: >
         PGPASSWORD={{ crypto_libertarian_wiki_db_password }}
@@ -19,6 +20,7 @@
         --dbname
         {{ crypto_libertarian_wiki_db_name }}
         > /tmp/wiki_pg_dump
+
     - name: Fetch dump of PostgreSQL database
       fetch:
         src: /tmp/wiki_pg_dump
@@ -28,6 +30,7 @@
       file:
         dest: /tmp/wiki_images.tar.gz
         state: absent
+
     - name: Archive "/var/www/wiki/images"
       archive:
         path: /var/www/wiki/images
@@ -36,6 +39,7 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o='
+
     - name: Fetch archive of "/var/www/wiki/images"
       fetch:
         src: /tmp/wiki_images.tar.gz
