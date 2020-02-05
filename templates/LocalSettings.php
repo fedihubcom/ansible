@@ -18,7 +18,17 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "Crypto-Libertarian";
+## The name of the site.
+$wgSitename = 'Crypto-Libertarian Wiki';
+
+## The protocol and server name to use in fully-qualified URLs
+$wgServer = "https://wiki.crypto-libertarian.com";
+
+## Canonical URL of the server to use in IRC feeds, notification e-mails, etc.
+$wgCanonicalServer = $wgServer;
+
+## The base URL used to create article links.
+$wgArticlePath = '/wiki/$1';
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -26,9 +36,6 @@ $wgSitename = "Crypto-Libertarian";
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 $wgScriptPath = "";
-
-## The protocol and server name to use in fully-qualified URLs
-$wgServer = "https://wiki.crypto-libertarian.com";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -146,9 +153,7 @@ require_once "$IP/extensions/SocialProfile/SocialProfile.php";
 # End of automatically generated settings.
 # Add more configuration options below.
 
-$wgArticlePath = "/wiki/$1";
 $wgOATHAuthAccountPrefix = 'wiki.crypto-libertarian.com';
-
 $wgPFEnableStringFunctions = true;
 $wgScribuntoDefaultEngine = 'luastandalone';
 $wgScribuntoUseGeSHi = true;
