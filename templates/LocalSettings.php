@@ -162,6 +162,9 @@ $wgUseNPPatrol = true;
 $wgUseFilePatrol = true;
 $wgDisambiguatorIndicateLinks = true;
 
+$wgUploadSizeWarning = 20971520; # 20 MB
+$wgMaxUploadSize     = 20971520; # 20 MB
+
 $wgGroupPermissions['sysop']['interwiki'] = true;
 $wgGroupPermissions['user']['oathauth-enable'] = true;
 
