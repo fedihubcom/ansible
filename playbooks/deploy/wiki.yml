@@ -29,6 +29,24 @@
           - python3-psycopg2
           - rsync
 
+    - name: Configure PHP
+      lineinfile:
+        path: /etc/php/7.3/apache2/php.ini
+        regexp: '{{ item.regexp }}'
+        line: '{{ item.line }}'
+      register: configure_php_result
+      with_items:
+        - regexp: '^;?upload_max_filesize ?='
+          line: 'upload_max_filesize = 20M'
+        - regexp: '^;?post_max_size ?='
+          line: 'post_max_size = 20M'
+
+    - name: Restart Apache
+      systemd:
+        name: apache2.service
+        state: restarted
+      when: configure_php_result.changed
+
     - name: Download MediaWiki
       get_url:
         url: https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.0.tar.gz
