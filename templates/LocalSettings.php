@@ -169,6 +169,7 @@ $wgFileExtensions = [
   'gif',
   'jpeg',
   'jpg',
+  'pdf',
   'png',
   'svg',
   'webp',
