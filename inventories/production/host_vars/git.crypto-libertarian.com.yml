@@ -8,6 +8,7 @@ ansible_become_pass: !vault |
   62646132653634316531663737396230653061636335393936616631633736343836373864646264
   3430616364363764646437646665316662393661666635326135
 
+common__apache__state: install
 common__apache__listen: [80, 443]
 common__apache__modules: ['alias', 'cgid', 'env', 'rewrite', 'ssl']
 
