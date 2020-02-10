@@ -8,4 +8,7 @@ ansible_become_pass: !vault |
   61336632323866643236663130633162616336346135373466393862636232616238306234393566
   3434383830653037623635386532663336306461363231356535
 
-common__certbot__state: null
+common__certbot__cert_name: 'misc.crypto-libertarian.com'
+common__certbot__cert_domains:
+  - 'misc.crypto-libertarian.com'
+  - 'report-ip.crypto-libertarian.com'
