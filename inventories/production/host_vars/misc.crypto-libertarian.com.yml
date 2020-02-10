@@ -9,4 +9,3 @@ ansible_become_pass: !vault |
   3434383830653037623635386532663336306461363231356535
 
 common__certbot__state: null
-common__iptables__state: null
