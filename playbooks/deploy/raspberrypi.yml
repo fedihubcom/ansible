@@ -8,10 +8,22 @@
   roles:
     - kotovalexarian.common
   tasks:
+    - name: Install system packages
+      apt:
+        name: miniupnpc
+
     - name: Install cron jon "report_ip"
       template:
         src: ../../templates/report_ip
         dest: /etc/cron.d/report_ip
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o='
+
+    - name: Install cron jon "upnp_forward_ssh"
+      template:
+        src: ../../templates/upnp_forward_ssh
+        dest: /etc/cron.d/upnp_forward_ssh
         owner: root
         group: root
         mode: 'u=rw,g=r,o='
