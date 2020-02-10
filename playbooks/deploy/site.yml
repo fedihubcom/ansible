@@ -2,4 +2,6 @@
 - import_playbook: git.yml
 - import_playbook: misc.yml
 - import_playbook: wiki.yml
+
 - import_playbook: raspberrypi.yml
+  tags: rpi
