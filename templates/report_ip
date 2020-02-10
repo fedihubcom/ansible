@@ -1,1 +1,1 @@
-* * * * * root /usr/bin/curl "https://report-ip.crypto-libertarian.com/$(hostname)/{{ report_ip_secret }}"
+* * * * * root /usr/bin/curl -X POST -d '' "https://report-ip.crypto-libertarian.com/$(hostname)/{{ report_ip_secret }}"
