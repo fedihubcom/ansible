@@ -10,9 +10,7 @@ module ReportIP
     get '/' do
       redis = Redis.new url: ENV['REDIS_URL']
 
-      redis.hgetall('ips').map do |k, v|
-        "#{k}: #{v};"
-      end.join(' ')
+      json redis.hgetall('ips')
     end
 
     post '/:domain/:secret' do
@@ -29,7 +27,7 @@ module ReportIP
 
       redis.hset 'ips', domain, request.ip
 
-      request.ip
+      json ip: request.ip
     end
   end
 end
