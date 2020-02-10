@@ -9,6 +9,18 @@
     - kotovalexarian.common
     - rvm.ruby
   tasks:
+    - name: Create system group
+      group:
+        name: report_ip
+        system: true
+
+    - name: Create system user
+      user:
+        name: report_ip
+        group: report_ip
+        system: true
+        create_home: false
+
     - name: Check RVM gemset
       shell: /bin/bash --login -c 'rvm use ruby-2.7.0@report_ip'
       ignore_errors: true
@@ -34,3 +46,17 @@
         "rvm ruby-2.7.0@report_ip do
         gem install bundler -v '~> 2.0'"
       when: check_bundler_result.rc != 0
+
+    - name: Copy application
+      copy:
+        src: ../../report_ip/
+        dest: /opt/report_ip/
+        owner: report_ip
+        group: report_ip
+
+    - name: Install gems
+      shell: >
+        /bin/bash --login -c
+        "rvm ruby-2.7.0@report_ip do
+        bundle install --gemfile /opt/report_ip/Gemfile"
+      changed_when: false
