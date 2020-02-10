@@ -7,6 +7,14 @@ Bundler.require
 
 module ReportIP
   class Application < Sinatra::Application
+    get '/' do
+      redis = Redis.new url: ENV['REDIS_URL']
+
+      redis.hgetall('ips').map do |k, v|
+        "#{k}: #{v};"
+      end.join(' ')
+    end
+
     post '/:domain/:secret' do
       redis = Redis.new url: ENV['REDIS_URL']
 
