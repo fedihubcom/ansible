@@ -9,6 +9,10 @@
     - kotovalexarian.common
     - rvm.ruby
   tasks:
+    - name: Install system packages
+      apt:
+        name: redis-server
+
     - name: Create system group
       group:
         name: report_ip
