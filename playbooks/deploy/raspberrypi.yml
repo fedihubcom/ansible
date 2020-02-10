@@ -26,4 +26,4 @@
         dest: /etc/cron.d/upnp_forward_ssh
         owner: root
         group: root
-        mode: 'u=rw,g=r,o='
+        mode: 'u=rw,g=r,o=r'
