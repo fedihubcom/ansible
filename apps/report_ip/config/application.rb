@@ -7,6 +7,8 @@ Bundler.require
 
 module CryptoLibertarian
   module ReportIP
+    IPV4_RE = /\A\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/.freeze
+
     class Application < Sinatra::Application
       get '/' do
         redis = Redis.new url: ENV['REDIS_URL']
