@@ -137,15 +137,6 @@
         mode: 'u=rw,g=r,o=r'
       register: install_systemd_service_result_for_dyndns
 
-    - name: Install systemd socket "dyndns"
-      copy:
-        src: ../../files/dyndns.socket
-        dest: /etc/systemd/system/dyndns.socket
-        owner: root
-        group: root
-        mode: 'u=rw,g=r,o=r'
-      register: install_systemd_socket_result_for_dyndns
-
     - name: Disable and stop systemd service "systemd-resolved"
       systemd:
         name: systemd-resolved.service
@@ -165,13 +156,6 @@
         name: dyndns.service
         enabled: true
       when: install_systemd_service_result_for_dyndns.changed
-
-    - name: Update systemd socket "dyndns"
-      systemd:
-        daemon_reload: true
-        name: dyndns.socket
-        enabled: true
-      when: install_systemd_socket_result_for_dyndns.changed
 
     - name: Restart systemd service
       systemd:
