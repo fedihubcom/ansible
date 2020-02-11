@@ -138,6 +138,12 @@
         mode: 'u=rw,g=r,o=r'
       register: install_systemd_socket_result_for_dyndns
 
+    - name: Disable and stop systemd service "systemd-resolved"
+      systemd:
+        name: systemd-resolved.service
+        enabled: false
+        state: stopped
+
     - name: Update systemd service "report_ip"
       systemd:
         daemon_reload: true
