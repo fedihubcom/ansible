@@ -27,6 +27,7 @@ common__nginx__sites:
     ssl_conf: '/etc/letsencrypt/options-ssl-nginx.conf'
     root:     '/opt/report_ip/public'
     upstream: report_ip
+    set_x_real_ip_to_remote_addr: true
 
 rvm1_rvm_version: stable
 rvm1_rvm_check_for_updates: true
