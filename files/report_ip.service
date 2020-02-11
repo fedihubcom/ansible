@@ -3,7 +3,7 @@ After=network.target
 Description=Report IP web app
 
 [Service]
-ExecStart=/usr/local/rvm/bin/rvm ruby-2.7.0@report_ip do rackup --env production --host 0.0.0.0
+ExecStart=/usr/local/rvm/bin/rvm ruby-2.7.0@report_ip do puma --environment production
 Group=report_ip
 Restart=always
 RestartSec=1
