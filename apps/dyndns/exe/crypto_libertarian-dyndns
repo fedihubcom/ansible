@@ -17,7 +17,7 @@ INTERFACES = [
 ].freeze
 
 RubyDNS.run_server INTERFACES do
-  match /\A([^.]+)\.dyn\.crypto-libertarian\.com\z/, IN::A do |tx, m|
+  match(/\A([^.]+)\.dyn\.crypto-libertarian\.com\z/, IN::A) do |tx, m|
     redis = Redis.new url: ENV['REDIS_URL']
 
     domain = "#{m[1]}.dyn.crypto-libertarian.com"
