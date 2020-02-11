@@ -1,1 +1,0 @@
-* * * * * root /usr/bin/upnpc -r {{ ansible_port }} tcp

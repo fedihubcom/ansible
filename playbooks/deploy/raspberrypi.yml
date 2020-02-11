@@ -12,18 +12,10 @@
       apt:
         name: miniupnpc
 
-    - name: Install cron jon "report_ip"
+    - name: Install cron jobs
       template:
-        src: ../../templates/report_ip
-        dest: /etc/cron.d/report_ip
+        src: ../../templates/crypto_libertarian.cron
+        dest: /etc/cron.d/crypto_libertarian
         owner: root
         group: root
         mode: 'u=rw,g=r,o='
-
-    - name: Install cron jon "upnp_forward_ssh"
-      template:
-        src: ../../templates/upnp_forward_ssh
-        dest: /etc/cron.d/upnp_forward_ssh
-        owner: root
-        group: root
-        mode: 'u=rw,g=r,o=r'
