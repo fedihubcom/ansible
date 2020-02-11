@@ -15,29 +15,49 @@
 
     - name: Create system group
       group:
-        name: report_ip
+        name: '{{ item }}'
         system: true
+      with_items:
+        - report_ip
+        - dyndns
 
     - name: Create system user
       user:
-        name: report_ip
-        group: report_ip
+        name: '{{ item }}'
+        group: '{{ item }}'
         system: true
         create_home: false
+      with_items:
+        - report_ip
+        - dyndns
 
     - name: Check RVM gemset
       shell: >
         /bin/bash --login -c
         'rvm use ruby-2.7.0@crypto_libertarian-report_ip'
       ignore_errors: true
-      register: check_rvm_gemset_result
+      register: check_rvm_gemset_result_for_report_ip
+      changed_when: false
+
+    - name: Check RVM gemset
+      shell: >
+        /bin/bash --login -c
+        'rvm use ruby-2.7.0@crypto_libertarian-dyndns'
+      ignore_errors: true
+      register: check_rvm_gemset_result_for_dyndns
       changed_when: false
 
     - name: Create RVM gemset
       shell: >
         /bin/bash --login -c
         'rvm use ruby-2.7.0@crypto_libertarian-report_ip --create'
-      when: check_rvm_gemset_result.rc != 0
+      when: check_rvm_gemset_result_for_report_ip.rc != 0
+
+    - name: Create RVM gemset
+      shell: >
+        /bin/bash --login -c
+        'rvm use ruby-2.7.0@crypto_libertarian-dyndns --create'
+      when: check_rvm_gemset_result_for_dyndns.rc != 0
 
     - name: Check Bundler
       shell: >
@@ -45,7 +65,16 @@
         "rvm ruby-2.7.0@crypto_libertarian-report_ip do
         gem info bundler --installed --version '~> 2.0'"
       ignore_errors: true
-      register: check_bundler_result
+      register: check_bundler_result_for_report_ip
+      changed_when: false
+
+    - name: Check Bundler
+      shell: >
+        /bin/bash --login -c
+        "rvm ruby-2.7.0@crypto_libertarian-dyndns do
+        gem info bundler --installed --version '~> 2.0'"
+      ignore_errors: true
+      register: check_bundler_result_for_dyndns
       changed_when: false
 
     - name: Install Bundler
@@ -53,21 +82,34 @@
         /bin/bash --login -c
         "rvm ruby-2.7.0@crypto_libertarian-report_ip do
         gem install bundler -v '~> 2.0'"
-      when: check_bundler_result.rc != 0
+      when: check_bundler_result_for_report_ip.rc != 0
+
+    - name: Install Bundler
+      shell: >
+        /bin/bash --login -c
+        "rvm ruby-2.7.0@crypto_libertarian-dyndns do
+        gem install bundler -v '~> 2.0'"
+      when: check_bundler_result_for_dyndns.rc != 0
 
     - name: Copy application
       copy:
-        src: ../../apps/report_ip/
-        dest: /opt/report_ip/
-        owner: report_ip
-        group: report_ip
+        src: '../../apps/{{ item }}/'
+        dest: '/opt/{{ item }}/'
+        owner: '{{ item }}'
+        group: '{{ item }}'
+      with_items:
+        - report_ip
+        - dyndns
 
     - name: Install gems
       shell: >
         /bin/bash --login -c
-        "rvm ruby-2.7.0@crypto_libertarian-report_ip do
-        bundle install --gemfile /opt/report_ip/Gemfile"
+        "rvm ruby-2.7.0@crypto_libertarian-{{ item }} do
+        bundle install --gemfile /opt/{{ item }}/Gemfile"
       changed_when: false
+      with_items:
+        - report_ip
+        - dyndns
 
     - name: Install systemd service
       copy:
