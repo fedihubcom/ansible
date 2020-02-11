@@ -79,5 +79,10 @@
         daemon_reload: true
         name: report_ip.service
         enabled: true
-        state: restarted
       when: install_systemd_service_resule.changed
+
+    - name: Restart systemd service
+      systemd:
+        name: report_ip.service
+        state: restarted
+      changed_when: false
