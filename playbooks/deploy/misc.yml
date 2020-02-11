@@ -26,19 +26,19 @@
         create_home: false
 
     - name: Check RVM gemset
-      shell: /bin/bash --login -c 'rvm use ruby-2.7.0@report_ip'
+      shell: /bin/bash --login -c 'rvm use ruby-2.7.0@crypto_libertarian-report_ip'
       ignore_errors: true
       register: check_rvm_gemset_result
       changed_when: false
 
     - name: Create RVM gemset
-      shell: /bin/bash --login -c 'rvm use ruby-2.7.0@report_ip --create'
+      shell: /bin/bash --login -c 'rvm use ruby-2.7.0@crypto_libertarian-report_ip --create'
       when: check_rvm_gemset_result.rc != 0
 
     - name: Check Bundler
       shell: >
         /bin/bash --login -c
-        "rvm ruby-2.7.0@report_ip do
+        "rvm ruby-2.7.0@crypto_libertarian-report_ip do
         gem info bundler --installed --version '~> 2.0'"
       ignore_errors: true
       register: check_bundler_result
@@ -47,7 +47,7 @@
     - name: Install Bundler
       shell: >
         /bin/bash --login -c
-        "rvm ruby-2.7.0@report_ip do
+        "rvm ruby-2.7.0@crypto_libertarian-report_ip do
         gem install bundler -v '~> 2.0'"
       when: check_bundler_result.rc != 0
 
@@ -61,7 +61,7 @@
     - name: Install gems
       shell: >
         /bin/bash --login -c
-        "rvm ruby-2.7.0@report_ip do
+        "rvm ruby-2.7.0@crypto_libertarian-report_ip do
         bundle install --gemfile /opt/report_ip/Gemfile"
       changed_when: false
 
