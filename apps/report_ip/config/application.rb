@@ -14,7 +14,17 @@ module CryptoLibertarian
       get '/' do
         redis = Redis.new url: ENV['REDIS_URL']
 
-        json redis.hgetall('ips')
+        json(
+          redis.hgetall('secrets').keys.map do |domain|
+            [
+              domain,
+              {
+                ipv4: redis.hget('ipv4s', domain),
+                ipv6: redis.hget('ipv6s', domain),
+              },
+            ]
+          end.to_h,
+        )
       end
 
       post '/:domain/:secret' do
@@ -29,9 +39,18 @@ module CryptoLibertarian
           halt 401, 'Unauthorized'
         end
 
-        redis.hset 'ips', domain, request.ip
+        ip = request.ip.to_s.strip
+        ip = nil if ip.empty?
 
-        json ip: request.ip
+        if IPV4_RE.match? ip
+          redis.hset 'ipv4s', domain, ip
+          json ipv4: ip
+        elsif IPV6_RE.match? ip
+          redis.hset 'ipv6s', domain, ip
+          json ipv6: ip
+        else
+          halt 500, 'Invalid IP address'
+        end
       end
     end
   end
