@@ -16,43 +16,6 @@ INTERFACES = [
 
 RubyDNS.run_server INTERFACES do
   match(
-    'dyn.crypto-libertarian.com',
-    Resolv::DNS::Resource::IN::SOA,
-  ) do |transaction|
-    transaction.respond!(
-      # Master Name
-      Resolv::DNS::Name.create('misc.crypto-libertarian.com'),
-      # Responsible Name
-      Resolv::DNS::Name.create('admin.dyn.crypto-libertarian.com'),
-      # Serial Number
-      File.mtime(__FILE__).to_i,
-      # Refresh Time
-      1200,
-      # Retry Time
-      900,
-      # Maximum TTL / Expiry Time
-      3_600_000,
-      # Minimum TTL
-      172_800,
-    )
-
-    transaction.append!(
-      transaction.question,
-      IN::NS,
-      section: :authority,
-    )
-  end
-
-  match(
-    'dyn.crypto-libertarian.com',
-    Resolv::DNS::Resource::IN::NS,
-  ) do |transaction|
-    transaction.respond!(
-      Resolv::DNS::Name.create('misc.crypto-libertarian.com'),
-    )
-  end
-
-  match(
     'foo.dyn.crypto-libertarian.com',
     Resolv::DNS::Resource::IN::A,
   ) do |transaction|
