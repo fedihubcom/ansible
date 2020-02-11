@@ -53,7 +53,7 @@
 
     - name: Copy application
       copy:
-        src: ../../report_ip/
+        src: ../../apps/report_ip/
         dest: /opt/report_ip/
         owner: report_ip
         group: report_ip
