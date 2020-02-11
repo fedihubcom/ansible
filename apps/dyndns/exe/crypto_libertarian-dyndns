@@ -21,7 +21,7 @@ RubyDNS.run_server INTERFACES do
   ) do |transaction|
     transaction.respond!(
       # Master Name
-      Resolv::DNS::Name.create('ns.dyn.crypto-libertarian.com'),
+      Resolv::DNS::Name.create('misc.crypto-libertarian.com'),
       # Responsible Name
       Resolv::DNS::Name.create('admin.dyn.crypto-libertarian.com'),
       # Serial Number
@@ -48,7 +48,7 @@ RubyDNS.run_server INTERFACES do
     Resolv::DNS::Resource::IN::NS,
   ) do |transaction|
     transaction.respond!(
-      Resolv::DNS::Name.create('ns.dyn.crypto-libertarian.com'),
+      Resolv::DNS::Name.create('misc.crypto-libertarian.com'),
     )
   end
 
