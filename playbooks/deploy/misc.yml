@@ -64,3 +64,20 @@
         "rvm ruby-2.7.0@report_ip do
         bundle install --gemfile /opt/report_ip/Gemfile"
       changed_when: false
+
+    - name: Install systemd service
+      copy:
+        src: ../../files/report_ip.service
+        dest: /etc/systemd/system/report_ip.service
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+      register: install_systemd_service_resule
+
+    - name: Update systemd service
+      systemd:
+        daemon_reload: true
+        name: report_ip.service
+        enabled: true
+        state: restarted
+      when: install_systemd_service_resule.changed
