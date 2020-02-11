@@ -4,4 +4,4 @@
 
 require_relative 'config/environment'
 
-run ReportIP::Application
+run CryptoLibertarian::ReportIP::Application
