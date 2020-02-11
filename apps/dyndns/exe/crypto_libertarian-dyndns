@@ -9,16 +9,15 @@ require 'bundler/setup' # Set up gems listed in the Gemfile.
 
 require 'rubydns'
 
+IN = Resolv::DNS::Resource::IN
+
 INTERFACES = [
   [:udp, '0.0.0.0', 53],
   [:tcp, '0.0.0.0', 53],
 ].freeze
 
 RubyDNS.run_server INTERFACES do
-  match(
-    'foo.dyn.crypto-libertarian.com',
-    Resolv::DNS::Resource::IN::A,
-  ) do |transaction|
+  match 'foo.dyn.crypto-libertarian.com', IN::A do |transaction|
     transaction.respond! '127.0.0.1'
   end
 
