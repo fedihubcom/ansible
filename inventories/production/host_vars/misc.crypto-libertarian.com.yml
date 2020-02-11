@@ -13,6 +13,21 @@ common__certbot__cert_domains:
   - 'misc.crypto-libertarian.com'
   - 'report-ip.crypto-libertarian.com'
 
+common__nginx__state: install
+
+common__nginx__upstreams:
+  - name: report_ip
+    servers: ['unix:/opt/report_ip/tmp/sockets/puma.sock']
+
+common__nginx__sites:
+  - type:     origin
+    domain:   'report-ip.crypto-libertarian.com'
+    cert:     '/etc/letsencrypt/live/misc.crypto-libertarian.com/fullchain.pem'
+    key:      '/etc/letsencrypt/live/misc.crypto-libertarian.com/privkey.pem'
+    ssl_conf: '/etc/letsencrypt/options-ssl-nginx.conf'
+    root:     '/opt/report_ip/public'
+    upstream: report_ip
+
 rvm1_rvm_version: stable
 rvm1_rvm_check_for_updates: true
 rvm1_install_path: '/usr/local/rvm'
