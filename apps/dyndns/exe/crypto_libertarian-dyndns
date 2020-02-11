@@ -17,11 +17,22 @@ INTERFACES = [
 ].freeze
 
 RubyDNS.run_server INTERFACES do
-  match 'foo.dyn.crypto-libertarian.com', IN::A do |transaction|
-    transaction.respond! '127.0.0.1'
+  match /\A([^.]+)\.dyn\.crypto-libertarian\.com\z/, IN::A do |tx, m|
+    redis = Redis.new url: ENV['REDIS_URL']
+
+    domain = "#{m[1]}.dyn.crypto-libertarian.com"
+
+    ip = redis.hget('ips', domain).to_s.strip.freeze
+    ip = nil if ip.empty?
+
+    if ip.nil?
+      tx.fail! :NXDomain
+    else
+      tx.respond! ip
+    end
   end
 
-  otherwise do
-    transaction.fail! :NXDomain
+  otherwise do |tx|
+    tx.fail! :NXDomain
   end
 end
