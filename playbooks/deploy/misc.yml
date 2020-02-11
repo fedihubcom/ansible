@@ -111,24 +111,59 @@
         - report_ip
         - dyndns
 
-    - name: Install systemd service
+    - name: Install systemd service "report_ip"
       copy:
         src: ../../files/report_ip.service
         dest: /etc/systemd/system/report_ip.service
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
-      register: install_systemd_service_resule
+      register: install_systemd_service_result_for_report_ip
 
-    - name: Update systemd service
+    - name: Install systemd service "dyndns"
+      copy:
+        src: ../../files/dyndns.service
+        dest: /etc/systemd/system/dyndns.service
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+      register: install_systemd_service_result_for_dyndns
+
+    - name: Install systemd socket "dyndns"
+      copy:
+        src: ../../files/dyndns.socket
+        dest: /etc/systemd/system/dyndns.socket
+        owner: root
+        group: root
+        mode: 'u=rw,g=r,o=r'
+      register: install_systemd_socket_result_for_dyndns
+
+    - name: Update systemd service "report_ip"
       systemd:
         daemon_reload: true
         name: report_ip.service
         enabled: true
-      when: install_systemd_service_resule.changed
+      when: install_systemd_service_result_for_report_ip.changed
+
+    - name: Update systemd service "dyndns"
+      systemd:
+        daemon_reload: true
+        name: dyndns.service
+        enabled: true
+      when: install_systemd_service_result_for_dyndns.changed
+
+    - name: Update systemd socket "dyndns"
+      systemd:
+        daemon_reload: true
+        name: dyndns.socket
+        enabled: true
+      when: install_systemd_socket_result_for_dyndns.changed
 
     - name: Restart systemd service
       systemd:
-        name: report_ip.service
+        name: '{{ item }}.service'
         state: restarted
       changed_when: false
+      with_items:
+        - report_ip
+        - dyndns
