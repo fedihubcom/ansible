@@ -1,0 +1,7 @@
+---
+- hosts: misc.crypto-libertarian.com
+  tasks:
+    - name: Fetch dump of Redis database
+      fetch:
+        src: /var/lib/redis/dump.rdb
+        dest: ../../backups
