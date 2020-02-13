@@ -1,4 +1,4 @@
 ---
 ansible_port: 31022
-common__certbot__state: null
-common__iptables__state: null
+common__certbot__state: purge
+common__iptables__state: purge
