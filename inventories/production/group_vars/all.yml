@@ -1,4 +1,5 @@
 ---
+ansible_port: 22
 ansible_python_interpreter: /usr/bin/python3
 common__apache__state: purge
 common__certbot__email: 'kotovalexarian@gmail.com'
