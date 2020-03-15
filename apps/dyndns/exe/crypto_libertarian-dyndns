@@ -17,11 +17,14 @@ INTERFACES = [
   [:tcp, '0.0.0.0', 53],
 ].freeze
 
+DYN_DOMAIN_ROOT = 'dyn.crypto-libertarian.com'
+DYN_DOMAIN_RE = /\A([^.]+)\.dyn\.crypto-libertarian\.com\z/.freeze
+
 RubyDNS.run_server INTERFACES do
-  match(/\A([^.]+)\.dyn\.crypto-libertarian\.com\z/, IN::A) do |tx, m|
+  match DYN_DOMAIN_RE, IN::A do |tx, m|
     redis = Redis.new url: ENV['REDIS_URL']
 
-    domain = "#{m[1]}.dyn.crypto-libertarian.com"
+    domain = "#{m[1]}.#{DYN_DOMAIN_ROOT}"
 
     ip = redis.hget('ipv4s', domain).to_s.strip.freeze
     ip = nil if ip.empty?
@@ -33,10 +36,10 @@ RubyDNS.run_server INTERFACES do
     end
   end
 
-  match(/\A([^.]+)\.dyn\.crypto-libertarian\.com\z/, IN::AAAA) do |tx, m|
+  match DYN_DOMAIN_RE, IN::AAAA do |tx, m|
     redis = Redis.new url: ENV['REDIS_URL']
 
-    domain = "#{m[1]}.dyn.crypto-libertarian.com"
+    domain = "#{m[1]}.#{DYN_DOMAIN_ROOT}"
 
     ip = redis.hget('ipv6s', domain).to_s.strip.freeze
     ip = nil if ip.empty?
