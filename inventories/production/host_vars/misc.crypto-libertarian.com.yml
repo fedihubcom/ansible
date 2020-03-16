@@ -12,6 +12,7 @@ common__certbot__cert_name: 'misc.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'misc.crypto-libertarian.com'
   - 'report-ip.crypto-libertarian.com'
+  - 'pub.crypto-libertarian.com'
 
 common__nginx__state: install
 
