@@ -1,7 +1,18 @@
 ---
 - hosts: misc.crypto-libertarian.com
   tasks:
+    - name: Find publications
+      find:
+        paths: /var/www/pub/
+      register: publications
+
     - name: Fetch dump of Redis database
       fetch:
         src: /var/lib/redis/dump.rdb
         dest: ../../backups
+
+    - name: Fetch publications
+      fetch:
+        src: '{{ item }}'
+        dest: ../../backups
+      with_items: "{{ publications.files | map(attribute='path') | list }}"
