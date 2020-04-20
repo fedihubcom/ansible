@@ -15,3 +15,5 @@ common__apache__modules: ['alias', 'cgid', 'env', 'rewrite', 'ssl']
 common__certbot__cert_name: 'git.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'git.crypto-libertarian.com'
+common__certbot__post_hook: 'systemctl is-active apache2.service || systemctl start apache2.service'
+common__certbot__pre_hook: 'systemctl is-active apache2.service && systemctl stop apache2.service || true'
