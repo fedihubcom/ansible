@@ -13,6 +13,14 @@
       apt:
         name: redis-server
 
+    - name: Create directory for publications
+      file:
+        state: directory
+        path: /var/www/pub
+        owner: root
+        group: root
+        mode: 'u=rwx,g=rx,o=rx'
+
     - name: Create system group
       group:
         name: '{{ item }}'

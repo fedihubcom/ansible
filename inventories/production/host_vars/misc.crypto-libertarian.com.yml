@@ -21,6 +21,13 @@ common__nginx__upstreams:
     servers: ['unix:/opt/report_ip/tmp/sockets/puma.sock']
 
 common__nginx__sites:
+  - type:     listing
+    domain:   'pub.crypto-libertarian.com'
+    cert:     '/etc/letsencrypt/live/misc.crypto-libertarian.com/fullchain.pem'
+    key:      '/etc/letsencrypt/live/misc.crypto-libertarian.com/privkey.pem'
+    ssl_conf: '/etc/letsencrypt/options-ssl-nginx.conf'
+    root:     '/var/www/pub'
+
   - type:     origin
     domain:   'report-ip.crypto-libertarian.com'
     cert:     '/etc/letsencrypt/live/misc.crypto-libertarian.com/fullchain.pem'
