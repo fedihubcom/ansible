@@ -4,6 +4,7 @@
     - name: Find publications
       find:
         paths: /var/www/pub/
+        hidden: true
       register: publications
 
     - name: Fetch dump of Redis database
