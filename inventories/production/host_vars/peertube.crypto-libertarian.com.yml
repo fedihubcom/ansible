@@ -11,3 +11,5 @@ ansible_become_pass: !vault |
 common__certbot__cert_name: 'peertube.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'peertube.crypto-libertarian.com'
+
+common__nginx__state: null
