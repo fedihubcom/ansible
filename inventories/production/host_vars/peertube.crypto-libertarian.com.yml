@@ -13,3 +13,5 @@ common__certbot__cert_domains:
   - 'peertube.crypto-libertarian.com'
 
 common__nginx__state: null
+
+peertube__systemd_after: 'network.target postgresql.service redis-server.service'
