@@ -1,7 +1,6 @@
 ---
 - import_playbook: git.yml
 - import_playbook: misc.yml
-- import_playbook: peertube.yml
 
 - import_playbook: raspberrypi.yml
   tags: rpi

@@ -1,7 +1,5 @@
 ---
 - src: kotovalexarian.common
   version: v0.0.34
-- src: kotovalexarian.peertube
-  version: v0.0.19
 - src: rvm.ruby
   version: v2.1.2
