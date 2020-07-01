@@ -7,11 +7,6 @@
         hidden: true
       register: publications
 
-    - name: Fetch dump of Redis database
-      fetch:
-        src: /var/lib/redis/dump.rdb
-        dest: ../../backups
-
     - name: Fetch publications
       fetch:
         src: '{{ item }}'
