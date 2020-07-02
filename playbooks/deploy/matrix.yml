@@ -113,6 +113,21 @@
         creates: '{{ matrix__synapse__venv_dir }}'
       notify: Load, enable and [re]start systemd service
 
+    - name: Check Python packages
+      command:
+        argv:
+          - '{{ matrix__synapse__venv_dir }}/bin/pip'
+          - 'check'
+          - '{{ item }}'
+      with_items:
+        - 'matrix-synapse'
+        - 'lxml'
+        - 'netaddr'
+        - 'pip'
+        - 'setuptools'
+      changed_when: false
+      register: packages_info
+
     - name: Upgrade Python packages
       become_user: '{{ matrix__synapse__user }}'
       command:
@@ -122,6 +137,7 @@
           - '--upgrade'
           - 'pip'
           - 'setuptools'
+      when: packages_info | json_query('results[*].rc') | difference([0]) != []
       notify: Load, enable and [re]start systemd service
 
     - name: Install Python packages
@@ -133,6 +149,7 @@
           - 'matrix-synapse'
           - 'lxml'
           - 'netaddr'
+      when: packages_info | json_query('results[*].rc') | difference([0]) != []
       notify: Load, enable and [re]start systemd service
 
     - name: Create systemd service
