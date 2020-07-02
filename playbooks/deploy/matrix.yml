@@ -86,3 +86,13 @@
         mode: 'u=rw,g=rw,o='
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
+
+    - name: Create virtual env
+      become_user: '{{ matrix__synapse__user }}'
+      command:
+        argv:
+          - 'virtualenv'
+          - '{{ matrix__synapse__venv_dir }}'
+          - '-p'
+          - 'python3'
+        creates: '{{ matrix__synapse__venv_dir }}'
