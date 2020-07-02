@@ -1,31 +1,4 @@
 ---
-matrix__conf_dir: '/etc/matrix'
-matrix__opt_dir:  '/opt/matrix'
-matrix__lib_dir:  '/var/lib/matrix'
-matrix__log_dir:  '/var/log/matrix'
-matrix__run_dir:  '/var/run/matrix'
-
-matrix__synapse__user:    'matrix-synapse'
-matrix__synapse__group:   'matrix-synapse'
-matrix__synapse__service: 'matrix-synapse'
-
-matrix__synapse__conf_dir: '{{ matrix__conf_dir }}/synapse'
-matrix__synapse__opt_dir:  '{{ matrix__opt_dir  }}/synapse'
-matrix__synapse__lib_dir:  '{{ matrix__lib_dir  }}/synapse'
-matrix__synapse__log_dir:  '{{ matrix__log_dir  }}/synapse'
-matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
-
-matrix__synapse__conf_file:     '{{ matrix__synapse__conf_dir }}/config.yml'
-matrix__synapse__log_conf_file: '{{ matrix__synapse__conf_dir }}/log_config.yml'
-matrix__synapse__key_file:      '{{ matrix__synapse__conf_dir }}/signing_key'
-matrix__synapse__venv_dir:      '{{ matrix__synapse__opt_dir  }}/venv'
-matrix__synapse__media_dir:     '{{ matrix__synapse__lib_dir  }}/media_store'
-matrix__synapse__db_file:       '{{ matrix__synapse__lib_dir  }}/homeserver.db'
-matrix__synapse__log_file:      '{{ matrix__synapse__log_dir  }}/homeserver.log'
-matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
-
-matrix__synapse__service_file: '/etc/systemd/system/{{ matrix__synapse__service }}.service'
-
 matrix__synapse__server_name: 'example.com'
 matrix__synapse__baseurl: 'https://matrix.example.com'
 matrix__synapse__admin_contact: 'mailto:user@example.com'
