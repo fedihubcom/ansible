@@ -1,0 +1,21 @@
+[Unit]
+After=network.target
+Description=Matrix Synapse
+
+[Service]
+ExecReload={{ matrix__synapse__venv_dir }}/bin/synctl restart {{ matrix__synapse__conf_file }}
+ExecStart={{  matrix__synapse__venv_dir }}/bin/synctl start   {{ matrix__synapse__conf_file }}
+ExecStop={{   matrix__synapse__venv_dir }}/bin/synctl stop    {{ matrix__synapse__conf_file }}
+Group={{ matrix__synapse__group }}
+PIDFile={{ matrix__synapse__pid_file }}
+Restart=always
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ matrix__synapse__service }}
+Type=forking
+User={{ matrix__synapse__user }}
+WorkingDirectory={{ matrix__synapse__opt_dir }}
+
+[Install]
+WantedBy=multi-user.target

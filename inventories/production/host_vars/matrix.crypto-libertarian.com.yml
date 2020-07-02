@@ -20,8 +20,9 @@ matrix__synapse__server_name: 'crypto-libertarian.com'
 matrix__synapse__baseurl: 'https://matrix.crypto-libertarian.com'
 matrix__synapse__admin_contact: 'mailto:kotovalexarian@gmail.com'
 
-matrix__synapse__user: 'matrix-synapse'
-matrix__synapse__group: 'matrix-synapse'
+matrix__synapse__user:    'matrix-synapse'
+matrix__synapse__group:   'matrix-synapse'
+matrix__synapse__service: 'matrix-synapse'
 
 matrix__conf_dir: '/etc/matrix'
 matrix__opt_dir:  '/opt/matrix'
@@ -43,6 +44,8 @@ matrix__synapse__media_dir:     '{{ matrix__synapse__lib_dir  }}/media_store'
 matrix__synapse__db_file:       '{{ matrix__synapse__lib_dir  }}/homeserver.db'
 matrix__synapse__log_file:      '{{ matrix__synapse__log_dir  }}/homeserver.log'
 matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
+
+matrix__synapse__service_file: '/etc/systemd/system/matrix-synapse.service'
 
 matrix__synapse__signing_key: !vault |
   $ANSIBLE_VAULT;1.1;AES256

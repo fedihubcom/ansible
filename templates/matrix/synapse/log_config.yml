@@ -14,7 +14,7 @@ formatters:
 filters:
   context:
     (): synapse.logging.context.LoggingContextFilter
-    request: ""
+    request: ''
 
 handlers:
   file:

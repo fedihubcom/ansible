@@ -116,3 +116,11 @@
           - 'matrix-synapse'
           - 'lxml'
           - 'netaddr'
+
+    - name: Create systemd service
+      template:
+        src: '../../templates/matrix/synapse/matrix-synapse.service'
+        dest: '{{ matrix__synapse__service_file }}'
+        mode: 'u=rw,g=rw,o=r'
+        owner: root
+        group: root
