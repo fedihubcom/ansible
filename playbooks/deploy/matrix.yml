@@ -7,6 +7,13 @@
       cache_valid_time: 86400
   roles:
     - kotovalexarian.common
+  handlers:
+    - name: Load, enable and [re]start systemd service
+      systemd:
+        name: '{{ matrix__synapse__service }}'
+        daemon_reload: true
+        enabled: true
+        state: restarted
   tasks:
     - name: Install system packages
       apt:
@@ -22,11 +29,13 @@
           - python3-setuptools
           - sqlite3
           - virtualenv
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse system group
       group:
         name: '{{ matrix__synapse__group }}'
         system: true
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse system user
       user:
@@ -34,6 +43,7 @@
         group: '{{ matrix__synapse__group }}'
         system: true
         create_home: false
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix directories
       file:
@@ -48,6 +58,7 @@
         - '{{ matrix__lib_dir }}'
         - '{{ matrix__log_dir }}'
         - '{{ matrix__run_dir }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse directories
       file:
@@ -62,6 +73,7 @@
         - '{{ matrix__synapse__lib_dir }}'
         - '{{ matrix__synapse__log_dir }}'
         - '{{ matrix__synapse__run_dir }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse config
       template:
@@ -70,6 +82,7 @@
         mode: 'u=rw,g=rw,o='
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse log config
       template:
@@ -78,6 +91,7 @@
         mode: 'u=rw,g=rw,o=r'
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Matrix Synapse signing key
       copy:
@@ -86,6 +100,7 @@
         mode: 'u=rw,g=rw,o='
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create Python virtual env
       become_user: '{{ matrix__synapse__user }}'
@@ -96,6 +111,7 @@
           - '-p'
           - 'python3'
         creates: '{{ matrix__synapse__venv_dir }}'
+      notify: Load, enable and [re]start systemd service
 
     - name: Upgrade Python packages
       become_user: '{{ matrix__synapse__user }}'
@@ -106,6 +122,7 @@
           - '--upgrade'
           - 'pip'
           - 'setuptools'
+      notify: Load, enable and [re]start systemd service
 
     - name: Install Python packages
       become_user: '{{ matrix__synapse__user }}'
@@ -116,6 +133,7 @@
           - 'matrix-synapse'
           - 'lxml'
           - 'netaddr'
+      notify: Load, enable and [re]start systemd service
 
     - name: Create systemd service
       template:
@@ -124,10 +142,4 @@
         mode: 'u=rw,g=rw,o=r'
         owner: root
         group: root
-
-    - name: Load, enable and [re]start systemd service
-      systemd:
-        name: '{{ matrix__synapse__service }}'
-        daemon_reload: true
-        enabled: true
-        state: restarted
+      notify: Load, enable and [re]start systemd service
