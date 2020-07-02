@@ -13,3 +13,32 @@ common__certbot__cert_domains:
   - 'matrix.crypto-libertarian.com'
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
+
+common__nginx__state: null
+
+matrix__synapse__user: matrix-synapse
+matrix__synapse__group: matrix-synapse
+
+matrix__conf_dir: '/etc/matrix'
+matrix__opt_dir:  '/opt/matrix'
+matrix__lib_dir:  '/var/lib/matrix'
+matrix__log_dir:  '/var/log/matrix'
+matrix__run_dir:  '/var/run/matrix'
+
+matrix__synapse__conf_dir: '{{ matrix__conf_dir }}/synapse'
+matrix__synapse__opt_dir:  '{{ matrix__opt_dir  }}/synapse'
+matrix__synapse__lib_dir:  '{{ matrix__lib_dir  }}/synapse'
+matrix__synapse__log_dir:  '{{ matrix__log_dir  }}/synapse'
+matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
+
+matrix__synapse__log_file: '{{ matrix__synapse__log_dir }}/homeserver.log'
+
+matrix__synapse__signing_key: !vault |
+  $ANSIBLE_VAULT;1.1;AES256
+  39396138396261633738353039613533343139373763383332373462303136643963646663383435
+  3463393731666561323964323932616339393364653165610a303136653764356537393334643631
+  61376132393335383238333234363039363537303233306264643764393635326334393038393636
+  6262633430353037340a666535326332633038663234643434386530616431333062653838323163
+  65336562656563386532303630653866663066363665393863306438643262323339336530646362
+  39366233353337666231383864646161373364326561323839616238393866313834363633373763
+  636435663437663036636531656166353066

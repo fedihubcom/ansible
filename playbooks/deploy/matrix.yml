@@ -7,3 +7,59 @@
       cache_valid_time: 86400
   roles:
     - kotovalexarian.common
+  tasks:
+    - name: Create Synapse system group
+      group:
+        name: '{{ matrix__synapse__group }}'
+        system: true
+
+    - name: Create Synapse system user
+      user:
+        name: '{{ matrix__synapse__user }}'
+        group: '{{ matrix__synapse__group }}'
+        system: true
+        create_home: false
+
+    - name: Create Matrix directories
+      file:
+        state: directory
+        path: '{{ item }}'
+        mode: 'u=rwx,g=rwx,o=rx'
+        owner: root
+        group: root
+      with_items:
+        - '{{ matrix__conf_dir }}'
+        - '{{ matrix__opt_dir }}'
+        - '{{ matrix__lib_dir }}'
+        - '{{ matrix__log_dir }}'
+        - '{{ matrix__run_dir }}'
+
+    - name: Create Synapse directories
+      file:
+        state: directory
+        path: '{{ item }}'
+        mode: 'u=rwx,g=rwx,o=rx'
+        owner: '{{ matrix__synapse__user }}'
+        group: '{{ matrix__synapse__group }}'
+      with_items:
+        - '{{ matrix__synapse__conf_dir }}'
+        - '{{ matrix__synapse__opt_dir }}'
+        - '{{ matrix__synapse__lib_dir }}'
+        - '{{ matrix__synapse__log_dir }}'
+        - '{{ matrix__synapse__run_dir }}'
+
+    - name: Create Synapse signing key
+      copy:
+        content: "{{ matrix__synapse__signing_key }}\n"
+        dest: '/etc/matrix/synapse/signing_key'
+        mode: 'u=rw,g=rw,o='
+        owner: '{{ matrix__synapse__user }}'
+        group: '{{ matrix__synapse__group }}'
+
+    - name: Create Synapse log config
+      template:
+        src: '../../templates/matrix/synapse/log_config.yml'
+        dest: '/etc/matrix/synapse/log_config.yml'
+        mode: 'u=rw,g=rw,o=r'
+        owner: '{{ matrix__synapse__user }}'
+        group: '{{ matrix__synapse__group }}'
