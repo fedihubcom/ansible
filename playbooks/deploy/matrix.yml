@@ -87,7 +87,7 @@
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
 
-    - name: Create virtual env
+    - name: Create Python virtual env
       become_user: '{{ matrix__synapse__user }}'
       command:
         argv:
@@ -96,3 +96,23 @@
           - '-p'
           - 'python3'
         creates: '{{ matrix__synapse__venv_dir }}'
+
+    - name: Upgrade Python packages
+      become_user: '{{ matrix__synapse__user }}'
+      command:
+        argv:
+          - '{{ matrix__synapse__venv_dir }}/bin/pip'
+          - 'install'
+          - '--upgrade'
+          - 'pip'
+          - 'setuptools'
+
+    - name: Install Python packages
+      become_user: '{{ matrix__synapse__user }}'
+      command:
+        argv:
+          - '{{ matrix__synapse__venv_dir }}/bin/pip'
+          - 'install'
+          - 'matrix-synapse'
+          - 'lxml'
+          - 'netaddr'
