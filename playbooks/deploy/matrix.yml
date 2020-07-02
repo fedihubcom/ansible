@@ -48,10 +48,10 @@
         - '{{ matrix__synapse__log_dir }}'
         - '{{ matrix__synapse__run_dir }}'
 
-    - name: Create Synapse signing key
-      copy:
-        content: "{{ matrix__synapse__signing_key }}\n"
-        dest: '/etc/matrix/synapse/signing_key'
+    - name: Create Synapse config
+      template:
+        src: '../../templates/matrix/synapse/config.yml'
+        dest: '{{ matrix__synapse__conf_file }}'
         mode: 'u=rw,g=rw,o='
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
@@ -59,7 +59,15 @@
     - name: Create Synapse log config
       template:
         src: '../../templates/matrix/synapse/log_config.yml'
-        dest: '/etc/matrix/synapse/log_config.yml'
+        dest: '{{ matrix__synapse__log_conf_file }}'
         mode: 'u=rw,g=rw,o=r'
+        owner: '{{ matrix__synapse__user }}'
+        group: '{{ matrix__synapse__group }}'
+
+    - name: Create Synapse signing key
+      copy:
+        content: "{{ matrix__synapse__signing_key }}\n"
+        dest: '{{ matrix__synapse__key_file }}'
+        mode: 'u=rw,g=rw,o='
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
