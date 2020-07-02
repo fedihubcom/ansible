@@ -1606,7 +1606,7 @@ oidc_config:
     # for information on implementing a custom mapping provider.
     #
     #module: mapping_provider.OidcMappingProvider
-
+{% raw %}
     # Custom configuration values for the module. This section will be passed as
     # a Python dictionary to the user mapping provider module's `parse_config`
     # method.
@@ -1635,6 +1635,7 @@ oidc_config:
       # If unset, no displayname will be set.
       #
       #display_name_template: "{{ user.given_name }} {{ user.last_name }}"
+{% endraw %}
 
 
 
