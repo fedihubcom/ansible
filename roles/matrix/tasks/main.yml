@@ -1,3 +1,6 @@
 ---
+- include_tasks: nginx.yml
+- meta: flush_handlers
+
 - include_tasks: synapse.yml
 - meta: flush_handlers

@@ -1,0 +1,22 @@
+---
+- name: Install system package
+  apt:
+    name: nginx
+
+- name: Create Nginx server configuration
+  template:
+    src: '../templates/nginx/synapse.conf'
+    dest: '/etc/nginx/sites-available/synapse.conf'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Restart Nginx
+
+- name: Enable Nginx server configuration
+  file:
+    state: link
+    src: '/etc/nginx/sites-available/synapse.conf'
+    dest: '/etc/nginx/sites-enabled/synapse.conf'
+    owner: root
+    group: root
+  notify: Restart Nginx

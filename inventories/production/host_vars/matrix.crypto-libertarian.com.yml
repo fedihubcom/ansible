@@ -16,7 +16,11 @@ common__certbot__pre_hook: null
 
 common__nginx__state: null
 
+matrix__synapse__ssl_cert: '/etc/letsencrypt/live/matrix.crypto-libertarian.com/fullchain.pem'
+matrix__synapse__ssl_key:  '/etc/letsencrypt/live/matrix.crypto-libertarian.com/privkey.pem'
+
 matrix__synapse__server_name: 'crypto-libertarian.com'
+matrix__synapse__server_host: 'matrix.crypto-libertarian.com'
 matrix__synapse__baseurl: 'https://matrix.crypto-libertarian.com'
 matrix__synapse__admin_contact: 'mailto:kotovalexarian@gmail.com'
 

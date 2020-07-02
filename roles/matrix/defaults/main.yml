@@ -1,5 +1,9 @@
 ---
+matrix__synapse__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
+matrix__synapse__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
+
 matrix__synapse__server_name: 'example.com'
+matrix__synapse__server_host: 'matrix.example.com'
 matrix__synapse__baseurl: 'https://matrix.example.com'
 matrix__synapse__admin_contact: 'mailto:user@example.com'
 
