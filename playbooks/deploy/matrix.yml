@@ -8,12 +8,12 @@
   roles:
     - kotovalexarian.common
   tasks:
-    - name: Create Synapse system group
+    - name: Create Matrix Synapse system group
       group:
         name: '{{ matrix__synapse__group }}'
         system: true
 
-    - name: Create Synapse system user
+    - name: Create Matrix Synapse system user
       user:
         name: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
@@ -34,7 +34,7 @@
         - '{{ matrix__log_dir }}'
         - '{{ matrix__run_dir }}'
 
-    - name: Create Synapse directories
+    - name: Create Matrix Synapse directories
       file:
         state: directory
         path: '{{ item }}'
@@ -48,7 +48,7 @@
         - '{{ matrix__synapse__log_dir }}'
         - '{{ matrix__synapse__run_dir }}'
 
-    - name: Create Synapse config
+    - name: Create Matrix Synapse config
       template:
         src: '../../templates/matrix/synapse/config.yml'
         dest: '{{ matrix__synapse__conf_file }}'
@@ -56,7 +56,7 @@
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
 
-    - name: Create Synapse log config
+    - name: Create Matrix Synapse log config
       template:
         src: '../../templates/matrix/synapse/log_config.yml'
         dest: '{{ matrix__synapse__log_conf_file }}'
@@ -64,7 +64,7 @@
         owner: '{{ matrix__synapse__user }}'
         group: '{{ matrix__synapse__group }}'
 
-    - name: Create Synapse signing key
+    - name: Create Matrix Synapse signing key
       copy:
         content: "{{ matrix__synapse__signing_key }}\n"
         dest: '{{ matrix__synapse__key_file }}'
