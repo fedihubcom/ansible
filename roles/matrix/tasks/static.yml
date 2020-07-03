@@ -1,0 +1,12 @@
+---
+- name: Create Matrix Static system group
+  group:
+    name: '{{ matrix__static__group }}'
+    system: true
+
+- name: Create Matrix Static system user
+  user:
+    name: '{{ matrix__static__user }}'
+    group: '{{ matrix__static__group }}'
+    system: true
+    create_home: false

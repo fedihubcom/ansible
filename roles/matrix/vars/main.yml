@@ -1,13 +1,17 @@
 ---
+matrix__synapse__user:    'matrix-synapse'
+matrix__synapse__group:   'matrix-synapse'
+matrix__synapse__service: 'matrix-synapse'
+
+matrix__static__user:    'matrix-static'
+matrix__static__group:   'matrix-static'
+matrix__static__service: 'matrix-static'
+
 matrix__conf_dir: '/etc/matrix'
 matrix__opt_dir:  '/opt/matrix'
 matrix__lib_dir:  '/var/lib/matrix'
 matrix__log_dir:  '/var/log/matrix'
 matrix__run_dir:  '/var/run/matrix'
-
-matrix__synapse__user:    'matrix-synapse'
-matrix__synapse__group:   'matrix-synapse'
-matrix__synapse__service: 'matrix-synapse'
 
 matrix__synapse__conf_dir: '{{ matrix__conf_dir }}/synapse'
 matrix__synapse__opt_dir:  '{{ matrix__opt_dir  }}/synapse'
