@@ -38,6 +38,7 @@
     group: '{{ matrix__synapse__group }}'
   with_items:
     - '{{ matrix__synapse__conf_dir }}'
+    - '{{ matrix__synapse__conf_subdir }}'
     - '{{ matrix__synapse__opt_dir }}'
     - '{{ matrix__synapse__lib_dir }}'
     - '{{ matrix__synapse__log_dir }}'
@@ -46,12 +47,13 @@
 
 - name: Create Matrix Synapse config
   template:
-    src: '../templates/synapse/config.yml'
-    dest: '{{ matrix__synapse__conf_file }}'
+    src: '../templates/synapse/config/{{ item }}.yaml'
+    dest: '{{ matrix__synapse__conf_subdir }}/{{ item }}.yaml'
     mode: 'u=rw,g=rw,o='
     owner: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
   notify: Load, enable and restart Matrix Synapse
+  with_items: [other]
 
 - name: Create Matrix Synapse log config
   template:

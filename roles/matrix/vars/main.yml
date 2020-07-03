@@ -22,7 +22,7 @@ matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
 matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
 matrix__static__opt_dir:  '{{ matrix__opt_dir  }}/static'
 
-matrix__synapse__conf_file:     '{{ matrix__synapse__conf_dir }}/config.yml'
+matrix__synapse__conf_subdir:   '{{ matrix__synapse__conf_dir }}/config'
 matrix__synapse__log_conf_file: '{{ matrix__synapse__conf_dir }}/log_config.yml'
 matrix__synapse__key_file:      '{{ matrix__synapse__conf_dir }}/signing_key'
 matrix__synapse__venv_dir:      '{{ matrix__synapse__opt_dir  }}/venv'
