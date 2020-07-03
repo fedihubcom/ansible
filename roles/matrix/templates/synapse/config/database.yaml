@@ -36,7 +36,20 @@
 #
 # For more information on using Synapse with Postgres, see `docs/postgres.md`.
 #
+{% if not matrix__synapse__pg_enable %}
 database:
   name: sqlite3
   args:
     database: '{{ matrix__synapse__db_file }}'
+{% else %}
+database:
+  name: psycopg2
+  args:
+    host: '{{ matrix__synapse__pg_host }}'
+    port: {{ matrix__synapse__pg_port }}
+    user: '{{ matrix__synapse__pg_username }}'
+    password: '{{ matrix__synapse__pg_password }}'
+    database: '{{ matrix__synapse__pg_database }}'
+    cp_min: 5
+    cp_max: 10
+{% endif %}

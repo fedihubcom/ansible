@@ -8,6 +8,13 @@ matrix__admin_contact: 'mailto:user@example.com'
 matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
 matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
 
+matrix__synapse__pg_enable: false
+matrix__synapse__pg_host: 'postgres.example.com'
+matrix__synapse__pg_port: 5432
+matrix__synapse__pg_username: ''
+matrix__synapse__pg_password: ''
+matrix__synapse__pg_database: ''
+
 matrix__synapse__signing_key:     ''
 matrix__synapse__reg_secret:      ''
 matrix__synapse__macaroon_secret: ''
