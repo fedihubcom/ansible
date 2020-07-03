@@ -14,3 +14,13 @@
     group: '{{ matrix__static__group }}'
     system: true
     create_home: false
+
+- name: Create Matrix Static directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: '{{ matrix__static__user }}'
+    group: '{{ matrix__static__group }}'
+  with_items:
+    - '{{ matrix__static__conf_dir }}'

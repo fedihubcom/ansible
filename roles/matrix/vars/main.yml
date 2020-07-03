@@ -19,6 +19,8 @@ matrix__synapse__lib_dir:  '{{ matrix__lib_dir  }}/synapse'
 matrix__synapse__log_dir:  '{{ matrix__log_dir  }}/synapse'
 matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
 
+matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
+
 matrix__synapse__conf_file:     '{{ matrix__synapse__conf_dir }}/config.yml'
 matrix__synapse__log_conf_file: '{{ matrix__synapse__conf_dir }}/log_config.yml'
 matrix__synapse__key_file:      '{{ matrix__synapse__conf_dir }}/signing_key'
