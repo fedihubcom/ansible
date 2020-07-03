@@ -60,6 +60,7 @@
     - listeners
     - url_preview
     - captcha
+    - turn
 
 - name: Create Matrix Synapse log config
   template:
