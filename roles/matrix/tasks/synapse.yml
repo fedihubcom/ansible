@@ -122,7 +122,7 @@
   when: packages_info | json_query('results[*].rc') | difference([0]) != []
   notify: Load, enable and restart Matrix Synapse
 
-- name: Create systemd service
+- name: Create Matrix Synapse systemd service
   template:
     src: '../templates/synapse/matrix-synapse.service'
     dest: '{{ matrix__synapse__service_file }}'

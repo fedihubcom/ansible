@@ -20,6 +20,7 @@ matrix__synapse__log_dir:  '{{ matrix__log_dir  }}/synapse'
 matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
 
 matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
+matrix__static__opt_dir:  '{{ matrix__opt_dir  }}/static'
 
 matrix__synapse__conf_file:     '{{ matrix__synapse__conf_dir }}/config.yml'
 matrix__synapse__log_conf_file: '{{ matrix__synapse__conf_dir }}/log_config.yml'
@@ -33,3 +34,4 @@ matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
 matrix__static__conf_file: '{{ matrix__static__conf_dir }}/config.json'
 
 matrix__synapse__service_file: '/etc/systemd/system/{{ matrix__synapse__service }}.service'
+matrix__static__service_file:  '/etc/systemd/system/{{ matrix__static__service  }}.service'

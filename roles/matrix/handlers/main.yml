@@ -10,3 +10,10 @@
     daemon_reload: true
     enabled: true
     state: restarted
+
+- name: Load, enable and restart Matrix Static
+  systemd:
+    name: '{{ matrix__static__service }}'
+    daemon_reload: true
+    enabled: true
+    state: restarted

@@ -2,11 +2,13 @@
 - name: Install system packages for Matrix Static
   apt:
     name: golang
+  notify: Load, enable and restart Matrix Static
 
 - name: Create Matrix Static system group
   group:
     name: '{{ matrix__static__group }}'
     system: true
+  notify: Load, enable and restart Matrix Static
 
 - name: Create Matrix Static system user
   user:
@@ -14,6 +16,7 @@
     group: '{{ matrix__static__group }}'
     system: true
     create_home: false
+  notify: Load, enable and restart Matrix Static
 
 - name: Create Matrix Static directories
   file:
@@ -24,6 +27,7 @@
     group: '{{ matrix__static__group }}'
   with_items:
     - '{{ matrix__static__conf_dir }}'
+  notify: Load, enable and restart Matrix Static
 
 - name: Create Matrix Static config
   template:
@@ -32,3 +36,13 @@
     mode: 'u=rw,g=rw,o='
     owner: '{{ matrix__static__user }}'
     group: '{{ matrix__static__group }}'
+  notify: Load, enable and restart Matrix Static
+
+- name: Create Matrix Static systemd service
+  template:
+    src: '../templates/static/matrix-static.service'
+    dest: '{{ matrix__static__service_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Load, enable and restart Matrix Static
