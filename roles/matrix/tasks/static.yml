@@ -1,4 +1,8 @@
 ---
+- name: Install system packages for Matrix Static
+  apt:
+    name: golang
+
 - name: Create Matrix Static system group
   group:
     name: '{{ matrix__static__group }}'

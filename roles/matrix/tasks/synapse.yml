@@ -1,5 +1,5 @@
 ---
-- name: Install system packages
+- name: Install system packages for Matrix Synapse
   apt:
     name:
       - build-essential
