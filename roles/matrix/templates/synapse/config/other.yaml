@@ -620,7 +620,7 @@ media_store_path: '{{ matrix__synapse__media_dir }}'
 
 # Enable registration for new users.
 #
-enable_registration: false
+enable_registration: true
 
 # Optional account validity configuration. This allows for accounts to be denied
 # any request after a given period.
