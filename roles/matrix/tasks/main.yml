@@ -1,4 +1,7 @@
 ---
+- include_tasks: common.yml
+- meta: flush_handlers
+
 - include_tasks: nginx.yml
 - meta: flush_handlers
 
