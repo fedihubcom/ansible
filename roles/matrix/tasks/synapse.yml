@@ -53,7 +53,7 @@
     owner: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
   notify: Load, enable and restart Matrix Synapse
-  with_items: [other, database, acme, listeners]
+  with_items: [other, database, acme, listeners, url_preview]
 
 - name: Create Matrix Synapse log config
   template:
