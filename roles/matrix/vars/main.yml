@@ -31,7 +31,13 @@ matrix__synapse__db_file:       '{{ matrix__synapse__lib_dir  }}/homeserver.db'
 matrix__synapse__log_file:      '{{ matrix__synapse__log_dir  }}/homeserver.log'
 matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
 
-matrix__static__conf_file: '{{ matrix__static__conf_dir }}/config.json'
+matrix__static__conf_file:    '{{ matrix__static__conf_dir }}/config.json'
+matrix__static__archive_file: '{{ matrix__static__opt_dir  }}/src.tar.gz'
+matrix__static__src_dir:      '{{ matrix__static__opt_dir  }}/src'
+matrix__static__bin_dir:      '{{ matrix__static__opt_dir  }}/bin'
 
 matrix__synapse__service_file: '/etc/systemd/system/{{ matrix__synapse__service }}.service'
 matrix__static__service_file:  '/etc/systemd/system/{{ matrix__static__service  }}.service'
+
+matrix__static__url: 'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
+matrix__static__checksum: 'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
