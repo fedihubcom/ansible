@@ -5,6 +5,8 @@
       - build-essential
       - libffi-dev
       - libjpeg-dev
+      - libpq-dev
+      - libpq5
       - libssl-dev
       - libxml2-dev
       - libxslt1-dev
@@ -102,6 +104,7 @@
     - 'lxml'
     - 'netaddr'
     - 'pip'
+    - 'psycopg2'
     - 'setuptools'
   ignore_errors: true
   changed_when: false
@@ -128,6 +131,7 @@
       - 'matrix-synapse'
       - 'lxml'
       - 'netaddr'
+      - 'psycopg2'
   when: packages_info | json_query('results[*].rc') | difference([0]) != []
   notify: Load, enable and restart Matrix Synapse
 
