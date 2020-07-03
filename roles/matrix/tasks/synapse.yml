@@ -101,7 +101,7 @@
   command:
     argv:
       - '{{ matrix__synapse__venv_dir }}/bin/pip'
-      - 'check'
+      - 'show'
       - '{{ item }}'
   with_items:
     - 'matrix-synapse'
@@ -109,6 +109,7 @@
     - 'netaddr'
     - 'pip'
     - 'setuptools'
+  ignore_errors: true
   changed_when: false
   register: packages_info
 
