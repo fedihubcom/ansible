@@ -13,13 +13,13 @@
       - python3-setuptools
       - sqlite3
       - virtualenv
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse system group
   group:
     name: '{{ matrix__synapse__group }}'
     system: true
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse system user
   user:
@@ -27,7 +27,7 @@
     group: '{{ matrix__synapse__group }}'
     system: true
     create_home: false
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix directories
   file:
@@ -42,7 +42,7 @@
     - '{{ matrix__lib_dir }}'
     - '{{ matrix__log_dir }}'
     - '{{ matrix__run_dir }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse directories
   file:
@@ -57,7 +57,7 @@
     - '{{ matrix__synapse__lib_dir }}'
     - '{{ matrix__synapse__log_dir }}'
     - '{{ matrix__synapse__run_dir }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse config
   template:
@@ -66,7 +66,7 @@
     mode: 'u=rw,g=rw,o='
     owner: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse log config
   template:
@@ -75,7 +75,7 @@
     mode: 'u=rw,g=rw,o=r'
     owner: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse signing key
   copy:
@@ -84,7 +84,7 @@
     mode: 'u=rw,g=rw,o='
     owner: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create Python virtual env
   become_user: '{{ matrix__synapse__user }}'
@@ -95,7 +95,7 @@
       - '-p'
       - 'python3'
     creates: '{{ matrix__synapse__venv_dir }}'
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Check Python packages
   command:
@@ -123,7 +123,7 @@
       - 'pip'
       - 'setuptools'
   when: packages_info | json_query('results[*].rc') | difference([0]) != []
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Install Python packages
   become_user: '{{ matrix__synapse__user }}'
@@ -135,7 +135,7 @@
       - 'lxml'
       - 'netaddr'
   when: packages_info | json_query('results[*].rc') | difference([0]) != []
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
 
 - name: Create systemd service
   template:
@@ -144,4 +144,4 @@
     mode: 'u=rw,g=rw,o=r'
     owner: root
     group: root
-  notify: Load, enable and [re]start systemd service
+  notify: Load, enable and restart Matrix Synapse
