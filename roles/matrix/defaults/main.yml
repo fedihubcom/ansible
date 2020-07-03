@@ -13,5 +13,8 @@ matrix__synapse__reg_secret:      ''
 matrix__synapse__macaroon_secret: ''
 matrix__synapse__form_secret:     ''
 
+matrix__synapse__recaptcha_public_key:  ''
+matrix__synapse__recaptcha_private_key: ''
+
 matrix__static__user_id: ''
 matrix__static__access_token: ''
