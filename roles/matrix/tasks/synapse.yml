@@ -61,7 +61,7 @@
 
 - name: Create Matrix Synapse config
   template:
-    src: '../templates/matrix/synapse/config.yml'
+    src: '../templates/synapse/config.yml'
     dest: '{{ matrix__synapse__conf_file }}'
     mode: 'u=rw,g=rw,o='
     owner: '{{ matrix__synapse__user }}'
@@ -70,7 +70,7 @@
 
 - name: Create Matrix Synapse log config
   template:
-    src: '../templates/matrix/synapse/log_config.yml'
+    src: '../templates/synapse/log_config.yml'
     dest: '{{ matrix__synapse__log_conf_file }}'
     mode: 'u=rw,g=rw,o=r'
     owner: '{{ matrix__synapse__user }}'
@@ -138,7 +138,7 @@
 
 - name: Create systemd service
   template:
-    src: '../templates/matrix/synapse/matrix-synapse.service'
+    src: '../templates/synapse/matrix-synapse.service'
     dest: '{{ matrix__synapse__service_file }}'
     mode: 'u=rw,g=rw,o=r'
     owner: root
