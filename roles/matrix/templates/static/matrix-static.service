@@ -12,7 +12,7 @@ StandatdError=syslog
 SyslogIdentifier={{ matrix__static__service }}
 Type=simple
 User={{ matrix__static__user }}
-WorkingDirectory={{ matrix__static__opt_dir }}
+WorkingDirectory={{ matrix__static__src_dir }}
 
 [Install]
 WantedBy=multi-user.target
