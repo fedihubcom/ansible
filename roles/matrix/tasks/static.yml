@@ -24,3 +24,11 @@
     group: '{{ matrix__static__group }}'
   with_items:
     - '{{ matrix__static__conf_dir }}'
+
+- name: Create Matrix Static config
+  template:
+    src: '../templates/static/config.json'
+    dest: '{{ matrix__static__conf_file }}'
+    mode: 'u=rw,g=rw,o='
+    owner: '{{ matrix__static__user }}'
+    group: '{{ matrix__static__group }}'

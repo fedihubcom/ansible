@@ -13,7 +13,7 @@
 # e.g. matrix.org, localhost:8080, etc.
 # This is also the last part of your UserID.
 #
-server_name: '{{ matrix__synapse__server_name }}'
+server_name: '{{ matrix__site_host }}'
 
 # When running as a daemon, the file to store the pid in
 #
@@ -35,7 +35,7 @@ pid_file: '{{ matrix__synapse__pid_file }}'
 # use synapse with a reverse proxy, this should be the URL to reach
 # synapse via the proxy.
 #
-public_baseurl: '{{ matrix__synapse__baseurl }}'
+public_baseurl: '{{ matrix__base_url }}'
 
 # Set the soft limit on the number of file descriptors synapse can use
 # Zero is used to indicate synapse should set the soft limit to the
@@ -256,7 +256,7 @@ listeners:
 
 # How to reach the server admin, used in ResourceLimitError
 #
-admin_contact: '{{ matrix__synapse__admin_contact }}'
+admin_contact: '{{ matrix__admin_contact }}'
 
 # Global blocking
 #
@@ -1119,7 +1119,7 @@ registration_shared_secret: '{{ matrix__synapse__reg_secret }}'
 # participate in rooms hosted on this server which have been made
 # accessible to anonymous users.
 #
-#allow_guest_access: false
+allow_guest_access: true
 
 # The identity server which we suggest that clients should use when users log
 # in on this server.

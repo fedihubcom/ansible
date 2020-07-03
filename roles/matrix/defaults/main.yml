@@ -1,13 +1,17 @@
 ---
-matrix__synapse__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
-matrix__synapse__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
+matrix__site_host: 'example.com'
+matrix__base_host: 'matrix.example.com'
+matrix__site_url: 'https://example.com'
+matrix__base_url: 'https://matrix.example.com'
+matrix__admin_contact: 'mailto:user@example.com'
 
-matrix__synapse__server_name: 'example.com'
-matrix__synapse__server_host: 'matrix.example.com'
-matrix__synapse__baseurl: 'https://matrix.example.com'
-matrix__synapse__admin_contact: 'mailto:user@example.com'
+matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
+matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
 
 matrix__synapse__signing_key:     ''
 matrix__synapse__reg_secret:      ''
 matrix__synapse__macaroon_secret: ''
 matrix__synapse__form_secret:     ''
+
+matrix__static__user_id: ''
+matrix__static__access_token: ''

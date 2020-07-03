@@ -5,8 +5,8 @@
 
 - name: Create Nginx server configuration
   template:
-    src: '../templates/nginx/synapse.conf'
-    dest: '/etc/nginx/sites-available/synapse.conf'
+    src: '../templates/nginx/matrix.conf'
+    dest: '/etc/nginx/sites-available/matrix.conf'
     mode: 'u=rw,g=rw,o=r'
     owner: root
     group: root
@@ -15,8 +15,8 @@
 - name: Enable Nginx server configuration
   file:
     state: link
-    src: '/etc/nginx/sites-available/synapse.conf'
-    dest: '/etc/nginx/sites-enabled/synapse.conf'
+    src: '/etc/nginx/sites-available/matrix.conf'
+    dest: '/etc/nginx/sites-enabled/matrix.conf'
     owner: root
     group: root
   notify: Restart Nginx

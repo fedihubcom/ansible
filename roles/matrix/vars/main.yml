@@ -30,4 +30,6 @@ matrix__synapse__db_file:       '{{ matrix__synapse__lib_dir  }}/homeserver.db'
 matrix__synapse__log_file:      '{{ matrix__synapse__log_dir  }}/homeserver.log'
 matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
 
+matrix__static__conf_file: '{{ matrix__static__conf_dir }}/config.json'
+
 matrix__synapse__service_file: '/etc/systemd/system/{{ matrix__synapse__service }}.service'
