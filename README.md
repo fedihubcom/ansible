@@ -58,6 +58,11 @@ tar -xzf vendor/mitogen-0.2.8.tar.gz -C vendor/
 ansible-galaxy install -r requirements.yml -f
 ```
 
+В директорию `secrets` можно поместить файлы, имя которых соответствует
+Ansible Vault ID, а содержимое является паролем от соответствующего Vault ID.
+Тогда при использовании скриптов из директории `bin` не придётся указывать эти
+Vault ID вручную.
+
 
 
 Использование конфигурации
@@ -66,35 +71,35 @@ ansible-galaxy install -r requirements.yml -f
 Проверка доступности всех серверов:
 
 ```
-ansible all -m ping
+./bin/ansible all -m ping
 ```
 
 Перезагрузка всех серверов:
 
 ```
-ansible all -m reboot
+./bin/ansible all -m reboot
 ```
 
 Обновление системных пакетов на всех серверах:
 
 ```
-ansible all -m apt -a 'update_cache=yes upgrade=yes'
+./bin/ansible all -m apt -a 'update_cache=yes upgrade=yes'
 ```
 
 Показать пароль пользователя для каждого сервера:
 
 ```
-ansible all -m debug -a var=ansible_become_pass
+./bin/ansible all -m debug -a var=ansible_become_pass
 ```
 
 Развёртывание всей инфраструктуры:
 
 ```
-ansible-playbook playbooks/deploy/site.yml
+./bin/ansible-playbook playbooks/deploy/site.yml
 ```
 
 Создание резервной копии всех данных:
 
 ```
-ansible-playbook plybooks/backup/site.yml
+./bin/ansible-playbook plybooks/backup/site.yml
 ```
