@@ -1,0 +1,8 @@
+#!/bin/sh
+
+FILE=$(readlink -f "$0")
+DIR=$(dirname "$FILE")
+
+. "$DIR/extra_opts.sh"
+
+exec ansible-playbook "$@" $extra_opts

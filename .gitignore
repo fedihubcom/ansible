@@ -1,5 +1,7 @@
 /backups/*
 !/backups/.keep
 /playbooks/**/*.retry
+/secrets/*
+!/secrets/.keep
 /vendor/*
 !/vendor/.keep
