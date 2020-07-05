@@ -17,6 +17,8 @@ common__certbot__cert_domains:
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
+postgresql_backups_dir: '/var/lib/postgresql/backups/12/main'
+
 postgresql_users:
   - name: matrix_synapse
     password: !vault |

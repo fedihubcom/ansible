@@ -3,7 +3,7 @@
   tasks:
     - name: Find PostgreSQL dumps
       find:
-        paths: '/var/lib/postgresql/backups/12/main'
+        paths: '{{ postgresql_backups_dir }}'
       register: postgresql_dumps
 
     - name: Fetch PostgreSQL dumps

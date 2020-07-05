@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+sudo -u postgres sh -e -c "test -d {{ postgresql_backups_dir }} && find {{ postgresql_backups_dir }} -type f -mtime +35 -exec rm {} \;"

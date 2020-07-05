@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+sudo -u postgres sh -e -c "mkdir -p {{ postgresql_backups_dir }} && umask 077 && pg_dumpall | gzip > {{ postgresql_backups_dir }}/$(TZ=UTC date +"%Y_%m_%d_%H_%M_%S").gz"
