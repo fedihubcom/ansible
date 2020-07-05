@@ -8,3 +8,11 @@
   roles:
     - kotovalexarian.common
     - geerlingguy.postgresql
+  tasks:
+    - name: Create weekly Cron job for PostgreSQL backup
+      copy:
+        src: ../../files/pg_backup
+        dest: /etc/cron.weekly/pg_backup
+        mode: 'u=rwx,g=rx,o=rx'
+        owner: root
+        group: root
