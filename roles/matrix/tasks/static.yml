@@ -71,22 +71,31 @@
 
 - name: Install Go package github.com/valyala/quicktemplate/qtc
   become_user: '{{ matrix__static__user }}'
-  shell:
+  command:
     chdir: '{{ matrix__static__src_dir }}'
     creates: '{{ matrix__static__opt_dir }}/go/bin/qtc'
-    cmd: 'GOPATH={{ matrix__static__opt_dir }}/go GOCACHE={{ matrix__static__opt_dir }}/go-cache go get github.com/valyala/quicktemplate/qtc'
+    cmd: 'go get github.com/valyala/quicktemplate/qtc'
+  environment:
+    GOPATH:  '{{ matrix__static__opt_dir }}/go'
+    GOCACHE: '{{ matrix__static__opt_dir }}/go-cache'
 
 - name: Run Go executable qtc
   become_user: '{{ matrix__static__user }}'
-  shell:
+  command:
     chdir: '{{ matrix__static__src_dir }}'
     creates: '{{ matrix__static__src_dir }}/templates/basepage.qtpl.go'
-    cmd: 'GOPATH={{ matrix__static__opt_dir }}/go GOCACHE={{ matrix__static__opt_dir }}/go-cache {{ matrix__static__opt_dir }}/go/bin/qtc'
+    cmd: '{{ matrix__static__opt_dir }}/go/bin/qtc'
+  environment:
+    GOPATH:  '{{ matrix__static__opt_dir }}/go'
+    GOCACHE: '{{ matrix__static__opt_dir }}/go-cache'
 
 - name: Build Matrix Static source code
   become_user: '{{ matrix__static__user }}'
-  shell:
+  command:
     chdir: '{{ matrix__static__src_dir }}'
     creates: '{{ matrix__static__bin_dir }}/matrix-static'
-    cmd: 'GOPATH={{ matrix__static__opt_dir }}/go GOCACHE={{ matrix__static__opt_dir }}/go-cache go build -o {{ matrix__static__bin_dir }} ./cmd/...'
+    cmd: 'go build -o {{ matrix__static__bin_dir }} ./cmd/...'
+  environment:
+    GOPATH:  '{{ matrix__static__opt_dir }}/go'
+    GOCACHE: '{{ matrix__static__opt_dir }}/go-cache'
   notify: Load, enable and restart Matrix Static
