@@ -63,6 +63,7 @@
     - url_preview
     - captcha
     - turn
+    - media_store
 
 - name: Create Matrix Synapse log config
   template:
