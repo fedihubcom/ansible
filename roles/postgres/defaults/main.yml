@@ -1,2 +1,6 @@
 ---
 postgres__hba: []
+
+postgres__config:
+  - key: listen_addresses
+    value: '*'

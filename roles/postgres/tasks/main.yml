@@ -12,3 +12,12 @@
     owner: postgres
     group: postgres
   notify: Restart Postgres
+
+- name: Change config
+  lineinfile:
+    dest: '/etc/postgresql/12/main/postgresql.conf'
+    regexp: '^#?{{ item.key }}(( |=).*)?$'
+    line: "{{ item.key }} = '{{ item.value }}'"
+    state: "{{ item.state | default('present') }}"
+  with_items: '{{ postgres__config }}'
+  notify: Restart Postgres
