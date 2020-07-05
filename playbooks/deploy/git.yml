@@ -7,6 +7,11 @@
       cache_valid_time: 86400
   roles:
     - kotovalexarian.common
+  handlers:
+    - name: Restart Apache
+      systemd:
+        name: apache2.service
+        state: restarted
   tasks:
     - name: Install system packages
       apt:
@@ -73,6 +78,7 @@
       register: disable_apache_configuration_result
       changed_when: >
         disable_apache_configuration_result.stdout is search('Disabling conf')
+      notify: Restart Apache
 
     - name: Add Apache site
       copy:
@@ -81,12 +87,14 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
+      notify: Restart Apache
 
     - name: Enable Apache site
       command: '/usr/sbin/a2ensite git.crypto-libertarian.com.conf'
       register: enable_apache_site_result
       changed_when: >
         enable_apache_site_result.stdout is search('Enabling site')
+      notify: Restart Apache
 
     - name: Install cgit configuration
       copy:
@@ -95,8 +103,3 @@
         owner: root
         group: root
         mode: 'u=rw,g=r,o=r'
-
-    - name: Restart Apache
-      systemd:
-        name: apache2.service
-        state: restarted
