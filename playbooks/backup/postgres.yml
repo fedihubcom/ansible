@@ -1,5 +1,5 @@
 ---
-- hosts: postgres.crypto-libertarian.com
+- hosts: postgres
   tasks:
     - name: Find PostgreSQL dumps
       find:

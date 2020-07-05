@@ -1,0 +1,6 @@
+---
+postgresql_backups_dir: '/var/lib/postgresql/backups/12/main'
+
+postgresql_global_config_options:
+  - option: listen_addresses
+    value: '*'

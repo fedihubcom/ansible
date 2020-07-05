@@ -1,5 +1,5 @@
 ---
-- hosts: postgres.crypto-libertarian.com
+- hosts: postgres
   module_defaults:
     apt:
       force_apt_get: true

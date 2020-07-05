@@ -17,8 +17,6 @@ common__certbot__cert_domains:
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
-postgresql_backups_dir: '/var/lib/postgresql/backups/12/main'
-
 postgresql_users:
   - name: matrix_synapse
     password: !vault |
@@ -35,10 +33,6 @@ postgresql_databases:
     owner: matrix_synapse
     lc_collate: C
     lc_ctype: C
-
-postgresql_global_config_options:
-  - option: listen_addresses
-    value: '*'
 
 postgresql_hba_entries:
   - type: local
