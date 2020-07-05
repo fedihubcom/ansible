@@ -28,6 +28,12 @@ postgresql_users:
       65373839653630353830326336376534313136313735343532373232653536653363366132333363
       6639346134356664313434373664653734366361633935633230
 
+postgresql_databases:
+  - name: matrix_synapse
+    owner: matrix_synapse
+    lc_collate: C
+    lc_ctype: C
+
 postgresql_global_config_options:
   - option: listen_addresses
     value: '*'
