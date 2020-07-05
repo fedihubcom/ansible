@@ -1,0 +1,14 @@
+---
+- name: Install system packages
+  apt:
+    name: postgresql
+  notify: Restart Postgres
+
+- name: Install pg_hba.conf
+  template:
+    src: '../templates/pg_hba.conf'
+    dest: '/etc/postgresql/12/main/pg_hba.conf'
+    mode: 'u=rw,g=r,o='
+    owner: postgres
+    group: postgres
+  notify: Restart Postgres
