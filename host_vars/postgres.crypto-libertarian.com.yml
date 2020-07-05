@@ -17,72 +17,76 @@ common__certbot__cert_domains:
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
-postgres__hba:
+postgresql_global_config_options:
+  - option: listen_addresses
+    value: '*'
+
+postgresql_hba_entries:
   - type: local
     database: all
     user: postgres
-    method: peer
+    auth_method: peer
 
   - type: local
     database: all
     user: all
-    method: peer
+    auth_method: peer
 
   - type: host
     database: all
     user: all
     address: '127.0.0.1/32'
-    method: md5
+    auth_method: md5
 
   - type: host
     database: all
     user: all
     address: '::1/128'
-    method: md5
+    auth_method: md5
 
   - type: local
     database: replication
     user: all
-    method: peer
+    auth_method: peer
 
   - type: host
     database: replication
     user: all
     address: '127.0.0.1/32'
-    method: md5
+    auth_method: md5
 
   - type: host
     database: replication
     user: all
     address: '::1/128'
-    method: md5
+    auth_method: md5
 
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
     address: '134.209.196.172/32'
-    method: md5
+    auth_method: md5
 
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
     address: '2a03:b0c0:2:f0::142:3001/128'
-    method: md5
+    auth_method: md5
 
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
     address: '10.133.8.214/32'
-    method: md5
+    auth_method: md5
 
   - type: host
     database: all
     user: all
     address: '0.0.0.0/0'
-    method: reject
+    auth_method: reject
 
   - type: host
     database: all
     user: all
     address: '::/0'
-    method: reject
+    auth_method: reject
