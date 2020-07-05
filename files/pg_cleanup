@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+sudo -u postgres sh -e -c "test -d /var/lib/postgresql/backups/12/main && find /var/lib/postgresql/backups/12/main -type f -mtime +35 -exec rm {} \;"
