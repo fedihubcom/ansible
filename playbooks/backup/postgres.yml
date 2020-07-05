@@ -1,0 +1,13 @@
+---
+- hosts: postgres.crypto-libertarian.com
+  tasks:
+    - name: Find PostgreSQL dumps
+      find:
+        paths: '/var/lib/postgresql/backups/12/main'
+      register: postgresql_dumps
+
+    - name: Fetch PostgreSQL dumps
+      fetch:
+        src: '{{ item }}'
+        dest: ../../backups
+      with_items: "{{ postgresql_dumps.files | map(attribute='path') | list }}"
