@@ -69,12 +69,19 @@
     extra_opts:
       - '--strip-components=1'
 
-- name: Install Go package github.com/valyala/quicktemplate/qtc
+- name: Get Quicktemplate source code
+  become_user: '{{ matrix__static__user }}'
+  git:
+    repo: 'https://github.com/valyala/quicktemplate.git'
+    dest: '{{ matrix__static__opt_dir }}/go-quicktemplate'
+    version: '1a0f4e9691adbb86df52cb2dd9adafa6a28585a0'
+
+- name: Install Quicktemplate
   become_user: '{{ matrix__static__user }}'
   command:
-    chdir: '{{ matrix__static__src_dir }}'
+    chdir: '{{ matrix__static__opt_dir }}/go-quicktemplate/qtc'
     creates: '{{ matrix__static__opt_dir }}/go/bin/qtc'
-    cmd: 'go get github.com/valyala/quicktemplate/qtc'
+    cmd: 'go install .'
   environment:
     GOPATH:  '{{ matrix__static__opt_dir }}/go'
     GOCACHE: '{{ matrix__static__opt_dir }}/go-cache'
