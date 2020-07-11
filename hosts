@@ -4,6 +4,3 @@ postgres.crypto-libertarian.com
 
 [postgres]
 postgres.crypto-libertarian.com
-
-[all:vars]
-admin = kotovalexarian

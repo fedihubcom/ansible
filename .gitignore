@@ -1,3 +1,4 @@
+/admin
 /backups/*
 !/backups/.keep
 /playbooks/**/*.retry
