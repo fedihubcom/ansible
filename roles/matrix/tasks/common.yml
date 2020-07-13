@@ -12,3 +12,11 @@
     - '{{ matrix__lib_dir }}'
     - '{{ matrix__log_dir }}'
     - '{{ matrix__run_dir }}'
+
+- name: Recreate Matrix rundirs
+  template:
+    src: '../templates/tmpfiles.d/matrix.conf'
+    dest: '/etc/tmpfiles.d/matrix.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
