@@ -3,6 +3,15 @@
   apt:
     name: nginx
 
+- name: Install Nginx log config
+  copy:
+    src: 'files/nginx/syslog.conf'
+    dest: '/etc/nginx/conf.d/syslog.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root
+  notify: Restart Nginx
+
 - name: Create Nginx server configuration
   template:
     src: '../templates/nginx/matrix.conf'
