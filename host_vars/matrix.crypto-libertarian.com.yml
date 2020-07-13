@@ -121,28 +121,12 @@ matrix__static__access_token: !vault |
 common__iptables__drop_by_default: true
 
 common__iptables__v4_filter: |
-  # Allow incoming HTTP.
-  -A INPUT  -p tcp --dport 80  -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 80  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  # Allow incoming HTTP, HTTPS, Matrix.
+  -A INPUT  -p tcp -m multiport --dport 80,443,8448 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp -m multiport --sport 80,443,8448 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
-  # Deny other HTTP.
-  -A INPUT  -p tcp --dport 80 -j REJECT
-  -A OUTPUT -p tcp --sport 80 -j REJECT
-
-  # Allow incoming HTTPS.
-  -A INPUT  -p tcp --dport 443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 443 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-
-  # Deny other HTTPS.
-  -A INPUT  -p tcp --dport 443 -j REJECT
-  -A OUTPUT -p tcp --sport 443 -j REJECT
-
-  # Allow incoming Matrix (HTTPS).
-  -A INPUT  -p tcp --dport 8448 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 8448 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-
-  # Deny other Matrix (HTTPS).
-  -A INPUT  -p tcp --dport 8448 -j REJECT
-  -A OUTPUT -p tcp --sport 8448 -j REJECT
+  # Deny other HTTP, HTTPS, Matrix.
+  -A INPUT  -p tcp -m multiport --dport 80,443,8448 -j REJECT
+  -A OUTPUT -p tcp -m multiport --sport 80,443,8448 -j REJECT
 
 common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'
