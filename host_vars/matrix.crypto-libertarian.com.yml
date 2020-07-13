@@ -138,11 +138,11 @@ common__iptables__v4_filter: |
   -A OUTPUT -p tcp --sport 443 -j REJECT
 
   # Allow incoming Matrix (HTTPS).
-  -A INPUT  -p tcp --dport 8008 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 8008 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 8448 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 8448 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
   # Deny other Matrix (HTTPS).
-  -A INPUT  -p tcp --dport 8008 -j REJECT
-  -A OUTPUT -p tcp --sport 8008 -j REJECT
+  -A INPUT  -p tcp --dport 8448 -j REJECT
+  -A OUTPUT -p tcp --sport 8448 -j REJECT
 
 common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'
