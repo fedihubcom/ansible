@@ -1,26 +1,6 @@
 ---
 common__iptables__drop_by_default: true
 
-common__iptables__v4_filter: |
-  # Allow incoming PostgreSQL from specific hosts.
-  -A INPUT  -p tcp --dport 5432 -s 134.209.196.172/32 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 134.209.196.172/32 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  -A INPUT  -p tcp --dport 5432 -s 10.133.8.214/32    -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 10.133.8.214/32    -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-
-  # Deny other PostgreSQL.
-  -A INPUT  -p tcp --dport 5432 -j REJECT
-  -A OUTPUT -p tcp --sport 5432 -j REJECT
-
-common__iptables__v6_filter: |
-  # Allow incoming PostgreSQL from specific hosts.
-  -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:f0::142:3001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:f0::142:3001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-
-  # Deny other PostgreSQL.
-  -A INPUT  -p tcp --dport 5432 -j REJECT
-  -A OUTPUT -p tcp --sport 5432 -j REJECT
-
 postgresql_backups_dir: '/var/lib/postgresql/backups/12/main'
 
 postgresql_global_config_options:
