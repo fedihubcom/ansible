@@ -117,3 +117,55 @@ matrix__static__access_token: !vault |
   63383835616238666165363435393938396431343264616465303161323763363832386432386330
   39653438646339666130633162636364343230656134366162393531393135653831303635316236
   65333231306535306239
+
+common__iptables__drop_by_default: true
+
+common__iptables__v4_filter: |
+  # Allow incoming HTTP.
+  -A INPUT  -p tcp --dport 80  -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 80  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP.
+  -A INPUT  -p tcp --dport 80 -j REJECT
+  -A OUTPUT -p tcp --sport 80 -j REJECT
+
+  # Allow incoming HTTPS.
+  -A INPUT  -p tcp --dport 443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 443 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTPS.
+  -A INPUT  -p tcp --dport 443 -j REJECT
+  -A OUTPUT -p tcp --sport 443 -j REJECT
+
+  # Allow incoming Matrix (HTTPS).
+  -A INPUT  -p tcp --dport 8008 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 8008 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other Matrix (HTTPS).
+  -A INPUT  -p tcp --dport 8008 -j REJECT
+  -A OUTPUT -p tcp --sport 8008 -j REJECT
+
+common__iptables__v6_filter: |
+  # Allow incoming HTTP.
+  -A INPUT  -p tcp --dport 80  -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 80  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP.
+  -A INPUT  -p tcp --dport 80 -j REJECT
+  -A OUTPUT -p tcp --sport 80 -j REJECT
+
+  # Allow incoming HTTPS.
+  -A INPUT  -p tcp --dport 443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 443 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTPS.
+  -A INPUT  -p tcp --dport 443 -j REJECT
+  -A OUTPUT -p tcp --sport 443 -j REJECT
+
+  # Allow incoming Matrix (HTTPS).
+  -A INPUT  -p tcp --dport 8008 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 8008 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other Matrix (HTTPS).
+  -A INPUT  -p tcp --dport 8008 -j REJECT
+  -A OUTPUT -p tcp --sport 8008 -j REJECT
