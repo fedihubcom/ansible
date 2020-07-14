@@ -6,7 +6,8 @@
       update_cache: true
       cache_valid_time: 86400
   roles:
-    - kotovalexarian.common
+    - name: kotovalexarian.common
+      tags: common
   handlers:
     - name: Restart Apache
       systemd:
