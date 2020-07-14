@@ -9,18 +9,10 @@
     - kotovalexarian.common
     - geerlingguy.postgresql
   tasks:
-    - name: Create weekly Cron job for PostgreSQL backup
+    - name: Create daily Cron job for PostgreSQL backup
       template:
         src: ../../templates/pg_backup
-        dest: /etc/cron.weekly/pg_backup
-        mode: 'u=rwx,g=rx,o=rx'
-        owner: root
-        group: root
-
-    - name: Create daily Cron job for PostgreSQL cleanup
-      template:
-        src: ../../templates/pg_cleanup
-        dest: /etc/cron.daily/pg_cleanup
+        dest: /etc/cron.daily/pg_backup
         mode: 'u=rwx,g=rx,o=rx'
         owner: root
         group: root
