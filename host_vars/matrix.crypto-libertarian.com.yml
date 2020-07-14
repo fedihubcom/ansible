@@ -17,7 +17,8 @@ common__certbot__cert_domains:
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
-common__nginx__state: null
+common__nginx__state: install
+common__nginx__remove_default: true
 
 matrix__site_host: 'crypto-libertarian.com'
 matrix__base_host: 'matrix.crypto-libertarian.com'
