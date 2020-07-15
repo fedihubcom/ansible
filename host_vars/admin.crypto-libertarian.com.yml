@@ -17,6 +17,11 @@ common__certbot__cert_domains:
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
+kibana_version: 6.x
+kibana_elasticsearch_url: 'http://elasticsearch.crypto-libertarian.com:9200'
+kibana_server_host: 0.0.0.0
+kibana_server_port: 6501
+
 common__iptables__drop_by_default: true
 
 common__iptables__v4_filter: |
@@ -27,5 +32,13 @@ common__iptables__v4_filter: |
   # Deny other HTTP.
   -A INPUT  -p tcp --dport 80 -j REJECT
   -A OUTPUT -p tcp --dport 80 -j REJECT
+
+  # Allow incoming HTTP (Kibana).
+  -A INPUT  -p tcp --dport 6501 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 6501 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP (Kibana).
+  -A INPUT  -p tcp --dport 6501 -j REJECT
+  -A OUTPUT -p tcp --dport 6501 -j REJECT
 
 common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'

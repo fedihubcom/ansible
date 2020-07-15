@@ -8,3 +8,4 @@
   roles:
     - name: kotovalexarian.common
       tags: common
+    - geerlingguy.kibana

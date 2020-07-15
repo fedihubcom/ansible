@@ -7,3 +7,5 @@
   version: 1.10.0
 - src: geerlingguy.elasticsearch
   version: 4.2.0
+- src: geerlingguy.kibana
+  version: 4.0.1
