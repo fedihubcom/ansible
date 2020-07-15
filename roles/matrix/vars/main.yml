@@ -23,6 +23,7 @@ matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
 
 matrix__media_repo__conf_dir: '{{ matrix__conf_dir }}/media_repo'
 matrix__media_repo__opt_dir:  '{{ matrix__opt_dir  }}/media_repo'
+matrix__media_repo__lib_dir:  '{{ matrix__lib_dir  }}/media_repo'
 
 matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
 matrix__static__opt_dir:  '{{ matrix__opt_dir  }}/static'

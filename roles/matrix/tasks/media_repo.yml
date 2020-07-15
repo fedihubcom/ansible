@@ -15,7 +15,8 @@
     name: '{{ matrix__media_repo__user }}'
     group: '{{ matrix__media_repo__group }}'
     system: true
-    create_home: false
+    create_home: true
+    home: '{{ matrix__media_repo__lib_dir }}'
   notify: Load, enable and restart Matrix Media Repo
 
 - name: Create Matrix Media Repo directories
@@ -62,7 +63,4 @@
     chdir: '{{ matrix__media_repo__src_dir }}'
     creates: '{{ matrix__media_repo__src_dir }}/bin/media_repo'
     cmd: '/bin/bash {{ matrix__media_repo__src_dir }}/build.sh'
-  environment:
-    GOPATH:  '{{ matrix__media_repo__opt_dir }}/go'
-    GOCACHE: '{{ matrix__media_repo__opt_dir }}/go-cache'
   notify: Load, enable and restart Matrix Media Repo
