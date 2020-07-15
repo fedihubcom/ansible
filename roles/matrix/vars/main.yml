@@ -48,8 +48,5 @@ matrix__synapse__service_file:    '/etc/systemd/system/{{ matrix__synapse__servi
 matrix__media_repo__service_file: '/etc/systemd/system/{{ matrix__media_repo__service }}.service'
 matrix__static__service_file:     '/etc/systemd/system/{{ matrix__static__service     }}.service'
 
-matrix__media_repo__url: 'https://github.com/turt2live/matrix-media-repo/archive/v1.1.2.tar.gz'
-matrix__static__url:     'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
-
-matrix__media_repo__checksum: 'sha256:7a9ab1839299225fedb2aef30ee05406d425a7dad66872d15be2ef80b4f18c22'
-matrix__static__checksum:     'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
+matrix__static__url: 'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
+matrix__static__checksum: 'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
