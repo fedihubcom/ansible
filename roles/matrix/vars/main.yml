@@ -3,10 +3,6 @@ matrix__synapse__user:    'matrix-synapse'
 matrix__synapse__group:   'matrix-synapse'
 matrix__synapse__service: 'matrix-synapse'
 
-matrix__media_repo__user:    'matrix-media-repo'
-matrix__media_repo__group:   'matrix-media-repo'
-matrix__media_repo__service: 'matrix-media-repo'
-
 matrix__static__user:    'matrix-static'
 matrix__static__group:   'matrix-static'
 matrix__static__service: 'matrix-static'
@@ -21,9 +17,6 @@ matrix__synapse__opt_dir:  '{{ matrix__opt_dir  }}/synapse'
 matrix__synapse__lib_dir:  '{{ matrix__lib_dir  }}/synapse'
 matrix__synapse__run_dir:  '{{ matrix__run_dir  }}/synapse'
 
-matrix__media_repo__conf_dir: '{{ matrix__conf_dir }}/media_repo'
-matrix__media_repo__opt_dir:  '{{ matrix__opt_dir  }}/media_repo'
-
 matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
 matrix__static__opt_dir:  '{{ matrix__opt_dir  }}/static'
 
@@ -35,18 +28,13 @@ matrix__synapse__media_dir:     '{{ matrix__synapse__lib_dir  }}/media_store'
 matrix__synapse__db_file:       '{{ matrix__synapse__lib_dir  }}/homeserver.db'
 matrix__synapse__pid_file:      '{{ matrix__synapse__run_dir  }}/homeserver.pid'
 
-matrix__media_repo__conf_file:    '{{ matrix__media_repo__conf_dir }}/config.yaml'
-matrix__media_repo__archive_file: '{{ matrix__media_repo__opt_dir  }}/src.tar.gz'
-matrix__media_repo__src_dir:      '{{ matrix__media_repo__opt_dir  }}/src'
-
 matrix__static__conf_file:    '{{ matrix__static__conf_dir }}/config.json'
 matrix__static__archive_file: '{{ matrix__static__opt_dir  }}/src.tar.gz'
 matrix__static__src_dir:      '{{ matrix__static__opt_dir  }}/src'
 matrix__static__bin_dir:      '{{ matrix__static__opt_dir  }}/bin'
 
-matrix__synapse__service_file:    '/etc/systemd/system/{{ matrix__synapse__service    }}.service'
-matrix__media_repo__service_file: '/etc/systemd/system/{{ matrix__media_repo__service }}.service'
-matrix__static__service_file:     '/etc/systemd/system/{{ matrix__static__service     }}.service'
+matrix__synapse__service_file: '/etc/systemd/system/{{ matrix__synapse__service }}.service'
+matrix__static__service_file:  '/etc/systemd/system/{{ matrix__static__service  }}.service'
 
 matrix__static__url: 'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
 matrix__static__checksum: 'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
