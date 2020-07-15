@@ -1,0 +1,68 @@
+---
+- name: Install system packages for Matrix Media Repo
+  apt:
+    name: golang
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo system group
+  group:
+    name: '{{ matrix__media_repo__group }}'
+    system: true
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo system user
+  user:
+    name: '{{ matrix__media_repo__user }}'
+    group: '{{ matrix__media_repo__group }}'
+    system: true
+    create_home: false
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: '{{ matrix__media_repo__user }}'
+    group: '{{ matrix__media_repo__group }}'
+  with_items:
+    - '{{ matrix__media_repo__conf_dir }}'
+    - '{{ matrix__media_repo__opt_dir }}'
+    - '{{ matrix__media_repo__src_dir }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo config
+  template:
+    src: '../templates/media_repo/config.yaml'
+    dest: '{{ matrix__media_repo__conf_file }}'
+    mode: 'u=rw,g=rw,o='
+    owner: '{{ matrix__media_repo__user }}'
+    group: '{{ matrix__media_repo__group }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo systemd service
+  template:
+    src: '../templates/media_repo/matrix-media-repo.service'
+    dest: '{{ matrix__media_repo__service_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Get Matrix Media Repo source code
+  become_user: '{{ matrix__media_repo__user }}'
+  git:
+    repo: 'https://github.com/turt2live/matrix-media-repo.git'
+    dest: '{{ matrix__media_repo__src_dir }}'
+    version: 'b73a0082dd22e9ff447950b18e9ca49c73a6d912'
+
+- name: Build Matrix Media Repo source code
+  become_user: '{{ matrix__media_repo__user }}'
+  command:
+    chdir: '{{ matrix__media_repo__src_dir }}'
+    creates: '{{ matrix__media_repo__src_dir }}/bin/media_repo'
+    cmd: '/bin/bash {{ matrix__media_repo__src_dir }}/build.sh'
+  environment:
+    GOPATH:  '{{ matrix__media_repo__opt_dir }}/go'
+    GOCACHE: '{{ matrix__media_repo__opt_dir }}/go-cache'
+  notify: Load, enable and restart Matrix Media Repo

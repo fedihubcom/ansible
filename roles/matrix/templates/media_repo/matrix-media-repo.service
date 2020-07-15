@@ -1,0 +1,18 @@
+[Unit]
+After=network.target
+Description=Matrix Media Repo
+
+[Service]
+ExecStart={{ matrix__media_repo__src_dir }}/bin/media_repo
+Group={{ matrix__media_repo__group }}
+Restart=always
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ matrix__media_repo__service }}
+Type=simple
+User={{ matrix__media_repo__user }}
+WorkingDirectory={{ matrix__media_repo__opt_dir }}
+
+[Install]
+WantedBy=multi-user.target
