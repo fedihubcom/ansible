@@ -24,4 +24,12 @@ common__iptables__v4_filter: |
   -A INPUT  -p tcp --dport 80 -j REJECT
   -A OUTPUT -p tcp --dport 80 -j REJECT
 
+  # Allow incoming HTTP (ElasticSearch).
+  -A INPUT  -p tcp --dport 9200 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 9200 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP (ElasticSearch).
+  -A INPUT  -p tcp --dport 9200 -j REJECT
+  -A OUTPUT -p tcp --dport 9200 -j REJECT
+
 common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'

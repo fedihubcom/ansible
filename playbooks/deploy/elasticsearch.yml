@@ -9,3 +9,4 @@
     - name: kotovalexarian.common
       tags: common
     - geerlingguy.java
+    - geerlingguy.elasticsearch

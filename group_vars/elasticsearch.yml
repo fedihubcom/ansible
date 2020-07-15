@@ -3,3 +3,9 @@ common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
 common__iptables__drop_by_default: true
+
+elasticsearch_version: 6.x
+elasticsearch_network_host: '0.0.0.0'
+elasticsearch_http_port: 9200
+elasticsearch_heap_size_min: 256m
+elasticsearch_heap_size_max: 256m
