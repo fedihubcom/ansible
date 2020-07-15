@@ -1,0 +1,2 @@
+---
+common__iptables__drop_by_default: true
