@@ -4,6 +4,7 @@ matrix__base_host: 'matrix.example.com'
 matrix__site_url: 'https://example.com'
 matrix__base_url: 'https://matrix.example.com'
 matrix__admin_contact: 'mailto:user@example.com'
+matrix__admin_user: '@user:example.com'
 
 matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
 matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
@@ -22,6 +23,12 @@ matrix__synapse__form_secret:     ''
 
 matrix__synapse__recaptcha_public_key:  ''
 matrix__synapse__recaptcha_private_key: ''
+
+matrix__media_repo__postgres: 'postgres://user:pass@example.com/dbname?sslmode=require'
+matrix__media_repo__s3_endpoint: 's3.eu-central-1.amazonaws.com'
+matrix__media_repo__s3_access_key: ''
+matrix__media_repo__s3_access_secret: ''
+matrix__media_repo__s3_bucket: 'example-matrix-media-repo'
 
 matrix__static__user_id: ''
 matrix__static__access_token: ''
