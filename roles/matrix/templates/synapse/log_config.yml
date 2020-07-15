@@ -17,14 +17,6 @@ filters:
     request: ''
 
 handlers:
-  file:
-    class: logging.handlers.RotatingFileHandler
-    formatter: precise
-    filename: '{{ matrix__synapse__log_file }}'
-    maxBytes: 104857600
-    backupCount: 10
-    filters: [context]
-    encoding: utf8
   console:
     class: logging.StreamHandler
     formatter: precise
@@ -38,6 +30,6 @@ loggers:
 
 root:
   level: INFO
-  handlers: [file, console]
+  handlers: [console]
 
 disable_existing_loggers: false

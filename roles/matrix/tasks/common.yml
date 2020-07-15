@@ -10,7 +10,6 @@
     - '{{ matrix__conf_dir }}'
     - '{{ matrix__opt_dir }}'
     - '{{ matrix__lib_dir }}'
-    - '{{ matrix__log_dir }}'
     - '{{ matrix__run_dir }}'
 
 - name: Recreate Matrix rundirs

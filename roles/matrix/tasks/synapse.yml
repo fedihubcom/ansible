@@ -43,7 +43,6 @@
     - '{{ matrix__synapse__conf_subdir }}'
     - '{{ matrix__synapse__opt_dir }}'
     - '{{ matrix__synapse__lib_dir }}'
-    - '{{ matrix__synapse__log_dir }}'
     - '{{ matrix__synapse__run_dir }}'
   notify: Load, enable and restart Matrix Synapse
 
