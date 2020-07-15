@@ -16,7 +16,7 @@ fi
 
 extra_opts="--extra-vars admin=$admin"
 
-for vault_id in default kotovalexarian xuhcc
+for vault_id in default kotovalexarian xuhcc postgres matrix
 do
   if [ -f "$ROOT/secrets/$vault_id" ]; then
     extra_opts="$extra_opts --vault-id $vault_id@$ROOT/secrets/$vault_id"
