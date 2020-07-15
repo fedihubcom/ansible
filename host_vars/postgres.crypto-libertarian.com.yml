@@ -21,8 +21,6 @@ ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
 common__certbot__cert_name: 'postgres.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'postgres.crypto-libertarian.com'
-common__certbot__post_hook: null
-common__certbot__pre_hook: null
 
 postgresql_users:
   - name: matrix_synapse

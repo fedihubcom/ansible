@@ -1,2 +1,5 @@
 ---
+common__certbot__post_hook: null
+common__certbot__pre_hook: null
+
 common__iptables__drop_by_default: true
