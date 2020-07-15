@@ -1,0 +1,31 @@
+---
+ansible_become_pass_for:
+  kotovalexarian: !vault |
+    $ANSIBLE_VAULT;1.2;AES256;kotovalexarian
+    39393865636330636132353161363137333162666535613666626238346435313632363939356334
+    6666646534613162636465643234363736373630343664310a363937663761396535386363633135
+    62343263396338333032326663396337393331356334343239383964303834626536613538373665
+    6237376562323363660a383962633033613636396138333031393162356538626166396434366364
+    66393162656362343264353865656361646163646663356338383838613334666432646161633033
+    3037353038303933643262396238613866313362636632633965
+
+ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
+
+common__certbot__cert_name: 'admin.crypto-libertarian.com'
+common__certbot__cert_domains:
+  - 'admin.crypto-libertarian.com'
+common__certbot__post_hook: null
+common__certbot__pre_hook: null
+
+common__iptables__drop_by_default: true
+
+common__iptables__v4_filter: |
+  # Allow incoming HTTP for Certbot to work.
+  -A INPUT  -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP.
+  -A INPUT  -p tcp --dport 80 -j REJECT
+  -A OUTPUT -p tcp --dport 80 -j REJECT
+
+common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'
