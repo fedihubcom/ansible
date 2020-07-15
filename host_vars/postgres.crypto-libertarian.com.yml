@@ -47,6 +47,10 @@ postgresql_databases:
     owner: matrix_synapse
     lc_collate: C
     lc_ctype: C
+  - name: matrix_media_repo
+    owner: matrix_media_repo
+    lc_collate: C
+    lc_ctype: C
 
 postgresql_hba_entries:
   - type: local
