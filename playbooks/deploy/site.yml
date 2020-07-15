@@ -1,6 +1,4 @@
 ---
-- import_playbook: admin.yml
-- import_playbook: elasticsearch.yml
 - import_playbook: git.yml
 - import_playbook: matrix.yml
 - import_playbook: postgres.yml
