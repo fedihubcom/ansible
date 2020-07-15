@@ -3,7 +3,7 @@ After=network.target
 Description=Matrix Media Repo
 
 [Service]
-ExecStart={{ matrix__media_repo__src_dir }}/bin/media_repo
+ExecStart={{ matrix__media_repo__src_dir }}/bin/media_repo -config {{ matrix__media_repo__conf_file }}
 Group={{ matrix__media_repo__group }}
 Restart=always
 RestartSec=1
