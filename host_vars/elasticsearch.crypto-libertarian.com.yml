@@ -14,3 +14,14 @@ ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
 common__certbot__cert_name: 'elasticsearch.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'elasticsearch.crypto-libertarian.com'
+
+common__iptables__v4_filter: |
+  # Allow incoming HTTP for Certbot to work.
+  -A INPUT  -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP.
+  -A INPUT  -p tcp --dport 80 -j REJECT
+  -A OUTPUT -p tcp --dport 80 -j REJECT
+
+common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'
