@@ -3,6 +3,7 @@ After=network.target
 Description=Matrix Static
 
 [Service]
+Environment=PORT={{ matrix__static__port }}
 ExecStart={{ matrix__static__opt_dir }}/bin/matrix-static --config-file {{ matrix__static__conf_file }}
 Group={{ matrix__static__group }}
 Restart=always

@@ -1,7 +1,7 @@
 # General repo configuration
 repo:
   bindAddress: '127.0.0.1'
-  port: 8000
+  port: {{ matrix__media_repo__port }}
 
   # Where to store the logs, relative to where the repo is started from. Logs will be automatically
   # rotated every day and held for 14 days. To disable the repo logging to files, set this to

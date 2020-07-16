@@ -77,7 +77,7 @@ listeners:
   # If you plan to use a reverse proxy, please see
   # https://github.com/matrix-org/synapse/blob/master/docs/reverse_proxy.md.
   #
-  - port: 8008
+  - port: {{ matrix__synapse__port }}
     tls: false
     type: http
     x_forwarded: true

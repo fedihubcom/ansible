@@ -11,6 +11,10 @@ matrix__static__user:    'matrix-static'
 matrix__static__group:   'matrix-static'
 matrix__static__service: 'matrix-static'
 
+matrix__synapse__port:    8001
+matrix__media_repo__port: 8002
+matrix__static__port:     8003
+
 matrix__conf_dir: '/etc/matrix'
 matrix__opt_dir:  '/opt/matrix'
 matrix__lib_dir:  '/var/lib/matrix'
