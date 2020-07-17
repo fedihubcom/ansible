@@ -104,5 +104,11 @@ Vault ID вручную.
 Создание резервной копии всех данных:
 
 ```
-./bin/ansible-playbook plybooks/backup/site.yml
+./bin/ansible-playbook playbooks/backup/site.yml
+```
+
+Шифрование секретных данных (`somedata` и `somevault` замените):
+
+```
+ansible-vault encrypt_string 'somedata' --vault-id somevault@secrets/somevault
 ```
