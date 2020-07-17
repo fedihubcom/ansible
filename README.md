@@ -66,12 +66,6 @@ Vault ID вручную.
 В файл `admin` нужно поместить имя своего пользователя (например,
 `kotovalexarian`).
 
-Шифрование секретных данных осуществляется следующей командой
-(имя пользователя заменить):
-
-```
-ansible-vault encrypt_string 'passw0rd' --vault-id kotovalexarian@secrets/kotovalexarian
-```
 
 
 Использование конфигурации
@@ -111,4 +105,10 @@ ansible-vault encrypt_string 'passw0rd' --vault-id kotovalexarian@secrets/kotova
 
 ```
 ./bin/ansible-playbook playbooks/backup/site.yml
+```
+
+Шифрование секретных данных (`somedata` и `somevault` замените):
+
+```
+ansible-vault encrypt_string 'somedata' --vault-id somevault@secrets/somevault
 ```
