@@ -53,6 +53,7 @@ matrix__static__bin_dir:      '{{ matrix__static__opt_dir  }}/bin'
 
 matrix__element__archive_file: '{{ matrix__element__opt_dir }}/src.tar.gz'
 matrix__element__src_dir:      '{{ matrix__element__opt_dir }}/src'
+matrix__element__conf_file:    '{{ matrix__element__src_dir }}/config.json'
 
 matrix__synapse__service_file:    '/etc/systemd/system/{{ matrix__synapse__service    }}.service'
 matrix__media_repo__service_file: '/etc/systemd/system/{{ matrix__media_repo__service }}.service'

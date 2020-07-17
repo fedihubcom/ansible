@@ -27,3 +27,11 @@
     creates: '{{ matrix__element__src_dir }}/index.html'
     extra_opts:
       - '--strip-components=1'
+
+- name: Create Matrix Element config
+  template:
+    src: '../templates/element/config.json'
+    dest: '{{ matrix__element__conf_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
