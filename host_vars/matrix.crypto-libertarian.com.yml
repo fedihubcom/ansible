@@ -21,6 +21,7 @@ ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
 common__certbot__cert_name: 'matrix.crypto-libertarian.com'
 common__certbot__cert_domains:
   - 'matrix.crypto-libertarian.com'
+  - 'element.crypto-libertarian.com'
 common__certbot__post_hook: null
 common__certbot__pre_hook: null
 
@@ -29,9 +30,14 @@ common__nginx__remove_default: true
 
 matrix__site_host: 'crypto-libertarian.com'
 matrix__base_host: 'matrix.crypto-libertarian.com'
+matrix__web_host:  'element.crypto-libertarian.com'
+
 matrix__site_url: 'https://crypto-libertarian.com'
 matrix__base_url: 'https://matrix.crypto-libertarian.com'
+matrix__web_url:  'https://element.crypto-libertarian.com'
+
 matrix__admin_contact: 'mailto:kotovalexarian@gmail.com'
+matrix__admin_user: '@kotovalexarian:crypto-libertarian.com'
 
 matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.crypto-libertarian.com/fullchain.pem'
 matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.crypto-libertarian.com/privkey.pem'

@@ -32,6 +32,8 @@ matrix__media_repo__lib_dir:  '{{ matrix__lib_dir  }}/media_repo'
 matrix__static__conf_dir: '{{ matrix__conf_dir }}/static'
 matrix__static__opt_dir:  '{{ matrix__opt_dir  }}/static'
 
+matrix__element__opt_dir: '{{ matrix__opt_dir }}/element'
+
 matrix__synapse__conf_subdir:   '{{ matrix__synapse__conf_dir }}/config'
 matrix__synapse__log_conf_file: '{{ matrix__synapse__conf_dir }}/log_config.yml'
 matrix__synapse__key_file:      '{{ matrix__synapse__conf_dir }}/signing_key'
@@ -49,9 +51,15 @@ matrix__static__archive_file: '{{ matrix__static__opt_dir  }}/src.tar.gz'
 matrix__static__src_dir:      '{{ matrix__static__opt_dir  }}/src'
 matrix__static__bin_dir:      '{{ matrix__static__opt_dir  }}/bin'
 
+matrix__element__archive_file: '{{ matrix__element__opt_dir }}/src.tar.gz'
+matrix__element__src_dir:      '{{ matrix__element__opt_dir }}/src'
+
 matrix__synapse__service_file:    '/etc/systemd/system/{{ matrix__synapse__service    }}.service'
 matrix__media_repo__service_file: '/etc/systemd/system/{{ matrix__media_repo__service }}.service'
 matrix__static__service_file:     '/etc/systemd/system/{{ matrix__static__service     }}.service'
 
-matrix__static__url: 'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
-matrix__static__checksum: 'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
+matrix__static__url:  'https://github.com/matrix-org/matrix-static/archive/0.3.0.tar.gz'
+matrix__element__url: 'https://github.com/vector-im/riot-web/releases/download/v1.7.1/riot-v1.7.1.tar.gz'
+
+matrix__static__checksum:  'sha256:6de2b7360b2deaef7c011acebd061d6bcdae3799ee40a2f7f371744920aa45eb'
+matrix__element__checksum: 'sha256:5e69f862529d429d2d9064de210c16364de48cd38d0ef8ee9a099c096071b5ab'

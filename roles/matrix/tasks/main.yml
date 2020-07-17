@@ -13,3 +13,6 @@
 
 - include_tasks: static.yml
 - meta: flush_handlers
+
+- include_tasks: element.yml
+- meta: flush_handlers
