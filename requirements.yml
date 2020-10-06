@@ -1,5 +1,3 @@
 ---
 - src: kotovalexarian.common
   version: v0.0.45
-- src: geerlingguy.postgresql
-  version: 2.2.1
