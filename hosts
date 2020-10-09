@@ -1,5 +1,5 @@
-matrix.crypto-libertarian.com
-postgres.crypto-libertarian.com
+matrix.fedihub.com
+postgres.fedihub.com
 
 [postgres]
-postgres.crypto-libertarian.com
+postgres.fedihub.com

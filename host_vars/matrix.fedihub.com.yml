@@ -18,32 +18,32 @@ ansible_become_pass_for:
 
 ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
 
-common__certbot__cert_name: 'matrix.crypto-libertarian.com'
+common__certbot__cert_name: 'matrix.fedihub.com'
 common__certbot__cert_domains:
-  - 'matrix.crypto-libertarian.com'
-  - 'element.crypto-libertarian.com'
+  - 'matrix.fedihub.com'
+  - 'element.fedihub.com'
 common__certbot__post_hook: 'systemctl is-active nginx.service || systemctl start nginx.service'
 common__certbot__pre_hook: 'systemctl is-active nginx.service && systemctl stop nginx.service || true'
 
 common__nginx__state: install
 common__nginx__remove_default: true
 
-matrix__site_host: 'crypto-libertarian.com'
-matrix__base_host: 'matrix.crypto-libertarian.com'
-matrix__web_host:  'element.crypto-libertarian.com'
+matrix__site_host: 'fedihub.com'
+matrix__base_host: 'matrix.fedihub.com'
+matrix__web_host:  'element.fedihub.com'
 
-matrix__site_url: 'https://crypto-libertarian.com'
-matrix__base_url: 'https://matrix.crypto-libertarian.com'
-matrix__web_url:  'https://element.crypto-libertarian.com'
+matrix__site_url: 'https://fedihub.com'
+matrix__base_url: 'https://matrix.fedihub.com'
+matrix__web_url:  'https://element.fedihub.com'
 
 matrix__admin_contact: 'mailto:kotovalexarian@gmail.com'
-matrix__admin_user: '@kotovalexarian:crypto-libertarian.com'
+matrix__admin_user: '@kotovalexarian:fedihub.com'
 
-matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.crypto-libertarian.com/fullchain.pem'
-matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.crypto-libertarian.com/privkey.pem'
+matrix__nginx__ssl_cert: '/etc/letsencrypt/live/matrix.fedihub.com/fullchain.pem'
+matrix__nginx__ssl_key:  '/etc/letsencrypt/live/matrix.fedihub.com/privkey.pem'
 
 matrix__synapse__pg_enable: true
-matrix__synapse__pg_host: 'postgres.crypto-libertarian.com'
+matrix__synapse__pg_host: 'postgres.fedihub.com'
 matrix__synapse__pg_username: 'matrix_synapse'
 matrix__synapse__pg_database: 'matrix_synapse'
 
@@ -122,7 +122,7 @@ matrix__media_repo__postgres: !vault |
   643434393863366439623237653737353439
 
 matrix__media_repo__s3_endpoint: 's3.eu-central-1.amazonaws.com'
-matrix__media_repo__s3_bucket: 'crypto-libertarian-matrix-media-repo'
+matrix__media_repo__s3_bucket: 'fedihub-matrix-media-repo'
 
 matrix__media_repo__s3_access_key: !vault |
   $ANSIBLE_VAULT;1.2;AES256;matrix
@@ -141,7 +141,7 @@ matrix__media_repo__s3_access_secret: !vault |
   65363837313464616536333934353062353962363365353831623234363939636333616634323832
   3466656664353839333966643333336432303435663232646664
 
-matrix__static__user_id: '@1:crypto-libertarian.com'
+matrix__static__user_id: '@1:fedihub.com'
 
 matrix__static__access_token: !vault |
   $ANSIBLE_VAULT;1.2;AES256;matrix

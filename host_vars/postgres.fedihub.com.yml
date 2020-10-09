@@ -18,9 +18,9 @@ ansible_become_pass_for:
 
 ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
 
-common__certbot__cert_name: 'postgres.crypto-libertarian.com'
+common__certbot__cert_name: 'postgres.fedihub.com'
 common__certbot__cert_domains:
-  - 'postgres.crypto-libertarian.com'
+  - 'postgres.fedihub.com'
 
 postgresql_users:
   - name: matrix_synapse
