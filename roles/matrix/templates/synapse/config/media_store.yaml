@@ -1,0 +1,59 @@
+## Media Store ##
+
+# Enable the media store service in the Synapse master. Uncomment the
+# following if you are using a separate media store worker.
+#
+enable_media_repo: false
+
+# Directory where uploaded images and attachments are stored.
+#
+media_store_path: '{{ matrix__synapse__media_dir }}'
+
+# Media storage providers allow media to be stored in different
+# locations.
+#
+#media_storage_providers:
+#  - module: file_system
+#    # Whether to store newly uploaded local files
+#    store_local: false
+#    # Whether to store newly downloaded remote files
+#    store_remote: false
+#    # Whether to wait for successful storage for local uploads
+#    store_synchronous: false
+#    config:
+#       directory: /mnt/some/other/directory
+
+# The largest allowed upload size in bytes
+#
+max_upload_size: 100M
+
+# Maximum number of pixels that will be thumbnailed
+#
+#max_image_pixels: 32M
+
+# Whether to generate new thumbnails on the fly to precisely match
+# the resolution requested by the client. If true then whenever
+# a new resolution is requested by the client the server will
+# generate a new thumbnail. If false the server will pick a thumbnail
+# from a precalculated list.
+#
+#dynamic_thumbnails: false
+
+# List of thumbnails to precalculate when an image is uploaded.
+#
+#thumbnail_sizes:
+#  - width: 32
+#    height: 32
+#    method: crop
+#  - width: 96
+#    height: 96
+#    method: crop
+#  - width: 320
+#    height: 240
+#    method: scale
+#  - width: 640
+#    height: 480
+#    method: scale
+#  - width: 800
+#    height: 600
+#    method: scale

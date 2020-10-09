@@ -1,0 +1,37 @@
+---
+- name: Create Matrix Element directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: root
+    group: root
+  with_items:
+    - '{{ matrix__element__opt_dir }}'
+    - '{{ matrix__element__src_dir }}'
+
+- name: Get Matrix Element source code
+  get_url:
+    url: '{{ matrix__element__url }}'
+    checksum: '{{ matrix__element__checksum }}'
+    dest: '{{ matrix__element__archive_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+
+- name: Extract Matrix Element source code
+  unarchive:
+    remote_src: true
+    src: '{{ matrix__element__archive_file }}'
+    dest: '{{ matrix__element__src_dir }}'
+    creates: '{{ matrix__element__src_dir }}/index.html'
+    extra_opts:
+      - '--strip-components=1'
+
+- name: Create Matrix Element config
+  template:
+    src: '../templates/element/config.json'
+    dest: '{{ matrix__element__conf_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root

@@ -1,0 +1,18 @@
+---
+- include_tasks: common.yml
+- meta: flush_handlers
+
+- include_tasks: nginx.yml
+- meta: flush_handlers
+
+- include_tasks: synapse.yml
+- meta: flush_handlers
+
+- include_tasks: media_repo.yml
+- meta: flush_handlers
+
+- include_tasks: static.yml
+- meta: flush_handlers
+
+- include_tasks: element.yml
+- meta: flush_handlers

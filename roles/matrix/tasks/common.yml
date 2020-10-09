@@ -1,0 +1,21 @@
+---
+- name: Create Matrix directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: root
+    group: root
+  with_items:
+    - '{{ matrix__conf_dir }}'
+    - '{{ matrix__opt_dir }}'
+    - '{{ matrix__lib_dir }}'
+    - '{{ matrix__run_dir }}'
+
+- name: Recreate Matrix rundirs
+  template:
+    src: '../templates/tmpfiles.d/matrix.conf'
+    dest: '/etc/tmpfiles.d/matrix.conf'
+    mode: 'u=rw,g=r,o=r'
+    owner: root
+    group: root

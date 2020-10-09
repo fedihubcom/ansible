@@ -1,0 +1,7 @@
+{
+  "access_token": "{{ matrix__static__access_token }}",
+  "device_id": "guest_device",
+  "home_server": "{{ matrix__base_url }}",
+  "refresh_token": "",
+  "user_id": "{{ matrix__static__user_id }}"
+}
