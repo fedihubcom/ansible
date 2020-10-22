@@ -34,3 +34,9 @@ common__iptables__v4_filter: |
   -A OUTPUT -p tcp -m multiport --sport 80,443 -j REJECT
 
 common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'
+
+fedihub__website__host: 'fedihub.com'
+fedihub__website__port: 8000
+fedihub__website__public_dir: '/opt/fedihub/website/public'
+fedihub__website__nginx__ssl_cert: '/etc/letsencrypt/live/website.fedihub.com/fullchain.pem'
+fedihub__website__nginx__ssl_key:  '/etc/letsencrypt/live/website.fedihub.com/privkey.pem'
