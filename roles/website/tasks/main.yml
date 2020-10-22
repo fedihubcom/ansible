@@ -2,6 +2,11 @@
 - include_tasks: nginx.yml
 - meta: flush_handlers
 
+- name: Install system packages for FediHub Website
+  apt:
+    name: libpq5
+  notify: Load, enable and restart FediHub Website
+
 - name: Create FediHub Website system group
   group:
     name: '{{ fedihub__website__group }}'
