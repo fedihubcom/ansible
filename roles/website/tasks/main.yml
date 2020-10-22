@@ -36,3 +36,10 @@
     repo: 'https://github.com/fedihubcom/website.git'
     dest: '{{ fedihub__website__src_dir }}'
     version: '81316a9426c4fbe74fa0d3e267fb8ef8fa267c66'
+
+- name: Build Fedihub Website source code
+  become_user: '{{ fedihub__website__user }}'
+  shell:
+    cmd: '/home/fedihub-website/.cargo/bin/cargo build --release'
+    chdir: '{{ fedihub__website__src_dir }}'
+    creates: '{{ fedihub__website__bin_path }}'

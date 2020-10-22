@@ -3,5 +3,6 @@ fedihub__website__user:    'fedihub-website'
 fedihub__website__group:   'fedihub-website'
 fedihub__website__service: 'fedihub-website'
 
-fedihub__website__opt_dir: '/opt/fedihub'
-fedihub__website__src_dir: '/opt/fedihub/website'
+fedihub__website__opt_dir:  '/opt/fedihub'
+fedihub__website__src_dir:  '/opt/fedihub/website'
+fedihub__website__bin_path: '/opt/fedihub/website/target/release/fedihub-website'
