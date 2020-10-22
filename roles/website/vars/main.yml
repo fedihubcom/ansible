@@ -8,6 +8,3 @@ fedihub__website__src_dir:  '/opt/fedihub/website'
 fedihub__website__bin_path: '/opt/fedihub/website/target/release/fedihub-website'
 
 fedihub__website__service_file: '/etc/systemd/system/{{ fedihub__website__service }}.service'
-
-fedihub__website__database_url: ''
-fedihub__website__secret_key: 'AQBtboLMg6SkvabJodunoFwsv8F3VgzRKaL8PdEHSkQ='
