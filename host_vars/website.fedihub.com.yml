@@ -16,6 +16,11 @@ common__certbot__cert_domains:
   - 'website.fedihub.com'
   - 'fedihub.com'
   - 'www.fedihub.com'
+common__certbot__post_hook: 'systemctl is-active nginx.service || systemctl start nginx.service'
+common__certbot__pre_hook: 'systemctl is-active nginx.service && systemctl stop nginx.service || true'
+
+common__nginx__state: install
+common__nginx__remove_default: true
 
 common__iptables__drop_by_default: true
 
