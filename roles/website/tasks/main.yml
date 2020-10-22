@@ -84,6 +84,15 @@
     creates: '{{ fedihub__website__src_dir }}/public/assets/bundle.css'
   notify: Load, enable and restart FediHub Website
 
+- name: Specify FediHub Website environment
+  template:
+    src: '../templates/env'
+    dest: '{{ fedihub__website__src_dir }}/.env'
+    mode: 'u=rw,g=,o='
+    owner: '{{ fedihub__website__user }}'
+    group: '{{ fedihub__website__group }}'
+  notify: Load, enable and restart FediHub Website
+
 - name: Create FediHub Website systemd service
   template:
     src: '../templates/fedihub-website.service'

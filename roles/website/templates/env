@@ -1,0 +1,2 @@
+DATABASE_URL='{{ fedihub__website__database_url }}'
+SECRET_KEY='{{ fedihub__website__secret_key }}'
