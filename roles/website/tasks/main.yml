@@ -21,6 +21,7 @@
   shell:
     cmd: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly"
     creates: '/home/fedihub-website/.cargo/bin/rustup'
+  notify: Load, enable and restart Fedihub Website
 
 - name: Create Fedihub Website directories
   file:
@@ -29,6 +30,7 @@
     mode: 'u=rwx,g=rwx,o=rx'
     owner: '{{ fedihub__website__user }}'
     group: '{{ fedihub__website__group }}'
+  notify: Load, enable and restart Fedihub Website
 
 - name: Get Fedihub Website source code
   become_user: '{{ fedihub__website__user }}'
@@ -36,6 +38,7 @@
     repo: 'https://github.com/fedihubcom/website.git'
     dest: '{{ fedihub__website__src_dir }}'
     version: '81316a9426c4fbe74fa0d3e267fb8ef8fa267c66'
+  notify: Load, enable and restart Fedihub Website
 
 - name: Build Fedihub Website source code
   become_user: '{{ fedihub__website__user }}'
@@ -43,3 +46,4 @@
     cmd: '/home/fedihub-website/.cargo/bin/cargo build --release'
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '{{ fedihub__website__bin_path }}'
+  notify: Load, enable and restart Fedihub Website
