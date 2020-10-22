@@ -1,0 +1,18 @@
+[Unit]
+After=network.target
+Description=FediHub Website
+
+[Service]
+ExecStart={{ fedihub__website__bin_path }}
+Group={{ fedihub__website__group }}
+Restart=always
+RestartSec=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier={{ fedihub__website__service }}
+Type=simple
+User={{ fedihub__website__user }}
+WorkingDirectory={{ fedihub__website__src_dir }}
+
+[Install]
+WantedBy=multi-user.target

@@ -47,3 +47,12 @@
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '{{ fedihub__website__bin_path }}'
   notify: Load, enable and restart FediHub Website
+
+- name: Create FediHub Website systemd service
+  template:
+    src: '../templates/fedihub-website.service'
+    dest: '{{ fedihub__website__service_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Load, enable and restart FediHub Website
