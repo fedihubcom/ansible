@@ -1,0 +1,31 @@
+---
+ansible_become_pass_for:
+  kotovalexarian: !vault |
+    $ANSIBLE_VAULT;1.2;AES256;kotovalexarian
+    64613435623165663834336663346162346339636165366239393536306235396135396663633963
+    3031366561316161613134366335383739663164323035320a383565366338336363323565343531
+    62353134326535343538323433353635316331353330376230663334613634653834646631333430
+    3462306234393838350a386538396532386433353839313063303061376236613931633032613538
+    32643432323634646638343930333134353866393032623638383463363866346131306564346239
+    3663656166323464386239656366356663646261363131343636
+
+ansible_become_pass: "{{ ansible_become_pass_for[admin] }}"
+
+common__certbot__cert_name: 'website.fedihub.com'
+common__certbot__cert_domains:
+  - 'website.fedihub.com'
+  - 'fedihub.com'
+  - 'www.fedihub.com'
+
+common__iptables__drop_by_default: true
+
+common__iptables__v4_filter: |
+  # Allow incoming HTTP, HTTPS.
+  -A INPUT  -p tcp -m multiport --dport 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp -m multiport --sport 80,443 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+
+  # Deny other HTTP, HTTPS.
+  -A INPUT  -p tcp -m multiport --dport 80,443 -j REJECT
+  -A OUTPUT -p tcp -m multiport --sport 80,443 -j REJECT
+
+common__iptables__v6_filter: '{{ common__iptables__v4_filter }}'

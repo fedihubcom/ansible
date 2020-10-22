@@ -1,5 +1,6 @@
 matrix.fedihub.com
 postgres.fedihub.com
+website.fedihub.com
 
 [postgres]
 postgres.fedihub.com
