@@ -16,6 +16,7 @@
   apt:
     update_cache: true
     name:
+      - libpq-dev
       - libpq5
       - yarn
   notify: Load, enable and restart FediHub Website
