@@ -95,7 +95,7 @@
 - name: Install Diesel CLI
   become_user: '{{ fedihub__website__user }}'
   shell:
-    cmd: '/home/fedihub-website/.cargo/bin/cargo install diesel_cli'
+    cmd: '/home/fedihub-website/.cargo/bin/cargo install diesel_cli  --no-default-features --features postgres'
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '/home/fedihub-website/.cargo/bin/diesel'
 
