@@ -1,0 +1,4 @@
+---
+fedihub__website__user:    'fedihub-website'
+fedihub__website__group:   'fedihub-website'
+fedihub__website__service: 'fedihub-website'
