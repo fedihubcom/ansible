@@ -85,20 +85,20 @@ postgresql_hba_entries:
     auth_method: md5
 
   - type: hostssl
-    database: fedihub_production
-    user: fedihub_production
+    database: fedihub_website_production
+    user: fedihub_website_production
     address: '167.71.69.105/32'
     auth_method: md5
 
   - type: hostssl
-    database: fedihub_production
-    user: fedihub_production
+    database: fedihub_website_production
+    user: fedihub_website_production
     address: '2a03:b0c0:2:f0::191:6001/128'
     auth_method: md5
 
   - type: hostssl
-    database: fedihub_production
-    user: fedihub_production
+    database: fedihub_website_production
+    user: fedihub_website_production
     address: '10.110.0.3/32'
     auth_method: md5
 
