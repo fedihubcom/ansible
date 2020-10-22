@@ -16,5 +16,5 @@
 - name: Install rustup
   become_user: '{{ fedihub__website__user }}'
   shell:
-    cmd: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+    cmd: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly"
     creates: '/home/fedihub-website/.cargo/bin/rustup'
