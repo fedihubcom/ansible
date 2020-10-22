@@ -98,3 +98,11 @@
     cmd: '/home/fedihub-website/.cargo/bin/cargo install diesel_cli'
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '/home/fedihub-website/.cargo/bin/diesel'
+
+- name: Migrate database
+  become_user: '{{ fedihub__website__user }}'
+  shell:
+    cmd: '/home/fedihub-website/.cargo/bin/diesel migration run --locked-schema'
+    chdir: '{{ fedihub__website__src_dir }}'
+  register: diesel_migration_run_result
+  changed_when: "diesel_migration_run_result.stdout != ''"
