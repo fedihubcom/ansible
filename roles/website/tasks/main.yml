@@ -2,48 +2,48 @@
 - include_tasks: nginx.yml
 - meta: flush_handlers
 
-- name: Create Fedihub Website system group
+- name: Create FediHub Website system group
   group:
     name: '{{ fedihub__website__group }}'
     system: true
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website
 
-- name: Create Fedihub Website system user
+- name: Create FediHub Website system user
   user:
     name: '{{ fedihub__website__user }}'
     group: '{{ fedihub__website__group }}'
     system: true
     create_home: true
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website
 
 - name: Install rustup
   become_user: '{{ fedihub__website__user }}'
   shell:
     cmd: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly"
     creates: '/home/fedihub-website/.cargo/bin/rustup'
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website
 
-- name: Create Fedihub Website directories
+- name: Create FediHub Website directories
   file:
     state: directory
     path: '{{ fedihub__website__opt_dir }}'
     mode: 'u=rwx,g=rwx,o=rx'
     owner: '{{ fedihub__website__user }}'
     group: '{{ fedihub__website__group }}'
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website
 
-- name: Get Fedihub Website source code
+- name: Get FediHub Website source code
   become_user: '{{ fedihub__website__user }}'
   git:
     repo: 'https://github.com/fedihubcom/website.git'
     dest: '{{ fedihub__website__src_dir }}'
     version: 'a263fe85d6a0b279dc759a41da8670cdda6b3dc5'
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website
 
-- name: Build Fedihub Website source code
+- name: Build FediHub Website source code
   become_user: '{{ fedihub__website__user }}'
   shell:
     cmd: '/home/fedihub-website/.cargo/bin/cargo build --release'
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '{{ fedihub__website__bin_path }}'
-  notify: Load, enable and restart Fedihub Website
+  notify: Load, enable and restart FediHub Website

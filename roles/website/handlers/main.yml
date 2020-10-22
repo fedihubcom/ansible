@@ -4,7 +4,7 @@
     name: nginx
     state: restarted
 
-- name: Load, enable and restart Fedihub Website
+- name: Load, enable and restart FediHub Website
   systemd:
     name: '{{ fedihub__website__service }}'
     daemon_reload: true
