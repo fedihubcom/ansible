@@ -24,5 +24,12 @@
     state: directory
     path: '{{ fedihub__website__opt_dir }}'
     mode: 'u=rwx,g=rwx,o=rx'
-    owner: root
-    group: root
+    owner: '{{ fedihub__website__user }}'
+    group: '{{ fedihub__website__group }}'
+
+- name: Get Fedihub Website source code
+  become_user: '{{ fedihub__website__user }}'
+  git:
+    repo: 'https://github.com/fedihubcom/website.git'
+    dest: '{{ fedihub__website__src_dir }}'
+    version: '81316a9426c4fbe74fa0d3e267fb8ef8fa267c66'
