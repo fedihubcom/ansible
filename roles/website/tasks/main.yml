@@ -2,9 +2,22 @@
 - include_tasks: nginx.yml
 - meta: flush_handlers
 
+- name: Add Yarn APT key
+  apt_key:
+    id: '72ECF46A56B4AD39C907BBB71646B01B86E50310'
+    url: 'https://dl.yarnpkg.com/debian/pubkey.gpg'
+
+- name: Add Yarn APT repository
+  apt_repository:
+    filename: 'yarn'
+    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
+
 - name: Install system packages for FediHub Website
   apt:
-    name: libpq5
+    update_cache: true
+    name:
+      - libpq5
+      - yarn
   notify: Load, enable and restart FediHub Website
 
 - name: Create FediHub Website system group
@@ -51,6 +64,23 @@
     cmd: '/home/fedihub-website/.cargo/bin/cargo build --release'
     chdir: '{{ fedihub__website__src_dir }}'
     creates: '{{ fedihub__website__bin_path }}'
+  notify: Load, enable and restart FediHub Website
+
+- name: Install FediHub Website asset dependencies
+  become_user: '{{ fedihub__website__user }}'
+  shell:
+    cmd: 'yarn install'
+    chdir: '{{ fedihub__website__src_dir }}'
+  register: yarn_install_result
+  changed_when: "'Already up-to-date.' not in yarn_install_result.stdout"
+  notify: Load, enable and restart FediHub Website
+
+- name: Build FediHub Website assets
+  become_user: '{{ fedihub__website__user }}'
+  shell:
+    cmd: 'yarn build'
+    chdir: '{{ fedihub__website__src_dir }}'
+    creates: '{{ fedihub__website__src_dir }}/public/assets/bundle.css'
   notify: Load, enable and restart FediHub Website
 
 - name: Create FediHub Website systemd service
