@@ -105,37 +105,37 @@ postgresql_hba_entries:
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
-    address: '134.209.196.172/32'
+    address: '188.166.85.61/32'
     auth_method: md5
 
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
-    address: '2a03:b0c0:2:f0::142:3001/128'
+    address: '2a03:b0c0:2:d0::ca1:e001/128'
     auth_method: md5
 
   - type: hostssl
     database: matrix_synapse
     user: matrix_synapse
-    address: '10.133.8.214/32'
+    address: '10.110.0.4/32'
     auth_method: md5
 
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '134.209.196.172/32'
+    address: '188.166.85.61/32'
     auth_method: md5
 
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '2a03:b0c0:2:f0::142:3001/128'
+    address: '2a03:b0c0:2:d0::ca1:e001/128'
     auth_method: md5
 
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '10.133.8.214/32'
+    address: '10.110.0.4/32'
     auth_method: md5
 
   - type: host
@@ -162,12 +162,12 @@ common__iptables__v4_filter: |
   # Allow incoming PostgreSQL from specific hosts.
   -A INPUT  -p tcp --dport 5432 -s 167.71.69.105/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 167.71.69.105/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  -A INPUT  -p tcp --dport 5432 -s 134.209.196.172/32 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 134.209.196.172/32 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   -A INPUT  -p tcp --dport 5432 -s 10.110.0.3/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 10.110.0.3/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  -A INPUT  -p tcp --dport 5432 -s 10.133.8.214/32    -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 10.133.8.214/32    -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 10.110.0.4/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.4/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
   # Deny other PostgreSQL.
   -A INPUT  -p tcp --dport 5432 -j REJECT
@@ -185,8 +185,8 @@ common__iptables__v6_filter: |
   # Allow incoming PostgreSQL from specific hosts.
   -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:f0::191:6001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:f0::191:6001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:f0::142:3001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:f0::142:3001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:d0::ca1:e001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:d0::ca1:e001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
   # Deny other PostgreSQL.
   -A INPUT  -p tcp --dport 5432 -j REJECT
