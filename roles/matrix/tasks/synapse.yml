@@ -28,7 +28,7 @@
     name: '{{ matrix__synapse__user }}'
     group: '{{ matrix__synapse__group }}'
     system: true
-    create_home: false
+    create_home: true
   notify: Load, enable and restart Matrix Synapse
 
 - name: Create Matrix Synapse directories
