@@ -56,7 +56,7 @@
   git:
     repo: 'https://github.com/fedihubcom/website.git'
     dest: '{{ fedihub__website__src_dir }}'
-    version: 'a263fe85d6a0b279dc759a41da8670cdda6b3dc5'
+    version: '3d769238021ed0a293dd59953574179634195ab9'
   notify: Load, enable and restart FediHub Website
 
 - name: Build FediHub Website source code
