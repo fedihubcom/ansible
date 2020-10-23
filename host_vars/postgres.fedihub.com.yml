@@ -160,16 +160,16 @@ common__iptables__v4_filter: |
   -A OUTPUT -p tcp --dport 80 -j REJECT
 
   # Allow incoming PostgreSQL from specific hosts.
-  # website.fedihub.com
+  # website.fedihub.com (public)
   -A INPUT  -p tcp --dport 5432 -s 167.71.69.105/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 167.71.69.105/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  # website.fedihub.com
+  # website.fedihub.com (private)
   -A INPUT  -p tcp --dport 5432 -s 10.110.0.3/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 10.110.0.3/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  # matrix.fedihub.com
+  # matrix.fedihub.com (public)
   -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  # matrix.fedihub.com
+  # matrix.fedihub.com (private)
   -A INPUT  -p tcp --dport 5432 -s 10.110.0.4/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 10.110.0.4/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
