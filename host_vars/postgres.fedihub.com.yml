@@ -163,12 +163,12 @@ common__iptables__v4_filter: |
   # website.fedihub.com
   -A INPUT  -p tcp --dport 5432 -s 167.71.69.105/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 167.71.69.105/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
-  # matrix.fedihub.com
-  -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   # website.fedihub.com
   -A INPUT  -p tcp --dport 5432 -s 10.110.0.3/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 10.110.0.3/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  # matrix.fedihub.com
+  -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32   -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32   -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   # matrix.fedihub.com
   -A INPUT  -p tcp --dport 5432 -s 10.110.0.4/32      -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 10.110.0.4/32      -m conntrack --ctstate ESTABLISHED     -j ACCEPT
