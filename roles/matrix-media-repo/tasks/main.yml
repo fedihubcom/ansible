@@ -1,0 +1,98 @@
+---
+- name: Install system packages for Matrix Media Repo
+  apt:
+    name:
+      - golang
+      - nginx
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Nginx server configuration
+  template:
+    src: '../templates/matrix-media-repo.conf'
+    dest: '/etc/nginx/sites-available/matrix-media-repo.conf'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Restart Nginx
+
+- name: Enable Nginx server configuration
+  file:
+    state: link
+    src: '/etc/nginx/sites-available/matrix-media-repo.conf'
+    dest: '/etc/nginx/sites-enabled/matrix-media-repo.conf'
+    owner: root
+    group: root
+  notify: Restart Nginx
+
+- name: Create Matrix Media Repo system group
+  group:
+    name: '{{ matrix_media_repo__group }}'
+    system: true
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo system user
+  user:
+    name: '{{ matrix_media_repo__user }}'
+    group: '{{ matrix_media_repo__group }}'
+    system: true
+    create_home: true
+    home: '{{ matrix_media_repo__lib_dir }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: root
+    group: root
+  with_items:
+    - '{{ matrix__conf_dir }}'
+    - '{{ matrix__opt_dir }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo directories
+  file:
+    state: directory
+    path: '{{ item }}'
+    mode: 'u=rwx,g=rwx,o=rx'
+    owner: '{{ matrix_media_repo__user }}'
+    group: '{{ matrix_media_repo__group }}'
+  with_items:
+    - '{{ matrix_media_repo__conf_dir }}'
+    - '{{ matrix_media_repo__opt_dir }}'
+    - '{{ matrix_media_repo__src_dir }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo config
+  template:
+    src: '../templates/config.yaml'
+    dest: '{{ matrix_media_repo__conf_file }}'
+    mode: 'u=rw,g=rw,o='
+    owner: '{{ matrix_media_repo__user }}'
+    group: '{{ matrix_media_repo__group }}'
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Create Matrix Media Repo systemd service
+  template:
+    src: '../templates/matrix-media-repo.service'
+    dest: '{{ matrix_media_repo__service_file }}'
+    mode: 'u=rw,g=rw,o=r'
+    owner: root
+    group: root
+  notify: Load, enable and restart Matrix Media Repo
+
+- name: Get Matrix Media Repo source code
+  become_user: '{{ matrix_media_repo__user }}'
+  git:
+    repo: 'https://github.com/turt2live/matrix-media-repo.git'
+    dest: '{{ matrix_media_repo__src_dir }}'
+    version: 'b73a0082dd22e9ff447950b18e9ca49c73a6d912'
+
+- name: Build Matrix Media Repo source code
+  become_user: '{{ matrix_media_repo__user }}'
+  command:
+    chdir: '{{ matrix_media_repo__src_dir }}'
+    creates: '{{ matrix_media_repo__src_dir }}/bin/media_repo'
+    cmd: '/bin/bash {{ matrix_media_repo__src_dir }}/build.sh'
+  notify: Load, enable and restart Matrix Media Repo

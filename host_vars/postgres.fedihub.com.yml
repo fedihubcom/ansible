@@ -32,7 +32,6 @@ postgresql_users:
       3633343834336333650a663062393934663663646561616162386161336364326430346239396361
       36393735656637636165646261643166383464656231393361656634636565643434353163353738
       6134383131623635343166343165633164363766336334386365
-
   - name: matrix_synapse
     password: !vault |
       $ANSIBLE_VAULT;1.2;AES256;postgres
@@ -123,19 +122,19 @@ postgresql_hba_entries:
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '188.166.85.61/32'
+    address: '167.172.46.255/32'
     auth_method: md5
 
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '2a03:b0c0:2:d0::ca1:e001/128'
+    address: '2a03:b0c0:2:f0::187:5001/128'
     auth_method: md5
 
   - type: hostssl
     database: matrix_media_repo
     user: matrix_media_repo
-    address: '10.110.0.4/32'
+    address: '10.110.0.5/32'
     auth_method: md5
 
   - type: host
@@ -161,17 +160,23 @@ common__iptables__v4_filter: |
 
   # Allow incoming PostgreSQL from specific hosts.
   # website.fedihub.com (public)
-  -A INPUT  -p tcp --dport 5432 -s 167.71.69.105/32 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 167.71.69.105/32 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 167.71.69.105/32  -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 167.71.69.105/32  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   # website.fedihub.com (private)
-  -A INPUT  -p tcp --dport 5432 -s 10.110.0.3/32    -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.3/32    -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 10.110.0.3/32     -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.3/32     -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   # matrix.fedihub.com (public)
-  -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 188.166.85.61/32  -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 188.166.85.61/32  -m conntrack --ctstate ESTABLISHED     -j ACCEPT
   # matrix.fedihub.com (private)
-  -A INPUT  -p tcp --dport 5432 -s 10.110.0.4/32    -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.4/32    -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  -A INPUT  -p tcp --dport 5432 -s 10.110.0.4/32     -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.4/32     -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  # matrix-media-repo.fedihub.com (public)
+  -A INPUT  -p tcp --dport 5432 -s 167.172.46.255/32 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 167.172.46.255/32 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  # matrix-media-repo.fedihub.com (private)
+  -A INPUT  -p tcp --dport 5432 -s 10.110.0.5/32     -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 10.110.0.5/32     -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
   # Deny other PostgreSQL.
   -A INPUT  -p tcp --dport 5432 -j REJECT
@@ -193,6 +198,9 @@ common__iptables__v6_filter: |
   # matrix.fedihub.com
   -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:d0::ca1:e001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
   -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:d0::ca1:e001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
+  # matrix-media-repo.fedihub.com
+  -A INPUT  -p tcp --dport 5432 -s 2a03:b0c0:2:f0::187:5001/128 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+  -A OUTPUT -p tcp --sport 5432 -d 2a03:b0c0:2:f0::187:5001/128 -m conntrack --ctstate ESTABLISHED     -j ACCEPT
 
   # Deny other PostgreSQL.
   -A INPUT  -p tcp --dport 5432 -j REJECT

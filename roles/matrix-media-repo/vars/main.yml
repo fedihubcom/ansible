@@ -1,0 +1,20 @@
+---
+matrix_media_repo__user:    'matrix-media-repo'
+matrix_media_repo__group:   'matrix-media-repo'
+matrix_media_repo__service: 'matrix-media-repo'
+
+matrix_media_repo__port: 8000
+
+matrix__conf_dir: '/etc/matrix'
+matrix__opt_dir:  '/opt/matrix'
+matrix__lib_dir:  '/var/lib/matrix'
+
+matrix_media_repo__conf_dir: '{{ matrix__conf_dir }}/media_repo'
+matrix_media_repo__opt_dir:  '{{ matrix__opt_dir  }}/media_repo'
+matrix_media_repo__lib_dir:  '{{ matrix__lib_dir  }}/media_repo'
+
+matrix_media_repo__conf_file:    '{{ matrix_media_repo__conf_dir }}/config.yaml'
+matrix_media_repo__archive_file: '{{ matrix_media_repo__opt_dir  }}/src.tar.gz'
+matrix_media_repo__src_dir:      '{{ matrix_media_repo__opt_dir  }}/src'
+
+matrix_media_repo__service_file: '/etc/systemd/system/{{ matrix_media_repo__service }}.service'

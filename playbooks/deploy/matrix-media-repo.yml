@@ -1,0 +1,11 @@
+---
+- hosts: matrix-media-repo.fedihub.com
+  module_defaults:
+    apt:
+      force_apt_get: true
+      update_cache: true
+      cache_valid_time: 86400
+  roles:
+    - name: kotovalexarian.common
+      tags: common
+    - ../../roles/matrix-media-repo

@@ -1,0 +1,14 @@
+---
+matrix_media_repo__site_host: 'example.com'
+matrix_media_repo__media_host: 'matrix-media-repo.example.com'
+matrix_media_repo__base_url: 'https://matrix.example.com'
+matrix_media_repo__admin_user: '@user:example.com'
+
+matrix_media_repo__ssl_cert: '/etc/letsencrypt/live/matrix.example.com/fullchain.pem'
+matrix_media_repo__ssl_key:  '/etc/letsencrypt/live/matrix.example.com/privkey.pem'
+
+matrix_media_repo__postgres: 'postgres://user:pass@example.com/dbname?sslmode=require'
+matrix_media_repo__s3_endpoint: 's3.eu-central-1.amazonaws.com'
+matrix_media_repo__s3_access_key: ''
+matrix_media_repo__s3_access_secret: ''
+matrix_media_repo__s3_bucket: 'example-matrix-media-repo'

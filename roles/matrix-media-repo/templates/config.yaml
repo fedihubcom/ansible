@@ -1,7 +1,7 @@
 # General repo configuration
 repo:
   bindAddress: '127.0.0.1'
-  port: {{ matrix__media_repo__port }}
+  port: {{ matrix_media_repo__port }}
 
   # Where to store the logs, relative to where the repo is started from. Logs will be automatically
   # rotated every day and held for 14 days. To disable the repo logging to files, set this to
@@ -33,7 +33,7 @@ federation:
 # user instead. Using the same server is fine, just not the same username and database.
 database:
   # Currently only "postgres" is supported.
-  postgres: "{{ matrix__media_repo__postgres }}"
+  postgres: "{{ matrix_media_repo__postgres }}"
 
   # The database pooling options
   pool:
@@ -51,10 +51,10 @@ homeservers:
   -
     # This should match the server_name of your homeserver, and the Host header
     # provided to the media repo.
-    name: "{{ matrix__site_host }}"
+    name: "{{ matrix_media_repo__site_host }}"
 
     # The base URL to where the homeserver can actually be reached
-    csApi: "{{ matrix__base_url }}"
+    csApi: "{{ matrix_media_repo__base_url }}"
 
     # The number of consecutive failures in calling this homeserver before the
     # media repository will start backing off. This defaults to 10 if not given.
@@ -118,7 +118,7 @@ accessTokens:
 # See docs/admin.md for information on what these people can do. They must belong to one of the
 # configured homeservers above.
 admins:
-  - "{{ matrix__admin_user }}"
+  - "{{ matrix_media_repo__admin_user }}"
 
 # Shared secret auth is useful for applications building on top of the media repository, such
 # as a management interface. The `token` provided here is treated as a repository administrator
@@ -170,11 +170,11 @@ datastores:
       # before being uploaded to s3 (then the file is deleted). If you aren't concerned about
       # memory usage, set this to an empty string.
       tempPath: ''
-      endpoint: "{{ matrix__media_repo__s3_endpoint }}"
-      accessKeyId: "{{ matrix__media_repo__s3_access_key }}"
-      accessSecret: "{{ matrix__media_repo__s3_access_secret }}"
+      endpoint: "{{ matrix_media_repo__s3_endpoint }}"
+      accessKeyId: "{{ matrix_media_repo__s3_access_key }}"
+      accessSecret: "{{ matrix_media_repo__s3_access_secret }}"
       ssl: true
-      bucketName: "{{ matrix__media_repo__s3_bucket }}"
+      bucketName: "{{ matrix_media_repo__s3_bucket }}"
       # An optional region for where this S3 endpoint is located. Typically not needed, though
       # some providers will need this (like Scaleway). Uncomment to use.
       #region: 'sfo2'
